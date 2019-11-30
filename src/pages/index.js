@@ -25,3 +25,12 @@ export const Login = Loadable({
     loader: () => import("./login"),
     loading: Loading
 })
+export const Detail=Loadable({
+    loader:()=>import("./detail"),
+    loading:Loading
+})
+
+export const Brand=Loadable({
+    loader:()=>import("./brand"),
+    loading:Loading
+})
