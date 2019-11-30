@@ -1,0 +1,86 @@
+import styled from "styled-components"
+
+export const Classify = styled.div`
+position:absolute;
+top:0;
+left:0;
+bottom:0;
+right:0;
+.header{
+    height:.37rem;
+    padding:0 .1rem;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:sticky;
+    top:0;
+    background:#fff;
+    span{
+        font-size:.15rem;
+    }
+    a{
+        position:absolute;
+        left:.1rem;
+        font-size:.18rem;
+    }
+    i{
+        position:absolute;
+        right:.1rem;
+        font-size:.18rem;
+    }
+}
+
+.main{
+    width:100%;
+    overflow:hidden;
+    background:#ff3f1a;
+    .banner{
+        width:100%;
+    }
+    .main_content{
+        padding:.09rem;
+        img{width:100%;}
+    }
+    .hongtang{
+        height:2rem;
+        background:#fff;
+        position:relative;
+        margin-bottom:.1rem;
+        ul{
+            height:1.34rem;
+            bottom:0;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            position:absolute;
+            margin-left:.04rem;
+            border-radius:.05rem;
+            background:#fff;
+            li{
+                display:flex;
+                justify-content:center;
+                flex-direction:column;
+                align-items:center;
+                width:.98rem;
+                height:100%;
+                img{
+                    width:.82rem;
+                }
+                h6{
+                    font-size:.12rem;
+                    margin-top:.09rem;
+                    width:.82rem;
+                    overflow:hidden;
+                    text-overflow:ellipsis;
+                    white-space:nowrap;
+                }
+                p{
+                    font-size:.12rem;
+                    margin-top:.03rem;
+                }
+            }
+
+        }
+    }
+}
+`
