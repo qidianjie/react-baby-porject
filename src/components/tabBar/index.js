@@ -1,21 +1,21 @@
 import React, { Component } from 'react'
-import {TabBarRoute} from "router"
-import {TabBarContainer} from "./styled"
-import {withRouter} from "react-router-dom"
+import { TabBarRoute } from "router"
+import { Footer } from "./styled"
+import { withRouter } from "react-router-dom"
 @withRouter
 class TabBar extends Component {
-    constructor(){
+    constructor() {
         super()
 
-        this.state = {
-            activePath:"/home"
-        }
+        // this.state = {
+        //     activePath: "/home"
+        // }
     }
     render() {
-        let {activePath} = this.state;
+        // let { activePath } = this.state;
         return (
-            <TabBarContainer>
-                <ul>
+            <Footer>
+                {/* <ul>
                     {
                        TabBarRoute.map((item)=>(
                            <li key={item.path} onClick={this.handleTo.bind(this,item.path)}>
@@ -24,15 +24,26 @@ class TabBar extends Component {
                            </li>
                        )) 
                     }
-                </ul>
-            </TabBarContainer>
+                </ul> */}
+                {
+                TabBarRoute.map((item)=>(
+                    <div className="item" key={item.path} onClick={this.handleTo.bind(this,item.path)}>
+                    <span className="con-icon home1">
+                        <img src={item.icon} alt="" />
+                    </span>
+                    <span className="item-text">
+                       {item.text}
+                    </span>
+                </div>
+                ))
+                }
+                
+                
+            </Footer>
         )
     }
-    handleTo(path){
+    handleTo(path) {
         this.props.history.push(path);
-        this.setState({
-            activePath:path 
-        })
     }
 }
 

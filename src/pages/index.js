@@ -71,3 +71,12 @@ export const Zhongjian = Loadable({
     loader: () => import("./zhongjian"),
     loading: Loading
 })
+export const Detail=Loadable({
+    loader:()=>import("./detail"),
+    loading:Loading
+})
+
+export const Brand=Loadable({
+    loader:()=>import("./brand"),
+    loading:Loading
+})

@@ -1,37 +1,25 @@
 import styled from "styled-components";
-
-export const TabBarContainer = styled.div`
-    width:100%;
-    height:.4rem;
-    background:#fff;
-    border-top:1px solid #ccc;
-    position:fixed;
-    left:0;
-    bottom:0;
-    ul{
-        width:100%;
-        height:100%;
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-        .active{
-            color:#c33;
-        }
-    }
-    li{
-        width:100%;
-        height:100%;
-        display:flex;
-        flex-direction:column;
-        justify-content:center;
-        align-items:center;
-        i{
-            font-size:.22rem;
-        }
-        span{
-            font-size:.12rem;
-        }
-    }
-
+export const Footer = styled.div `
+display:flex;
+position:fixed;
+bottom:0;
+width:100%;
+height:0.4rem;
+border-top: 1px solid #eaeaea;
+justify-content:space-around;
+background:white;
+.item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+.item-text{
+    font-size:0.11rem;
+    color:#999;
+    font-family: PingFangSC-Regular;
+}
+img{
+    width:0.21rem;
+}
 
 `

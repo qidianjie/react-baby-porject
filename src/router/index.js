@@ -1,3 +1,4 @@
+import b from '../assets/image/home.png'
 import {
     Home,
     Fenlei,
@@ -12,8 +13,11 @@ import {
     Pinpai,
     Qianggou,
     Rule,
-    Zhongjian
+    Zhongjian,
+    Detail,
+    Brand
 } from "pages"
+
 
 
 export const TabBarRoute = [
@@ -23,7 +27,8 @@ export const TabBarRoute = [
         meta:{
             flag:true
         },
-        icon:"\ue628",
+        //
+        icon:"http://3g.baobeigezi.com/imgs/indexIcon/home.png",
         text:"首页"
     },
     {
@@ -32,8 +37,8 @@ export const TabBarRoute = [
         meta:{
             flag:true
         },
-        icon:"\ue663",
-        text:"发现"
+        icon:"https://3g.baobeigezi.com/imgs/indexIcon/fen.png",
+        text:"分类"
     },
     {
         path:"/order",
@@ -41,8 +46,8 @@ export const TabBarRoute = [
         meta:{
             flag:true
         },
-        icon:"\ue737",
-        text:"礼物"
+        icon:"https://3g.baobeigezi.com/imgs/indexIcon/car.png",
+        text:"购物车"
     },
     {
         path:"/mine",
@@ -51,7 +56,7 @@ export const TabBarRoute = [
             flag:true,
             requiredAuth:true
         },
-        icon:"\ue617",
+        icon:"https://3g.baobeigezi.com/imgs/indexIcon/my.png",
         text:"我的"
     },
     {
@@ -128,6 +133,16 @@ export const NoTabBarRoute = [
         // icon:"\ue617",
         // text:"我的"
     },
+    {//商品详情
+        path:"/detail",
+        component:Detail,
+        meta:{}
+    },
+    {//品牌详情
+        path:"/brand",
+        component:Brand,
+        meta:{}
+    }
 ];
 
 
