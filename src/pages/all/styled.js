@@ -45,7 +45,7 @@ background:#f4f4f4;
     width:.13rem;
     height:4.26rem;
     background:#d4d4d4;
-    position:absolute;
+    position:fixed;
     top:.37rem;
     right:0;
     z-index:10;
@@ -72,8 +72,12 @@ background:#f4f4f4;
             border-bottom:1px solid #ccc;
             height:.28rem;
             line-height:.28rem;
+            &:last-of-type{
+                border-bottom:none;
+            }
             a{
                 font-size:.12rem !important;
+                color:#313131;
             }
         }
         

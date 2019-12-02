@@ -73,7 +73,7 @@ right:0;
             span{
                 padding:.06rem .11rem;
                 font-size:.12rem;
-                border:5px solid #000;
+                border:3px solid #000;
                 position:absolute;
                 right:0;
                 bottom:.2rem;
