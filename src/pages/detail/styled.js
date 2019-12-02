@@ -1,10 +1,11 @@
 import styled from 'styled-components'
-import bg from '../../assets/image/ToTop2x.png'
-//http://3g.baobeigezi.com/imgs/activity_backToTop2x.png
+import bg from '../../static/image/ToTop2x.png'
+import pt2 from '../../static/image/pt2.png'
 export const CommonHeader=styled.div`
     width:100%;
     height:0.36rem;
     background:white;
+    /* overflow:hidden; */
     .common_header_bar{
         position:relative;
         width:100%;
@@ -41,20 +42,82 @@ export const CommonHeader=styled.div`
 
 export const Wrapper=styled.div`
     /* margin-top:0.36rem; */
+    overflow:scroll;
+    /* padding-bottom:1.1rem; */
+    
     em{
         font-style:normal;
     }
     .banner1{
         width:3.2rem;
-        height:3.2rem;
+        /* height:3.2rem; */
     }
     .groupBgc{
-        padding:0rem 0.08rem;
+        padding:0.08rem 0.08rem;
         height:0.6rem;
+        background:url(${pt2}) no-repeat;
+        background-size:100% 100%;
+        font-family: PingFangSC-Regular;
     .groupPrice {
             font-size: .15rem;
             margin-right: 0.06rem;
+            color:white;    
+        }
+        .numGroup{
+            margin-top:0.05rem;
+        }
+        em{
+            margin-right:0.08rem;
+            font-weight: 700;
+            font-style: normal;
+            font-size: .18rem;
             color:white;
+        }
+        .unitPrice{
+            color:white;
+            font-size:0.12rem;
+        }
+        i {
+            text-decoration: line-through;
+            color:white;
+            font-size:0.12rem;
+            font-style:normal;
+            
+        }
+        .spell{
+            color:white;
+            font-size:0.12rem;
+            float:right;
+        }
+      .span1 {
+          font-size:0.12rem;
+            width: .17rem;
+            height: .17rem;
+            color: #BB361F;
+            display: inline-block;
+            background: #fff;
+            border-radius: 0.04rem 0.04rem 0px 0.04rem;
+            text-align: center;
+            line-height: .17rem;
+            border: 1px solid #fff;
+            border-right: none;
+        }
+        .span2 {
+            color:white;
+            font-size:0.12rem;
+            width: .3rem;
+            height: .17rem;
+            border: 1px solid #fff;
+            display: inline-block;
+            text-align: center;
+            /* line-height: .15rem; */
+            margin-right: .1rem;
+            border-radius: 0px 0.04rem 0.04rem 0px;
+            border-left: none;
+        }
+        .span3{
+            color:white;
+            font-size:0.12rem;
         }
     }
  
@@ -65,8 +128,12 @@ export const Wrapper=styled.div`
         height:3.2rem;
     }
     .proPrice{
+        background-image:url(${pt2});
+        display:flex;
+        flex-wrap:wrap;
+        align-items:center;
         padding:0.08rem;
-        padding-right:0rem;
+        /* padding-right:0rem; */
         background:white;
         font-size:0.12rem;
         color:#000;
@@ -83,17 +150,16 @@ export const Wrapper=styled.div`
        
     }
     .timeDownLists{
-        background:#fff;
+        width:100%;
+        background:red;
            padding:0rem 0.08rem 0.128rem 0.08rem;
         }
         .xinPname {
             background-color: #fff;
             padding: 0rem 0.08rem;
         }
-        .proTitle{
-    
-        }
         .proTitle {
+            margin-top:0.1rem;
             background-color: #fff;
             font-size: .12rem;
             color: #333333;
@@ -107,19 +173,22 @@ export const Wrapper=styled.div`
             background:white;
         }
         .specification {
+            display:flex;
             background:white;
                 height: 0.38rem;
                 line-height: 0.38rem;
                 padding: 0 .076rem;
-                overflow: hidden;
-                display: block;
+                /* overflow: hidden; */
+                /* display: block; */
              margin-bottom: 0.085rem;
              position: relative;
-             img{margin-top:0.05rem;
+             img{
+                 margin-top:0.05rem;
                  width:0.3rem;
                  margin-right:0.085rem;
              }
              .titTxt {
+
                 font-size: .12rem;
                 color: #999999;
                 font-family: PingFangSC-Regular;
@@ -199,9 +268,23 @@ export const Wrapper=styled.div`
                 width:0.6rem;
             }
             .val{
-
                 width:2.3rem;
+                
             }
+            i{
+                font-size:0.11rem;
+                font-style:normal;
+            }
+            span{
+                    font-size:0.11rem;
+                }
+            /* .val{
+                span{
+                     font-size:0.11rem; 
+                }
+              
+                width:2.3rem;
+            } */
         }
         .descTabPage{
             margin-top:0.085rem;
@@ -327,6 +410,7 @@ export const Wrapper=styled.div`
                     }
                     .clearfix{
                         width:100%;
+                        /* padding-bottom:0.5rem; */
                     }
                     .lis{
                         width:1.53rem;
@@ -409,7 +493,7 @@ export const Footer=styled.div`
         background: #dcb86c;
         color: #fff;
         font-size: .12rem;
-    width:0.9rem;
+         width:0.9rem;
         line-height: 0.36rem;
         padding: 0;
         border-radius: 6px 0 0 6px;
@@ -417,6 +501,29 @@ export const Footer=styled.div`
         right:0.9rem;
     /* margin-left:0.6rem */
 }
+.addCartBtn1 {
+        font-family: PingFangSC-Regular;
+        text-align:center;
+        height: 0.36rem;
+        background: #dcb86c;
+        color: #fff;
+        font-size: .12rem;
+         width:0.9rem;
+      
+        padding: 0;
+        border-radius: 6px 0 0 6px;
+        position: absolute;
+        right:0.9rem;
+    /* margin-left:0.6rem */
+}
+
+.groupCar1{
+    display:block;
+    i{
+       font-style:normal; 
+    }  
+}
+
 .buyBtn {
     font-family: PingFangSC-Regular;
     text-align:center;
@@ -426,6 +533,20 @@ export const Footer=styled.div`
     color: #fff;
     font-size: .12rem;
     line-height: 0.36rem;
+    padding: 0;
+    border-radius: 0 6px 6px 0;
+    position: absolute;
+    right:0rem
+}
+.buyBtn1 {
+    font-family: PingFangSC-Regular;
+    text-align:center;
+        height: 0.36rem;
+        width:0.9rem;
+    background: #BB361F;
+    color: #fff;
+    font-size: .12rem;
+    
     padding: 0;
     border-radius: 0 6px 6px 0;
     position: absolute;

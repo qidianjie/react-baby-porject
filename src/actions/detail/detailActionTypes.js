@@ -1,0 +1,1 @@
+export const detailAsyncType="DETAIL_ASYNC_TYPE"

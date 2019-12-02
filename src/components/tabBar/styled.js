@@ -13,13 +13,16 @@ background:white;
     flex-direction:column;
     align-items:center;
 }
-.item-text{
+span{
     font-size:0.11rem;
     color:#999;
     font-family: PingFangSC-Regular;
 }
 img{
     width:0.21rem;
+}
+.active{
+    color:#313131;
 }
 
 `

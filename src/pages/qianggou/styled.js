@@ -27,6 +27,29 @@ background-size:100%;
         color:#fff;
     }
 }
+/* 进度条 */
+.progress-container{
+    width:70%;
+}
+.show-info {
+  margin-top: 0.18rem;
+  display: flex;
+  align-items: center;
+}
+.show-info .progress {
+  margin-right: 5px;
+  width: 100%;
+}
+.am-progress-outer{
+    background:#FFD0CE;
+    border-radius:0.2rem;
+}
+.am-progress-bar{
+    border: 0.03rem solid #FC251F;
+    border-radius:0.1rem;
+    background:#FC251F!important;
+}
+
 .comming{
     margin-top:.12rem;
     padding:0 .1rem;
@@ -82,10 +105,12 @@ background-size:100%;
                         background:#000;
                         border-radius:.05rem;
                         flex:1;
-                    }                i{
+                    }                
+                    i{
                         color:#bb361f;
                         font-size:.12rem;
                         font-style:normal;
+                        padding-left:0.1rem;
                     } 
 
                 }

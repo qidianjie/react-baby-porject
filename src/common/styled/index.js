@@ -7,5 +7,4 @@ export const PageContainer = styled.div`
     bottom:0;
     right:0;
     padding-bottom:0.4rem;
-    overflow:scroll;
 `

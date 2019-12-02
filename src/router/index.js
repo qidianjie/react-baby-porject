@@ -1,4 +1,4 @@
-import b from '../assets/image/home.png'
+// import b from '../assets/image/home.png'
 import {
     Home,
     Fenlei,
@@ -15,7 +15,12 @@ import {
     Rule,
     Zhongjian,
     Detail,
-    Brand
+    Brand,
+    National,
+    Parenting,
+    BaikeList,
+    Article,
+    CourseDetail
 } from "pages"
 
 
@@ -132,6 +137,31 @@ export const NoTabBarRoute = [
     {//品牌详情
         path:"/brand",
         component:Brand,
+        meta:{}
+    },
+    {//国家地区馆
+        path:"/national",
+        component:National,
+        meta:{}
+    },
+     {//育儿百科
+        path:"/parenting",
+        component:Parenting,
+        meta:{}
+    },
+    {//百科list
+        path:"/baikeList",
+        component:BaikeList,
+        meta:{}
+    },
+    {//article
+        path:"/article",
+        component:Article,
+        meta:{}
+    },
+    {//课程详情
+        path:"/courseDetail",
+        component:CourseDetail,
         meta:{}
     }
 ];
