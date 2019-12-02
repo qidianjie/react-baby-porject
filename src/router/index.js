@@ -1,10 +1,19 @@
 // import b from '../assets/image/home.png'
 import {
     Home,
-    Find,
+    Fenlei,
     Order,
     Mine,
     Login,
+    Search,
+    All,
+    Cart,
+    Hongbao,
+    Libao,
+    Pinpai,
+    Qianggou,
+    Rule,
+    Zhongjian,
     Detail,
     Brand
 } from "pages"
@@ -23,8 +32,8 @@ export const TabBarRoute = [
         text:"首页"
     },
     {
-        path:"/find",
-        component:Find,
+        path:"/fenlei",
+        component:Fenlei,
         meta:{
             flag:true
         },
@@ -49,7 +58,16 @@ export const TabBarRoute = [
         },
         icon:"https://3g.baobeigezi.com/imgs/indexIcon/my.png",
         text:"我的"
-    }
+    },
+    {
+        path:"/cart",
+        component:Cart,
+        meta:{
+            flag:true,
+        },
+        // icon:"\ue617",
+        // text:"我的"
+    },
 ];
 
 
@@ -58,6 +76,62 @@ export const NoTabBarRoute = [
         path:"/login",
         component:Login,
         meta:{}
+    },
+    {
+        path:"/search",
+        component:Search,
+        meta:{},
+        // icon:"\ue617",
+        // text:"我的"
+    },
+    {
+        path:"/all",
+        component:All,
+        meta:{},
+        // icon:"\ue617",
+        // text:"我的"
+    },
+    {
+        path:"/hongbao",
+        component:Hongbao,
+        meta:{},
+        // icon:"\ue617",
+        // text:"我的"
+    },
+    {
+        path:"/libao",
+        component:Libao,
+        meta:{},
+        // icon:"\ue617",
+        // text:"我的"
+    },
+    {
+        path:"/pinpai",
+        component:Pinpai,
+        meta:{},
+        // icon:"\ue617",
+        // text:"我的"
+    },
+    {
+        path:"/qianggou",
+        component:Qianggou,
+        meta:{},
+        // icon:"\ue617",
+        // text:"我的"
+    },
+    {
+        path:"/rule",
+        component:Rule,
+        meta:{},
+        // icon:"\ue617",
+        // text:"我的"
+    },
+    {
+        path:"/zhongjian",
+        component:Zhongjian,
+        meta:{},
+        // icon:"\ue617",
+        // text:"我的"
     },
     {//商品详情
         path:"/detail",
