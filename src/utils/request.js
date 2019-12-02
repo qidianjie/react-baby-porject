@@ -31,10 +31,11 @@ const get = (options) => {
 
 const post = (options) => {
     var result = fetchPro(options.url, {
-        method: options.method,
+        method: 'POST',
+        credentials: 'include',
         body: qs.stringify(options.data),
         headers: {
-            'Accept': 'application/json',
+            'Accept': 'application/json, text/plain, */*',  
             'Content-Type': 'application/x-www-form-urlencoded'
         }
     }).then(res => res.json())
