@@ -80,3 +80,28 @@ export const Brand=Loadable({
     loader:()=>import("./brand"),
     loading:Loading
 })
+// 国家地区馆
+export const National=Loadable({
+    loader:()=>import("./national"),
+    loading:Loading
+})
+// Parenting
+export const Parenting=Loadable({
+    loader:()=>import("./parenting"),
+    loading:Loading
+})
+// baikeList
+export const BaikeList=Loadable({
+    loader:()=>import("./baikeList"),
+    loading:Loading
+})
+// article
+export const Article=Loadable({
+    loader:()=>import("./article"),
+    loading:Loading
+})
+// 课程详情
+export const CourseDetail=Loadable({
+    loader:()=>import("./courseDetail"),
+    loading:Loading
+})

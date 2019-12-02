@@ -1,0 +1,1 @@
+export const parentingType="PARENTING_TYPE";

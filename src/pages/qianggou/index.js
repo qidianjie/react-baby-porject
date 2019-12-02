@@ -1,129 +1,82 @@
 import React, { Component } from 'react'
-import {PageContainer} from "common/styled"
-import {Classify} from "./styled"
-class Qianggou extends React.Component{
-    constructor(){
+import { PageContainer } from "common/styled"
+import { Classify } from "./styled"
+// 进度条
+import { Progress, WingBlank, WhiteSpace } from 'antd-mobile';
+import { mapStateToProps, mapDispatchToProps } from "./mapStore";
+import { connect } from "react-redux";
+@connect(mapStateToProps, mapDispatchToProps)
+class Qianggou extends React.Component {
+    constructor() {
         super();
+        this.state = {
+            percent: 50,
+        };
     }
-    render(){
+    add = () => {
+        let p = this.state.percent + 10;
+        if (this.state.percent >= 100) {
+            p = 0;
+        }
+        this.setState({ percent: p });
+    }
+    render() {
+        let { crazyList } = this.props;
+        const { percent } = this.state;
+        console.log(crazyList)
         return (
             <PageContainer>
-            <Classify>
-                <div className="header">
-                   <span>
-                       <img src="http://3g.baobeigezi.com/imgs/newIndex/flashIcon.png"></img>
-                   </span>
-                   <a className="iconfont">&#xe605;</a>
-                </div>
-                <div className="comming">
-                    <h4>上新了</h4>
-                    <span>正在抢</span>
-                </div>
+                <Classify>
+                    <div className="header">
+                        <span>
+                            <img src="http://3g.baobeigezi.com/imgs/newIndex/flashIcon.png"></img>
+                        </span>
+                        <a className="iconfont">&#xe605;</a>
+                    </div>
+                    <div className="comming">
+                        <h4>上新了</h4>
+                        <span>正在抢</span>
+                    </div>
 
-                <div className="flash">
-                    <ul className="flash_content">
-                        <li>
-                            <img src="http://id.baoimg.net/share-img/photo/201810/5bcfe67a7c6a5.png"></img>
-                            <div className="flash_content_right">
-                                <h4>喜玛拉雅妍</h4>
-                                <p>【2瓶】包邮包税澳洲直邮Kirkland喜马拉雅盐大颗粒有机矿物质粉盐 369g*2瓶</p>
-                                <div className="jindutiao">
-                                    <span></span>
-                                    <i>已抢12%</i>
-                                </div>
-                                <div className="price">
-                                    <span>￥106.00</span>
-                                    <del>350.00</del>
-                                    <a>马上抢</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <img src="http://id.baoimg.net/share-img/photo/201810/5bcfe67a7c6a5.png"></img>
-                            <div className="flash_content_right">
-                                <h4>喜玛拉雅妍</h4>
-                                <p>【2瓶】包邮包税澳洲直邮Kirkland喜马拉雅盐大颗粒有机矿物质粉盐 369g*2瓶</p>
-                                <div className="jindutiao">
-                                    <span></span>
-                                    <i>已抢12%</i>
-                                </div>
-                                <div className="price">
-                                    <span>￥106.00</span>
-                                    <del>350.00</del>
-                                    <a>马上抢</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <img src="http://id.baoimg.net/share-img/photo/201810/5bcfe67a7c6a5.png"></img>
-                            <div className="flash_content_right">
-                                <h4>喜玛拉雅妍</h4>
-                                <p>【2瓶】包邮包税澳洲直邮Kirkland喜马拉雅盐大颗粒有机矿物质粉盐 369g*2瓶</p>
-                                <div className="jindutiao">
-                                    <span></span>
-                                    <i>已抢12%</i>
-                                </div>
-                                <div className="price">
-                                    <span>￥106.00</span>
-                                    <del>350.00</del>
-                                    <a>马上抢</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <img src="http://id.baoimg.net/share-img/photo/201810/5bcfe67a7c6a5.png"></img>
-                            <div className="flash_content_right">
-                                <h4>喜玛拉雅妍</h4>
-                                <p>【2瓶】包邮包税澳洲直邮Kirkland喜马拉雅盐大颗粒有机矿物质粉盐 369g*2瓶</p>
-                                <div className="jindutiao">
-                                    <span></span>
-                                    <i>已抢12%</i>
-                                </div>
-                                <div className="price">
-                                    <span>￥106.00</span>
-                                    <del>350.00</del>
-                                    <a>马上抢</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <img src="http://id.baoimg.net/share-img/photo/201810/5bcfe67a7c6a5.png"></img>
-                            <div className="flash_content_right">
-                                <h4>喜玛拉雅妍</h4>
-                                <p>【2瓶】包邮包税澳洲直邮Kirkland喜马拉雅盐大颗粒有机矿物质粉盐 369g*2瓶</p>
-                                <div className="jindutiao">
-                                    <span></span>
-                                    <i>已抢12%</i>
-                                </div>
-                                <div className="price">
-                                    <span>￥106.00</span>
-                                    <del>350.00</del>
-                                    <a>马上抢</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <img src="http://id.baoimg.net/share-img/photo/201810/5bcfe67a7c6a5.png"></img>
-                            <div className="flash_content_right">
-                                <h4>喜玛拉雅妍</h4>
-                                <p>【2瓶】包邮包税澳洲直邮Kirkland喜马拉雅盐大颗粒有机矿物质粉盐 369g*2瓶</p>
-                                <div className="jindutiao">
-                                    <span></span>
-                                    <i>已抢12%</i>
-                                </div>
-                                <div className="price">
-                                    <span>￥106.00</span>
-                                    <del>350.00</del>
-                                    <a>马上抢</a>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </Classify>
+                    <div className="flash">
+                        <ul className="flash_content">
+                            {
+                                (crazyList ? crazyList : []).map((item) => (
+                                    <li key={item.goodsId}>
+                                        <img src={item.goodsImage}></img>
+                                        <div className="flash_content_right">
+                                            <p>{item.goodsName}</p>
+                                            <div className="jindutiao">
+                                                {/* <span></span> */}
+                                                {/* 进度条 */}
+                                                <div className="progress-container">
+                                                    <div style={{ height: 18 }} />
+                                                    <Progress percent={item.goodsNumbers*100} position="normal" unfilled={false} appearTransition />
+                                                    <WhiteSpace size="xl" />
+
+                                                </div>
+                                                <i>已抢{item.goodsNumber}</i>
+                                            </div>
+                                            <div className="price">
+                                                <span>￥{item.activityPrice}</span>
+                                                <del>{item.marketPrice}</del>
+                                                <a>马上抢</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                ))
+                            }
+
+
+                        </ul>
+                    </div>
+                </Classify>
             </PageContainer>
         )
-}
+    }
+    componentWillMount() {
+        this.props.handleAsyncCrazy();
+    }
 }
 export default Qianggou
 
