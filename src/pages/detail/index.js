@@ -1,17 +1,29 @@
-import React, { Fragment } from "react"
+import React from "react"
+import {PageContainer} from "common/styled"
 import { CommonHeader, Wrapper, Footer,ToTop } from "./styled"
+import {withRouter} from "react-router-dom"
+import {mapStateToProps,mapDispatchToProps} from "./mapStore"
+import {connect} from 'react-redux'
+@withRouter
+@connect(mapStateToProps,mapDispatchToProps)
 class Detail extends React.Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state={
             showFlag:false,
+            id:""
         }
         this.handleScroll=this.handleScroll.bind(this);
+        this.state.id=this.props.location.search.replace("?id=","");
+        // console.log(this.props.location.search.replace("?id=",""));
+        // console.log(this.state.id);
     }
     render() {
-        let {showFlag}=this.state;
+        let {showFlag,id}=this.state;
+        let {good}=this.props;
+        console.log(good);
         return (
-            <Fragment>
+            <PageContainer ref="win">
                 <CommonHeader>
                     <header className="common_header_bar" id="header">
                         <em >
@@ -28,7 +40,11 @@ class Detail extends React.Component {
                 <Wrapper>
                     <div className="page">
                         <div className="banner1 floor">
-                            <img className="swiper-lazy" src="http://id.baoimg.net/share-img/photo/201904/5cbe5398a39bb.jpg" alt="" />
+                        {
+                            (good.goodsDetail?good.goodsDetail.imgs:[]).map((item,index)=>(
+                                <img className="swiper-lazy" src={item} alt="" key={index} />
+                            ))
+                        }
                             <div className='groupBgc'>
                                 <div className="groupPri clearfix">
                                     <span className="groupPrice salePrice fl">
@@ -43,19 +59,50 @@ class Detail extends React.Component {
                                     </span>
                                 </div>
                                 <div className="numGroup clearfix">
-
+                                        <span className="span1 fl">
+                                            2
+                                        </span>
+                                        <span className="span2 fl">
+                                           人拼
+                                        </span>
+                                        <span className="span3 fl">
+                                        包邮包税
+                                        </span>
                                 </div>
+                           
+                           
                             </div>
                         </div>
-                        <div className="proTopMsg">
+                        {
+                           
                             <div className="proPrice">
+                            <div className="salePrice clearfix">
+                           ￥<em>{good.salePrice}</em>
+                                <span className="homeSalePrice">
+                           <del>￥{good.marketPrice}</del>
+                                </span>
+                            </div>
+                      
+                        <div className="timeDownLists">
+
+                        </div>
+                        <div className="xinPname">
+                            <div className="proTitle">
+                               {good.name}
+                        </div>
+                        </div>
+                     </div>
+
+                          
+                        }
+                            {/* <div className="proPrice">
                                 <div className="salePrice clearfix">
                                     ￥<em>1466.00</em>
                                     <span className="homeSalePrice">
                                         <del>￥2199.00</del>
                                     </span>
                                 </div>
-                            </div>
+                          
                             <div className="timeDownLists">
 
                             </div>
@@ -64,11 +111,11 @@ class Detail extends React.Component {
                                     【保税仓】法国达能佳丽雅Gallia近母乳配方1段奶粉 900g
                             </div>
                             </div>
-                        </div>
-                        <div className="proMainMsg item">
+                         </div> */}
+                        {/* <div className="proMainMsg item">
 
-                        </div>
-                        <em href="" className="specification item">
+                        </div> */}
+                        <div className="specification item">
                             <img src="https://imagespro.baobeigezi.com/bbgz2019/brand-image/3fb430bc-8339-420f-8ff3-94e329c985ab.png" alt="" />
                             <span className="titTxt borderTit">
                                 已选&nbsp;
@@ -79,16 +126,16 @@ class Detail extends React.Component {
                             <span className="detailsIcon triangle-right">
                                 <img src="http://3g.baobeigezi.com/imgs/detail/gengduosan2x.png" alt="" />
                             </span>
-                        </em>
+                        </div>
                         {/* 品牌名 */}
                         <div className="brandList item clearfix">
                             <div>
-                                <img src="http://id.baoimg.net/share-img/photo/201904/5cbed8fbbcde2.jpg" alt="" className="brandImg fl" />
+                                <img src={good.brandImage} alt="" className="brandImg fl" />
                             </div>
                             <div className="fl brandDesc">
-                                <span className="brandName text-overflow">佳丽雅Gallia</span>
+                    <span className="brandName text-overflow">{good.brandName}</span>
                                 <span className="saleNum">
-                                    在售商品8个
+                    在售商品{good.brandGoodsCount}个
                                 </span>
                             </div>
                             <em href="" className="fr goBrand">
@@ -104,27 +151,33 @@ class Detail extends React.Component {
                                 <em href="" className="peiHref"></em>
                                 <div className="typeList clearfix">
                                     <div className="peiKey">
-                                        发货时间：
+                                        <span>发货时间</span>
+                                        ：
                                         </div>
                                     <div className="val">
+                                        <i>
                                         2-4个工作日内发货，物流信息以物流公司为准。偏远地区不支持发货，如有问题请联系客服。（注：保税区每人/相同地址，每日仅限三单，如超出海关个人行邮购买数量，次日发货或退货。）
+                                        </i>
+                                       
                                         </div>
                                 </div>
                                 <div className="typeList clearfix">
                                     <div className="peiKey">
-                                        运费结算：
+                                        <span>  运费结算：</span>
+                                      
                                         </div>
                                     <div className="val">
-                                        包邮
+                                        <span>包邮</span>
                                         </div>
                                 </div>
 
                                 <div className="typeList clearfix">
                                     <div className="peiKey">
-                                        关税说明：
+                                        <span>关税说明：</span>
+                                        
                                         </div>
                                     <div className="val">
-                                        个人邮寄进境物品海关依法征收进口税
+                                        <span> 个人邮寄进境物品海关依法征收进口税</span>
                                         </div>
                                 </div>
                                 <div className="typeList clearfix">
@@ -148,12 +201,16 @@ class Detail extends React.Component {
                             {/* 图文详情 */}
                             <div className="tapContent swiper-container">
                                 <div className="tapItem detailsItem floor">
-                                    <p>
+                                    {
+                                     <p dangerouslySetInnerHTML={{ __html:    good.goodsDetail?good.goodsDetail.goodsPriceDetail.depict :""    }}  />
+                                
+                                }
+                                    {/* <p>
                                         <img src="http://id.baoimg.net/share-img/ueditor/upload/images/20181009/1539070228768240.jpg" alt="" />
                                     </p>
                                     <h3>
                                         <br />
-                                    </h3>
+                                    </h3> */}
                                 </div>
                             </div>
 
@@ -265,41 +322,49 @@ class Detail extends React.Component {
                     </div>
                 </Wrapper>
                 <Footer>
-                
-                    <em href="" className="myCustomService">
+                    <em  className="myCustomService">
                         <img src="http://3g.baobeigezi.com/imgs/detail/kefu2x.png" alt=""/>
                     </em>
-                    <em href="" className="loveBtn">
+                    <em  className="loveBtn">
                         <img src="http://3g.baobeigezi.com/imgs/detail/zhongcao2x.png" alt=""/>
                     </em>
                   
-                    <em href="" className="shopCart">
+                    <em  className="shopCart">
                         <img src=" http://3g.baobeigezi.com/imgs/detail/gouwuche2x.png" alt=" "/>
                     </em>
-                    <em href="" className="addCartBtn ">
+
+                    {/* 正常购物 */}
+                    <em  className="addCartBtn ">
                         加入购物车
                     </em>
-                    <em href="" className="buyBtn ">
+                    <em className="buyBtn ">
                         立即购买
                     </em>
 
-                </Footer>
-                {/* <em href="" className="toTop" id="toTop"></em> */}
-                <ToTop onClick={this.handleTop.bind(this)} style={{display:showFlag?'block':'none'}}>
+                    {/* *************************拼单************ */}
+                    {/* <em  className="addCartBtn1 ">
+                       <span className="groupCar1">￥<i>19.00</i></span>
+                       <span className="groupCar2">单独购买</span>
+                    </em>
+                    <em className="buyBtn1 ">
+                        <span className="groupCar1">￥<i>19.00</i></span>
+                        <span>我要开团</span>
+                    </em> */}
 
+                </Footer>
+                <ToTop onClick={this.handleTop.bind(this)} style={{display:showFlag?'block':'none'}}>
                 </ToTop>
-            </Fragment>
+            </PageContainer>
         )
     }
-
-
-    componentWillMount(){
+    
+    componentDidMount(){
         window.addEventListener("scroll",this.handleScroll,true);
+        this.props.detailAsyncData(this.state.id);
     }
     
-    handleScroll(){
-        let scrollTop=document.documentElement.scrollTop;
-        // console.log(scrollTop);
+    handleScroll(){   
+        let scrollTop= document.documentElement.scrollTop || document.body.scrollTop;
         if(scrollTop>150){
             this.setState({
                 showFlag:true
@@ -309,7 +374,6 @@ class Detail extends React.Component {
                 showFlag:false
             })
         }
-
     }
     handleTop(){
         window.scrollTo({

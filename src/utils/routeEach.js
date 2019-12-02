@@ -10,7 +10,7 @@ export default (routes) => {
             if (Cookies.get("token")) {
                 if (route.meta.flag) {
                     return (
-                        <Layout>
+                        <Layout route={route.path}>
                             <route.component />
                         </Layout>
                     )
@@ -24,7 +24,7 @@ export default (routes) => {
             if (route.meta.flag) {
                
                 return (
-                    <Layout>
+                    <Layout route={route.path}>
                         <route.component />
                     </Layout>
                 )

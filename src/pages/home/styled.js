@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import bg from '../../assets/image/bg.png'
-import shousuo2x from '../../assets/image/shousuo2x.png'
+import bg from '../../static/image/bg.png'
+import shousuo2x from '../../static/image/shousuo2x.png'
 
 
 
 
 export const Banner = styled.div`
-    width:100%;
+    /* width:100%; */
     height:1.54rem;
     background-image:url(${bg});
     background-repeat:no-repeat;
@@ -39,10 +39,20 @@ export const Banner = styled.div`
         left:0.1rem;
         top:0.1rem;
     } 
+    .slider-slide{
+                img{
+                    width:0.3rem;
+                    border-radius:0.08rem !important;
+                }
+            }
     .swiper-container{
-        width:2.99rem;
+        /* width:3.3rem; */
+        width:100%;
         height:1.2rem; 
         margin-top:0.1rem;       
+    }
+    .am-wingblank{
+        border-radius:0.08rem;
     }
     .swiper-wrapper{
         width:2.99rem;
@@ -229,7 +239,7 @@ export const ActiveList = styled.div`
         padding-top:0.085rem;
         border-top: 1px solid #e5e5e5;
         display:flex;
-        overflow:auto; 
+        overflow: auto;
         .swiper-slide{
             width:0.85rem;
             height: 1.34rem;
@@ -239,6 +249,7 @@ export const ActiveList = styled.div`
             
             >img{
                 width:0.85rem;
+                height:0.85rem;
                 margin-bottom:0.085rem;
             }
             .del {
@@ -363,7 +374,7 @@ export const ActiveList = styled.div`
 /* 精选活动 */
 .jingActive{
     width:100%;
-    height:6.1rem;
+    height:5.6rem;
     .groupBg{
         height:0.3rem;
         line-height:0.3rem;
@@ -380,7 +391,7 @@ export const ActiveList = styled.div`
     }
     .jingLi{
         width:100%;
-        height:2.8rem;
+        /* height:2.8rem; */
         margin-bottom:0.085rem;
         /* margin-top:0.25rem; */
         border-radius:0.08rem;
@@ -401,7 +412,7 @@ export const ActiveList = styled.div`
         padding-top:0.085rem;
         border-top: 1px solid #e5e5e5;
         display:flex;
-        /* overflow:auto;  */
+        overflow:auto; 
         .swiper-slide{
             text-align:center;
             width:0.72rem;
@@ -409,7 +420,7 @@ export const ActiveList = styled.div`
             margin-right:0.04rem;
             display:flex;
             flex-direction:column;
-            height: 1.65rem;
+            /* height: 1.65rem; */
             border-right: 1px solid #e5e5e5;
             >img{
                 width:0.72rem;
@@ -626,9 +637,10 @@ export const ActiveList = styled.div`
             white-space: nowrap;
         }
         .hotBrand{
-            /* width:100%; */
-            height:3.48rem;
-            margin:0rem 0.04rem;
+            width:100%;
+            /* height:3.48rem; */
+            /* margin:0rem 0.04rem; */
+            margin-right:1rem;
             .brandImg{
                 width:2.9rem;
                 height:1.03rem;
@@ -636,6 +648,19 @@ export const ActiveList = styled.div`
                     width:2.9rem;
                     border-radius:0.08rem;
                 }
+            }
+            .swiper-container{
+                display:flex;
+                flex-wrap:wrap;
+                width:100%;
+                height:3.11rem;  
+            }
+            .swiper-wrapper{
+                width:100%;
+                height:100%;
+            }
+            .slider-slide{
+                margin-right:0.5rem;
             }
             .brandPr{
                 width:2.8rem;
@@ -682,7 +707,7 @@ export const ActiveList = styled.div`
                 height:0.17rem;
                 display: block;
                 position: absolute;
-                top:0rem;
+                top:-0.07rem;
                 left:1.25rem;
                 /* right: 0rem; */
                 text-align: center;
@@ -722,10 +747,12 @@ export const ActiveList = styled.div`
             .pPrice{
                 font-size:0.12rem;
                 letter-spacing:0.19px;
+                /* text-align:center; */
+                margin-left:0.05rem;
             }
         }
         .brandList{
-            margin-top:0.085rem;
+            margin-top:0.2rem;
             display:flex;
             flex-wrap:wrap;
             .brandLi {
@@ -788,8 +815,7 @@ export const ActiveList = styled.div`
                 padding:0.085rem;
                 background:white;
             }
-            .earlyLiImg{
-              
+            .earlyLiImg{             
                 margin-right:0.085rem;
                 img{
                     width:0.6rem;
@@ -815,10 +841,13 @@ export const ActiveList = styled.div`
                     width:0.13rem;
                     margin-right:0.04rem;
                 }
-            }
-            .fl{
+                .fl{
+                    margin-left:0.17rem;
+                /* width:0.5rem; */
                 margin-right:0.17rem;
             }
+            }
+         
 
         }
 
@@ -835,25 +864,70 @@ export const ActiveList = styled.div`
             }
 `
 export const WaterFull=styled.div`
+height:100%;
    /* 导航栏 */
     .waterFullNav{
         display:flex;
         width:100%;
-        height:0.24rem;
+        height:0.3rem;
+
     }
+    .waterScroll{
+        overflow:hidden;
+        height:100%;
+    }
+    .active{
+    border-bottom:2px solid #313131 !important;
+    color:#000 !important;
+}
+.nav{
+    height:.43rem;
+    /* position:sticky;
+    top:.37rem;
+    z-index:10; */
+    background:#fff;
+    /* display:flex;
+    flex-wrap:nowrap; */
+    padding: 0 .1rem;
+    ul{
+        width:100%;
+        display:flex;
+        /* justify-content:space-around; */
+        align-items:center;
+        height:100%;
+        overflow:scroll;
+        li{
+            font-size:.12rem;
+            flex-shrink:0;
+            color:#bdbdbd;
+            margin-right:.1rem;
+        }
+    }}
+
+    /* .am-tabs-default-bar-content{
+        transform: translate3d(-25%, 0px, 0px);
+    }
+    .am-tabs-default-bar-content{
+        
+    } */
     .waterFullNav_li{
         display:flex;
         font-size:0.12rem;
         color:#313131;
         font-family: PingFangSC-Medium;
-        height:0.07rem;
-        width:0.51rem;
+        /* height:0.07rem; */
+        /* width:20%; */
+    }
+    .am-tabs-default-bar-tab{
+        width:20% !important;
+    }
+    .am-tabs-default-bar-underline{
+        width:20% !important;
     }
     /* 下面的列表页 */
     .waterList{
         padding:0.04rem 0.04rem 0rem 0.04rem;
-
-
+        background:#fff;
     }
     .water{
         padding-top:0.085rem;
