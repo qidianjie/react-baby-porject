@@ -23,10 +23,12 @@ right:0;
         left:.1rem;
         font-size:.18rem;
     }
-    i{
+    button{
         position:absolute;
         right:.1rem;
         font-size:.18rem;
+        background:none;
+        border:none;
     }
 }
 

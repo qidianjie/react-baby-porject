@@ -20,7 +20,8 @@ import {
     Parenting,
     BaikeList,
     Article,
-    CourseDetail
+    CourseDetail,
+    BrandList
 } from "pages"
 
 
@@ -135,7 +136,7 @@ export const NoTabBarRoute = [
         meta:{}
     },
     {//品牌详情
-        path:"/brand",
+        path:"/brand/:id/:name",
         component:Brand,
         meta:{}
     },
@@ -162,6 +163,11 @@ export const NoTabBarRoute = [
     {//课程详情
         path:"/courseDetail",
         component:CourseDetail,
+        meta:{}
+    },
+    {//品牌列表
+        path:"/pinpailist/:id",
+        component:BrandList,
         meta:{}
     }
 ];

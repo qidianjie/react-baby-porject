@@ -39,6 +39,7 @@ right:0;
 /* 购物车部分 */
 .cart{
     position:absolute;
+    padding-top:.37rem;
     left:0;
     right:0;
     top:0;

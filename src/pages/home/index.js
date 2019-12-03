@@ -332,21 +332,6 @@ class Home extends Component {
                             ))}
 
 
-                            {/* <li>
-                                <a href="#">
-                                    <div className="pImg">
-                                        <img src="https://imagespro.baobeigezi.com/bbgz2019/brand-image/23077fcb-5dc9-4584-8daf-946b68050278.jpg" alt="" />
-                                    </div>
-                                    <div className="hu">
-                                        <div className="classHeader text-overflow">
-                                            补水面膜
-                                    </div>
-                                        <div className="classPrice text-overflow">
-                                            SNP黄金胶原蛋面膜
-                                    </div>
-                                    </div>
-                                </a>
-                            </li> */}
 
                         </ul>
                     </div>
@@ -368,23 +353,7 @@ class Home extends Component {
                                             afterChange={index => console.log('slide to', index)}
                                         >
                                             {(advList[12] ? advList[12].positionList : []).map((item, index) => (
-                                                // <a
-                                                //     key={val}
-                                                //     href="http://www.alipay.com"
-                                                //     style={{ display: 'inline-block', width: '100%', height: this.state.imgHeight }}
-                                                // >
-                                                //     <img
-                                                //         src={`https://zos.alipayobjects.com/rmsportal/${val}.png`}
-                                                //         alt=""
-                                                //         style={{ width: '100%', verticalAlign: 'top' }}
-                                                //         onLoad={() => {
-                                                //             // fire window resize event to change height
-                                                //             window.dispatchEvent(new Event('resize'));
-                                                //             this.setState({ imgHeight: 'auto' });
-                                                //         }}
-                                                //     />
-                                                // </a>
-
+                                               
                                                 <div className="hotWeekPlist hotBrand" key={index}>
                                                     <div className="brandImg">
                                                         <img src={item.bigImage} alt="" />
@@ -465,67 +434,6 @@ class Home extends Component {
                                             ))}
                                         </Carousel>
                                     </WingBlank>
-                                    {/* <div className="hotWeekPlist hotBrand">
-                                        <div className="brandImg">
-                                            <img src="https://imagespro.baobeigezi.com/bbgz2019/brand-image/b9940c16-0308-4264-9c22-c0853f8b237f.jpg" alt="" />
-                                        </div>
-                                        <div className="pr brandPr">
-                                            <a href="#" className="fenSi clearfix">
-                                                <img src="https://img.baoimg.net/photo/201411/2014111820003549679697.png" alt="" className="pr fenImg" />
-
-                                                <div className="fenSiRiht fl">
-                                                    <div className="fenName">
-                                                        Aptamil爱他美
-                                                        <span className="goEvent">
-                                                            进入专场>
-                                                        </span>
-                                                    </div>
-                                                    <div className="span1 text-overflow">
-                                                        爱他美（Aptamil）奶粉它是德国第一品牌的奶粉，也是欧洲销量最好的奶粉之一。属于达能集团婴幼儿营养品事业部。爱他美（Aptamil）是近似母乳的专利奶粉，欧洲妈妈的最爱，由于欧洲人较少母乳，此款奶粉在欧洲最为高端，更是医院医生的推荐，适合混合喂养或由母乳过渡到奶粉喂养的宝宝。
-                                                     </div>
-                                                </div>
-
-
-                                            </a>
-                                            <div className="all_lis">
-                                                <a href="#" className="lis fl">
-                                                    <div className="pImg">
-                                                        <img src="http://id.baoimg.net/share-img/photo/201810/5bbd90f00c52b.jpg" alt="" />
-                                                    </div>
-                                                    <div className="pName text-overflow">
-                                                        【海外直邮】Aptamil/爱他美 奶粉1段 0-6个月 800g  （英国直邮 包邮包税）  新老包装随机发货
-                                                        </div>
-                                                    <div className="pPrice text-overflow">
-                                                        ￥316.00
-                                                        </div>
-                                                </a>
-                                                <a href="#" className="lis fl">
-                                                    <div className="pImg">
-                                                        <img src="http://id.baoimg.net/share-img/photo/201810/5bbd90f00c52b.jpg" alt="" />
-                                                    </div>
-                                                    <div className="pName text-overflow">
-                                                        【海外直邮】Aptamil/爱他美 奶粉1段 0-6个月 800g  （英国直邮 包邮包税）  新老包装随机发货
-                                                        </div>
-                                                    <div className="pPrice text-overflow">
-                                                        ￥316.00
-                                                        </div>
-                                                </a>
-                                                <a href="#" className="lis fl">
-                                                    <div className="pImg">
-                                                        <img src="http://id.baoimg.net/share-img/photo/201810/5bbd90f00c52b.jpg" alt="" />
-                                                    </div>
-                                                    <div className="pName text-overflow">
-                                                        【海外直邮】Aptamil/爱他美 奶粉1段 0-6个月 800g  （英国直邮 包邮包税）  新老包装随机发货
-                                                        </div>
-                                                    <div className="pPrice text-overflow">
-                                                        ￥316.00
-                                                        </div>
-                                                </a>
-
-                                            </div>
-                                        </div>
-
-                                    </div> */}
                                 </div>
                             </div>
 
@@ -627,16 +535,6 @@ class Home extends Component {
 
 
 
-                    {/* <ul className="waterFullNav">
-                        {
-                            selectAll.map((item, index) => {
-                                return <li className="waterFullNav_li" key={item.id} onClick={this.handleClick.bind(this,item,index)}>
-                                    <span>{item.name}</span></li>
-                            }
-                            )
-                        }
-                    </ul> */}
-
                 <div className="waterScroll">
                     <Bscrollcom ref="scroll">
                     <div className="waterList"> 
@@ -710,6 +608,9 @@ class Home extends Component {
             }
         )
         // console.log(this.goods)
+    }
+    handleJump(path){
+        this.props.history.push(path);
     }
 }
 export default Home;
