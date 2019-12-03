@@ -6,12 +6,11 @@ import national from "./reducers/national";
 import parenting from "./reducers/parenting";
 import home from "./reducers/home"
 import detail from "./reducers/detail"
-
 const reducers=combineReducers({
     national,
     parenting,
     home,
-    detail
+    detail,
 })
 const store =createStore(reducers,composeWithDevTools(applyMiddleware(reduxThunk)))
 

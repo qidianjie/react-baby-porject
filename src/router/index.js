@@ -55,7 +55,7 @@ export const TabBarRoute = [
         text:"购物车"
     },
     {
-        path:"/mine",
+        path:"/mine/:name",
         component:Mine,
         meta:{
             flag:true,

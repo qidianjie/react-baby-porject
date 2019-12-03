@@ -62,7 +62,7 @@ export const MineContainer=styled.div`
             li{
                 width:25%;
                 height:100%;
-                border-right:1px solid #999;
+                border-right:1px solid #eee;
                 display:flex;
                 flex-direction:column;
                 justify-content:space-between;
@@ -118,7 +118,7 @@ export const MineContainer=styled.div`
         li{
             padding:0 0.1rem;
             height:0.42rem;
-            border-bottom:1px solid #999;
+            border-bottom:1px solid #eee;
             display:flex;
             justify-content:space-between;
             align-items:center;

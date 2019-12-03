@@ -24,10 +24,16 @@ export const LoginContainer=styled.div`
         label{
             display:block;
             width:100%;
-            border-bottom:2px solid #FFFFFF;
+            border-bottom:1px solid #FFFFFF;
             font-size: 0;
             padding-bottom: .08rem;
             padding-top: .18rem;
+            display:flex;
+            align-items:center;
+            i{
+                padding-left: 0.1rem;
+                color:#fff;
+            }
         }
         input{
             height:0.2rem;
@@ -36,11 +42,13 @@ export const LoginContainer=styled.div`
             outline:none;
             font-size:0.14rem;
             background:none;
-            padding-left:0.26rem;
+            padding-left:0.12rem;
+            caret-color:#fff;
+            color:#fff;
         }
         input::-webkit-input-placeholder { 
             color: #fff; 
-            opacity:0.7;
+            opacity:0.6;
         } 
         button{
             width:100%;
@@ -51,6 +59,8 @@ export const LoginContainer=styled.div`
             line-height:0.38rem;
             text-align:center;
             font-size:0.14rem;
+            outline:none;
+            border:none;
         }
 
     }
