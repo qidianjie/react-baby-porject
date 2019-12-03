@@ -46,8 +46,8 @@ export const TabBarRoute = [
         text:"分类"
     },
     {
-        path:"/order",
-        component:Order,
+        path:"/cart",
+        component:Cart,
         meta:{
             flag:true
         },
@@ -63,16 +63,7 @@ export const TabBarRoute = [
         },
         icon:"https://3g.baobeigezi.com/imgs/indexIcon/my.png",
         text:"我的"
-    },
-    {
-        path:"/cart",
-        component:Cart,
-        meta:{
-            flag:true,
-        },
-        // icon:"\ue617",
-        // text:"我的"
-    },
+    }
 ];
 
 

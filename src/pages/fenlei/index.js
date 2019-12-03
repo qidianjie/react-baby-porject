@@ -1,95 +1,83 @@
 import React, { Component } from 'react'
+import { Tabs, WhiteSpace } from 'antd-mobile';
 import {PageContainer} from "common/styled"
 import {Classify} from "./styled"
-export default class Find extends Component {
+import ClassifyBot from "../../components/classify"
+import ClassifyPinpai from "../../components/pinpai"
+import {connect} from "react-redux"
+import {withRouter} from 'react-router-dom' ;
+import {mapStateToProps,mapDispatchToProps} from "components/classify/mapStore"
+@connect(mapStateToProps,mapDispatchToProps )
+@withRouter
+class Find extends Component {
+    constructor(){
+        super()
+        this.state={
+            flag:"0",
+            id:"1154573626486296577",
+            path:"/1154573626486296577",
+            isShow:"0"
+        }
+    }
+
     render() {
+        let {caidanList} = this.props;
+        let {flag,id,path,isShow} = this.state;
+
         return (
             <PageContainer>
                 <Classify>
-                <div className="top">
                 <div className="header">
-                    <a className="iconfont">&#xe605;</a>
-                    <span>分类</span>
-                    <span>品牌</span>
-                    <a className="iconfont">&#xe613;</a>
+                    <a className="iconfont" onClick={this.handleBack.bind(this)}>&#xe605;</a>
+                    <span onClick={this.handleClickShow.bind(this,"0")} className={isShow=='0'?'active':''}>分类</span>
+                    <span onClick={this.handleClickShow.bind(this,"1")} className={isShow=='1'?'active':''}>品牌</span>
+                    <a className="iconfont" onClick={this.handleSearch.bind(this)}>&#xe613;</a>
                 </div>
-                <div className="nav">
+                <div className="nav" style={{display:isShow=='1'?'none':'block'}}>
                     <ul>
-                        <li>奶粉辅食</li>
-                        <li>奶粉辅食</li>
-                        <li>奶粉辅食</li>
-                        <li>奶粉辅食</li>
-                        <li>奶粉辅食</li>
+                        {
+                            caidanList.map((item,index)=>(  
+                            <li key={index} className={flag==index?'active':''} onClick={this.handleClick.bind(this,index)}>{item.name}</li>
+                            ))
+                        }
+      
                     </ul>
+    
                 </div>
-                </div>
-                <div className="main">
-                <div className="banner">
-                    <img src="https://imagespro.baobeigezi.com/bbgz2019/brand-image/d64099a7-07e1-4794-a6ee-c521d31e5948.png"></img>
-                    <ul>
-                        <li>
-                            <img src="https://imagespro.baobeigezi.com/bbgz2019/brand-image/c0f79ff3-1ca5-4fc4-bb52-65dd12ee0044.jpg"></img>
-                            <span>Pre段</span>
-                        </li>
-                        <li>
-                            <img src="https://imagespro.baobeigezi.com/bbgz2019/brand-image/c0f79ff3-1ca5-4fc4-bb52-65dd12ee0044.jpg"></img>
-                            <span>Pre段</span>
-                        </li>
-                        <li>
-                            <img src="https://imagespro.baobeigezi.com/bbgz2019/brand-image/c0f79ff3-1ca5-4fc4-bb52-65dd12ee0044.jpg"></img>
-                            <span>Pre段</span>
-                        </li>
-                        <li>
-                            <img src="https://imagespro.baobeigezi.com/bbgz2019/brand-image/c0f79ff3-1ca5-4fc4-bb52-65dd12ee0044.jpg"></img>
-                            <span>Pre段</span>
-                        </li>
-                    </ul>
-                </div>
-                <div className="banner">
-                    <img src="https://imagespro.baobeigezi.com/bbgz2019/brand-image/d64099a7-07e1-4794-a6ee-c521d31e5948.png"></img>
-                    <ul>
-                        <li>
-                            <img src="https://imagespro.baobeigezi.com/bbgz2019/brand-image/c0f79ff3-1ca5-4fc4-bb52-65dd12ee0044.jpg"></img>
-                            <span>Pre段</span>
-                        </li>
-                        <li>
-                            <img src="https://imagespro.baobeigezi.com/bbgz2019/brand-image/c0f79ff3-1ca5-4fc4-bb52-65dd12ee0044.jpg"></img>
-                            <span>Pre段</span>
-                        </li>
-                        <li>
-                            <img src="https://imagespro.baobeigezi.com/bbgz2019/brand-image/c0f79ff3-1ca5-4fc4-bb52-65dd12ee0044.jpg"></img>
-                            <span>Pre段</span>
-                        </li>
-                        <li>
-                            <img src="https://imagespro.baobeigezi.com/bbgz2019/brand-image/c0f79ff3-1ca5-4fc4-bb52-65dd12ee0044.jpg"></img>
-                            <span>Pre段</span>
-                        </li>
-                    </ul>
-                </div>
-                <div className="banner">
-                    <img src="https://imagespro.baobeigezi.com/bbgz2019/brand-image/d64099a7-07e1-4794-a6ee-c521d31e5948.png"></img>
-                    <ul>
-                        <li>
-                            <img src="https://imagespro.baobeigezi.com/bbgz2019/brand-image/c0f79ff3-1ca5-4fc4-bb52-65dd12ee0044.jpg"></img>
-                            <span>Pre段</span>
-                        </li>
-                        <li>
-                            <img src="https://imagespro.baobeigezi.com/bbgz2019/brand-image/c0f79ff3-1ca5-4fc4-bb52-65dd12ee0044.jpg"></img>
-                            <span>Pre段</span>
-                        </li>
-                        <li>
-                            <img src="https://imagespro.baobeigezi.com/bbgz2019/brand-image/c0f79ff3-1ca5-4fc4-bb52-65dd12ee0044.jpg"></img>
-                            <span>Pre段</span>
-                        </li>
-                        <li>
-                            <img src="https://imagespro.baobeigezi.com/bbgz2019/brand-image/c0f79ff3-1ca5-4fc4-bb52-65dd12ee0044.jpg"></img>
-                            <span>Pre段</span>
-                        </li>
-                    </ul>
-                </div>
-                </div>
+                {
+                    isShow=='0'?<ClassifyBot id={id} path={path}/>:<ClassifyPinpai/> 
+                }
+                
+                
             </Classify>
             </PageContainer>
         )
     }
+    componentDidMount(){
+        this.props.handleClassAsync();
+    }
+    handleClick(index){
+        this.setState({
+            flag:index,
+            id:this.props.caidanList[this.state.flag].id,
+            path:this.props.caidanList[this.state.flag].path
+        },()=>(
+            this.props.GetAsyncGoodslist(this.state.id,this.state.path)
+        ))
+        
+    }  
+    handleClickShow(index){
+        this.setState({
+            isShow:index
+        })
+    }
+    handleSearch(){
+        this.props.history.push("/search");
+    }
+    handleBack(){
+        this.props.history.goBack();
+    }
+
 }
+
+export default Find;

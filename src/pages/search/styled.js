@@ -11,14 +11,16 @@ background:#fff;
     padding:.06rem 0 .06rem .13rem;
     position:relative;
     input{
-        height:.12rem;
-        width:1.99rem;
-        padding:.07rem .35rem  .07rem .28rem;
+        height:.25rem;
+        width:2.62rem;
+        padding:.07rem .35rem .07rem .28rem;
         border-radius:.18rem;
         font-size:.12rem;
         background:#ededed;
         border:none;
-        /* position:relative; */
+        outline:none;
+        color:#999;
+
     }
     span{
         font-size:.12rem;
@@ -35,13 +37,14 @@ background:#fff;
 
 .history{
     padding:.26rem .09rem .13rem;
-    display:none;
+    /* display:none; */
     .history_top{
         display:flex;
         justify-content:space-between;
         align-items:center;
         span{
             font-size:.14rem;
+           
         }
         
     }
@@ -50,11 +53,13 @@ background:#fff;
         color:#5d5d5d;
         text-align:center; 
         margin-top:.18rem;
+        font-weight:normal;
     }
 }
 .search_item{
     padding:0 .08rem .1rem;
     background:#fff;
+    display:none;
     li{
         border-bottom:1px solid #999;
         display:flex;

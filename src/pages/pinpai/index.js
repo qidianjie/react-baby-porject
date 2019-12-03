@@ -6,18 +6,12 @@ class Pinpai extends React.Component{
         super();
     }
     render(){
+        let {isShow} = this.props;
+        console.log(this);
         return (
             <PageContainer>
             <Classify>
-                <div className="top">
-                <div className="header">
-                    <a className="iconfont">&#xe605;</a>
-                    <span>分类</span>
-                    <span>品牌</span>
-                    <a className="iconfont">&#xe613;</a>
-                </div>
-                </div>
-                <div className="main">
+                <div className="main" style={{display:isShow=='0'?'none':'block'}}>
                     <div className="banner">
                         <h2>A</h2>  
                         <ul>
