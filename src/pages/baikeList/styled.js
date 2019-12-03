@@ -20,7 +20,7 @@ export const BaikeContainer=styled.div`
     }
     ul{
         margin-top:0.38rem;
-        li{
+        .li{
             border-top: 1px solid #e4e4e4;
             padding: .1rem;
             height: .82rem;
@@ -42,11 +42,19 @@ export const BaikeContainer=styled.div`
             h4{
                 color: rgba(49,49,49,1);
                 font-weight:normal;
+                width:2.3rem;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
             }
             p{
                 font-family: PingFangSC;
                 color: #999;
                 margin-top: .05rem;
+                width:2.3rem;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
             }
         }
         .praise{
@@ -59,6 +67,7 @@ export const BaikeContainer=styled.div`
             img{
                 width:0.13rem;
                 margin-right:0.04rem;
+            
             }
         }
     }

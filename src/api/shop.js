@@ -40,6 +40,25 @@ export const parentingApi=()=>http({
     }
 })
 
+// 育儿百科下的（八个id）
+export const getIdApi=()=>http({
+    method:"post",
+    url:"/shop/cmsCategory/homeCategory",
+    data:{}
+})
+
+// 育儿百科下的list
+export const getDataApi=(id)=>http({
+    method:"post",
+    url:"/shop/cmsArticle/selectBycategoryId",
+    data:{
+        categoryId: id,
+        currPage: null,
+        pageSize: "15"
+    }
+})
+
+
 // 我的
 export const mineApi=()=>http({
     method:"post",
@@ -57,5 +76,17 @@ export const crazyApi=()=>http({
         currPage: 1,
         id: "1200422140818493441",
         pageSize: "40"
+    }
+})
+
+
+// 育儿百科下list下的article的详情
+export const articleApi=(id)=>http({
+    method:"post",
+    url:"/shop/cmsArticle/selectById",
+    data:{
+        contentType: "1",
+        id:id,
+        memberId: ""
     }
 })

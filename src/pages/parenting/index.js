@@ -3,7 +3,7 @@ import { Container } from "./styled";
 
 import { connect } from "react-redux";
 import { mapStateToProps, mapDispatchToProps } from "./mapStore";
-import {withRouter} from "react-router-dom";
+import {withRouter,Link} from "react-router-dom";
 // Ant Design
 import { Carousel, WingBlank } from 'antd-mobile';
 @connect(mapStateToProps, mapDispatchToProps)
@@ -48,14 +48,21 @@ class Parenting extends React.Component {
                 },
 
             ],
+            // idArr:[],
             data: [0,1,2,3,4],
             imgHeight: 176,
         }
     }
     render() {
-        let { list } = this.props;
+        let { list ,idArr} = this.props;
         let { num, knowledge} = this.state;
-
+        // 将获取的id绑定到knowledge身上
+        if(idArr.length!==0){
+            knowledge.map((item,index)=>{
+                item.id=idArr[index].id;
+            })
+            // console.log(idArr,knowledge)
+        }
         return (
             <Container>
                 {/* top */}
@@ -96,15 +103,16 @@ class Parenting extends React.Component {
                 </div>
                 {/* 轮播图下面的 */}
                 <div className="body">
+                    {/* 八个icon */}
                     <div className="knowledge public">
                         <p className="p_public">百科知识</p>
                         <ul>
                             {
-                                knowledge.map((item,idx)=>(
-                                    <li key={idx}>
+                                knowledge.map((item,index)=>(
+                                    <Link key={index} to={"/baikeList?id="+item.id+"&name="+item.text} className="know">
                                         <img src={item.img} alt="" />
                                         <span>{item.text}</span>
-                                    </li>
+                                    </Link>
                                 ))
                             }
                         </ul>
@@ -129,50 +137,33 @@ class Parenting extends React.Component {
                     <div className="public expert">
                         <p className="p_public">专家讲堂 <span className="iconfont">更多 &#xe715;</span></p>
                         <ol>
-                            <li>
-                                <div className="expert_up">
-                                    <div className="img_video">
-                                        <img src="https://imagespro.baobeigezi.com/bbgz2019/brand-image/7d9732ef-67f9-44d4-9ea6-ad067bcb342f.jpg" alt="" />
-                                    </div>
-
-                                    <div>
-                                        <h3>母乳喂养的重要性</h3>
-                                        <span>免费观看 ></span>
-                                    </div>
-                                </div>
-                                <div className="expert_low">
-                                    <div className="img_icon">
-                                        <img src="http://3g.baobeigezi.com/imgs/mycenter/baby/commentIcon.png" alt="" />
-                                        4
-                                    </div>
-                                    <div className="img_icon">
-                                        <i className="iconfont">&#xe628;</i>
-                                        1039
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="expert_up">
-                                    <div className="img_video">
-                                        <img src="https://imagespro.baobeigezi.com/bbgz2019/brand-image/7d9732ef-67f9-44d4-9ea6-ad067bcb342f.jpg" alt="" />
-                                    </div>
-
-                                    <div>
-                                        <h3>母乳喂养的重要性</h3>
-                                        <span>免费观看 ></span>
-                                    </div>
-                                </div>
-                                <div className="expert_low">
-                                    <div className="img_icon">
-                                        <img src="http://3g.baobeigezi.com/imgs/mycenter/baby/commentIcon.png" alt="" />
-                                        4
-                                    </div>
-                                    <div className="img_icon">
-                                        <i className="iconfont">&#xe628;</i>
-                                        1039
-                                    </div>
-                                </div>
-                            </li>
+                            {
+                                (list[9] ? list[9].result.advList : []).map((item,id)=>(
+                                    <li key={id}>
+                                        <div className="expert_up">
+                                            <div className="img_video">
+                                                <img src={item.coverImage} alt="" />
+                                            </div>
+                                            <div>
+                                                <h3>{item.articleTitle}</h3>
+                                                <span>免费观看 ></span>
+                                            </div>
+                                        </div>
+                                        <div className="expert_low">
+                                            <div className="img_icon">
+                                                <img src="http://3g.baobeigezi.com/imgs/mycenter/baby/commentIcon.png" alt="" />
+                                                4
+                                            </div>
+                                            <div className="img_icon">
+                                                <i className="iconfont">&#xe628;</i>
+                                                {item.viewCount}
+                                            </div>
+                                        </div>
+                                    </li>
+                                ))
+                            }
+                            
+                           
                         </ol>
                     </div>
                     {/* 格子粉福利专区 */}
@@ -180,7 +171,7 @@ class Parenting extends React.Component {
                         <p className="p_public">格子粉福利专区</p>
                         <ol>
                             {
-                                (list[5] ? list[5].result.advList : []).map((item) => (
+                                (list[3] ? list[3].result.advList : []).map((item) => (
                                     <li key={item.goodsId}>
                                         <img src={item.goodsImage} alt="" />
                                         <p>{item.goodsName}</p>
@@ -190,14 +181,6 @@ class Parenting extends React.Component {
                                     </li>
                                 ))
                             }
-
-                            {/* <li>
-                                <img src="https://imagespro.baobeigezi.com/bbgz2019/goods-image/3f3ee3bc-185f-41fa-9f78-2e46e066b1d2.jpg" alt=""/>
-                                <p>【国内直发】妇科健康体检套餐B</p>
-                                <h5>￥1690.00</h5>
-                                <h4>￥580.00</h4>
-                                <div className="rush_buy">立即抢购</div>
-                            </li> */}
                         </ol>
                     </div>
                     {/* 早教课程 */}
@@ -209,8 +192,8 @@ class Parenting extends React.Component {
                         {/* center */}
                         <div className="center">
                             <div className="center_title">
-                                <h6>{list[6] ? list[6].result.advList[0].advTitle : ""}</h6>
-                                <p>{list[6] ? list[6].result.advList[0].advDescribes : ""}</p>
+                                <h6>{list[4] ? list[4].result.advList[0].advTitle : ""}</h6>
+                                <p>{list[4] ? list[4].result.advList[0].advDescribes : ""}</p>
                             </div>
                             <div className="service">
                                 <i className="iconfont">&#xe638;</i>
@@ -219,7 +202,7 @@ class Parenting extends React.Component {
                         </div>
                         {/* 抢购 */}
                         {
-                            (list[7] ? list[7].result.advList : []).map((item) => (
+                            (list[5] ? list[5].result.advList : []).map((item) => (
                                 <div className="crazy_course" key={item.goodsId}>
                                     <img src={item.goodsImage} alt="" />
                                     <div className="course_goods">
@@ -230,15 +213,6 @@ class Parenting extends React.Component {
                                 </div>
                             ))
                         }
-
-                        {/* <div className="crazy_course">
-                            <img src="https://imagespro.baobeigezi.com/bbgz2019/goods-image/432b7ab1-a9a4-477d-b074-4498fec9f33b.jpg" alt=""/>
-                            <div className="course_goods">
-                                <p>【国内直发】音乐语言课程+创意社交课程 月卡（5课时）预售</p>
-                                <span>￥1480.00</span>
-                                <span>立即抢购</span>
-                            </div>
-                        </div>*/}
                     </div>
                     {/* 公开课 */}
                     <div className="public openclass">
@@ -256,7 +230,7 @@ class Parenting extends React.Component {
                         <p className="p_public">精品服务 <span className="iconfont">更多 &#xe715;</span></p>
                         <ol>
                             {
-                                (list[10] ? list[10].result.advList : []).map((item) => (
+                                (list[8] ? list[8].result.advList : []).map((item) => (
                                     <li key={item.advId}>
                                         <a href={item.appLink}>
                                             <img src={item.bigImage} alt="" />
@@ -265,24 +239,22 @@ class Parenting extends React.Component {
                                 ))
                             }
 
-                            {/*  <li>
-                                <img src="https://imagespro.baobeigezi.com/bbgz2019/brand-image/ec329339-346d-462d-a00a-227e7e3f8bbd.png" alt=""/>
-                            </li> */}
                         </ol>
                     </div>
                     {/* 咨询专家 */}
                     <div className="public consult">
-                        <p className="p_public">精品服务 <span className="iconfont">更多 &#xe715;</span></p>
+                        <p className="p_public">咨询专家 <span className="iconfont">更多 &#xe715;</span></p>
                         <ol>
                             {
-                                (list[12] ? list[12].result.advList : []).map((item) => (
+                                (list[10] ? list[10].result.advList : []).map((item) => (
                                     <a href={item.appLink} key={item.advId}>
                                         <li>
                                             <img src={item.bigImage} alt="" />
                                             <div className="expertinfo">
                                                 <h3>{item.advTitle}</h3>
                                                 <p>{item.advDescribes}</p>
-                                                <span>
+                                                <span className="iconfont">
+                                                    &#xe638;
                                                     咨询
                                                 </span>
                                                 <span>立即预约</span>
@@ -291,18 +263,6 @@ class Parenting extends React.Component {
                                     </a>
                                 ))
                             }
-
-                            {/*<li>
-                                <img src="https://imagespro.baobeigezi.com/bbgz2019/brand-image/d2ec742f-42a1-4555-8152-77b84e103d36.png" alt=""/>
-                                <div className="expertinfo">
-                                    <h3>刘品祥</h3>
-                                    <p>执业中医师 博士北京宝岛妇产医院中医科医师北京同仁堂门诊医师福建省中医药学会闽台中医药文化交流分会-副主委世界中医药联合会中药上市再评价委员会-常务理事</p>
-                                    <span>
-                                        咨询
-                                    </span>
-                                    <span>立即预约</span>
-                                </div>
-                            </li> */}
                         </ol>
                     </div>
                 </div>
@@ -310,13 +270,16 @@ class Parenting extends React.Component {
         )
     }
     componentDidMount() {
-        // simulate img loading
+        //轮播图
         setTimeout(() => {
             this.setState({
             data: ['AiyWuByWklrrUDlFignR', 'TekJlZRVCjLFexlOCuWn', 'IJOtIlfsYdTyaDTRVrLI','',''],
             });
         }, 100);
+        // 育儿百科首页数据
         this.props.handleAsyncParenting();
+        // 百科知识（获取八个id）
+        this.props.handleAsyncGetId();
     }
     handleBack(){
         this.props.history.push("/home")

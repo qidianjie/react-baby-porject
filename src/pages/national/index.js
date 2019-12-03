@@ -118,7 +118,7 @@ class National extends React.Component {
 
         this.handleFixed();
     }
-    handleBack() {//返回
+    handleBack() {
         this.props.history.push("/home");
     }
     // 点击nav

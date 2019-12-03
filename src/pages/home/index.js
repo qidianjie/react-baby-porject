@@ -227,7 +227,7 @@ class Home extends Component {
                 <BannerIcon>
                     {
                         (advList[1] ? advList[1].positionList : []).map((item, index) => (
-                            <a href="#" className="fl" key={index}>
+                            <a href="#" className="fl" key={index} >
                                 <img src={item.bigImage} alt="" />
                                 <span>{item.advTitle}</span>
                             </a>
@@ -374,6 +374,7 @@ class Home extends Component {
                         </div>
                     </div>
                     {/* 国家地区馆 */}
+                                        
                     <div className="jingXuan">
                         <div className="groupBg clearfix">
                             <span className="today fl">
@@ -482,6 +483,10 @@ class Home extends Component {
                                 </li>
                             ))}
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 6ae091c8b6cbcf95fddd3785c83d1977db76059b
                         </ul>
                     </div>
                     {/* 全球榜单 ---热门品牌 */}
@@ -503,6 +508,7 @@ class Home extends Component {
                                         >
                                             {(advList[12] ? advList[12].positionList : []).map((item, index) => (
                                                
+                                                
                                                 <div className="hotWeekPlist hotBrand" key={index}>
                                                     <div className="brandImg">
                                                         <img src={item.bigImage} alt="" />
@@ -541,40 +547,7 @@ class Home extends Component {
                                                                     </a>
                                                                 ))
                                                             }
-                                                            {/* <a href="#" className="lis fl">
-                                                    <div className="pImg">
-                                                        <img src="http://id.baoimg.net/share-img/photo/201810/5bbd90f00c52b.jpg" alt="" />
-                                                    </div>
-                                                    <div className="pName text-overflow">
-                                                        【海外直邮】Aptamil/爱他美 奶粉1段 0-6个月 800g  （英国直邮 包邮包税）  新老包装随机发货
-                                                        </div>
-                                                    <div className="pPrice text-overflow">
-                                                        ￥316.00
-                                                        </div>
-                                                </a>
-                                                <a href="#" className="lis fl">
-                                                    <div className="pImg">
-                                                        <img src="http://id.baoimg.net/share-img/photo/201810/5bbd90f00c52b.jpg" alt="" />
-                                                    </div>
-                                                    <div className="pName text-overflow">
-                                                        【海外直邮】Aptamil/爱他美 奶粉1段 0-6个月 800g  （英国直邮 包邮包税）  新老包装随机发货
-                                                        </div>
-                                                    <div className="pPrice text-overflow">
-                                                        ￥316.00
-                                                        </div>
-                                                </a>
-                                                <a href="#" className="lis fl">
-                                                    <div className="pImg">
-                                                        <img src="http://id.baoimg.net/share-img/photo/201810/5bbd90f00c52b.jpg" alt="" />
-                                                    </div>
-                                                    <div className="pName text-overflow">
-                                                        【海外直邮】Aptamil/爱他美 奶粉1段 0-6个月 800g  （英国直邮 包邮包税）  新老包装随机发货
-                                                        </div>
-                                                    <div className="pPrice text-overflow">
-                                                        ￥316.00
-                                                        </div>
-                                                </a> */}
-
+                                                           
                                                         </div>
                                                     </div>
 

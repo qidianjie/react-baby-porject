@@ -56,7 +56,7 @@ export const Container=styled.div`
                 justify-content:space-between;
                 align-items:center;
                 flex-wrap:wrap;
-                li{
+                .know{
                     height:50%;
                     width:25%;
                     display:flex;
@@ -78,7 +78,7 @@ export const Container=styled.div`
                 padding-top:0.08rem;
                 li{
                     height:0.38rem;
-                    border-bottom: 1px solid #999;
+                    border-bottom: 1px solid #eee;
                     width:100%;
                     display:flex;
                     justify-content:left;
@@ -375,6 +375,8 @@ export const Container=styled.div`
                     display:flex;
                     align-items:center;
                     img{
+                        width:0.81rem;
+                        height:0.81rem;
                         border-radius:0.05rem;
                         margin-right:0.1rem;
                     }
@@ -413,8 +415,9 @@ export const Container=styled.div`
                     margin-top:0.04rem;
                 }
                 span:nth-of-type(1){
-                    background:rgba(220,184,108,1) url("http://3g.baobeigezi.com/imgs/mycenter/baby/kefu.png") no-repeat 0.1rem;
-                    padding-left:0.1rem;
+                    /* background:rgba(220,184,108,1) url("http://3g.baobeigezi.com/imgs/mycenter/baby/kefu.png") no-repeat 0.1rem; */
+                    /* padding-left:0.1rem; */
+                    background-size:100% 100%;
                 }
             }
         }
