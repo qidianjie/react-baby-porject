@@ -6,7 +6,7 @@ import { mapStateToProps, mapDispatchToProps } from './mapStore'
 import { Carousel, WingBlank, Tabs, WhiteSpace } from 'antd-mobile';//轮播图
 import Bscrollcom from '../../common/bscroll'
 import {Link,withRouter} from "react-router-dom"
-// @withRouter
+@withRouter
 @connect(mapStateToProps, mapDispatchToProps)
 class Home extends Component {
     constructor() {
@@ -53,6 +53,105 @@ class Home extends Component {
             ],
             data: ['1', '2', '3'],
             imgHeight: 120,
+            countryList:[
+                {
+                    name:"日本馆",
+                    imgUrl:"https://3g.baobeigezi.com/imgs/country/5.png",
+                    countryId:"1128905253744435201"
+                },
+                {
+                    name:"韩国馆",
+                    imgUrl:"https://3g.baobeigezi.com/imgs/country/10.png",
+                    countryId:"1128905392529760257"
+                },
+                {
+                    name:"澳大利亚馆",
+                    imgUrl:"https://3g.baobeigezi.com/imgs/country/6.png",
+                    countryId:"1141596494776766466"
+                },
+                {
+                    name:"中国香港馆",
+                    imgUrl:"https://3g.baobeigezi.com/imgs/country/36.png",
+                    countryId:"1141596500204195842"
+                },
+                {
+                    name:"泰国馆",
+                    imgUrl:"https://3g.baobeigezi.com/imgs/country/33.png",
+                    countryId:"1141596499742822401"
+                },
+                {
+                    name:"美国",
+                    imgUrl:"https://3g.baobeigezi.com/imgs/country/8.png",
+                    countryId:"1141596495678541825"
+                },
+
+
+                {
+                    name:"新西兰",
+                    imgUrl:"https://3g.baobeigezi.com/imgs/country/xx.png",
+                    countryId:"1141596493845630977"
+                },
+                {
+                    name:"英国",
+                    imgUrl:"https://3g.baobeigezi.com/imgs/country/14.png",
+                    countryId:"1141596497658253314"
+                },
+                {
+                    name:"德国",
+                    imgUrl:"https://3g.baobeigezi.com/imgs/country/12.png",
+                    countryId:"1141596497205268482"
+                },
+                {
+                    name:"意大利",
+                    imgUrl:"https://3g.baobeigezi.com/imgs/country/17.png",
+                    countryId:"1141596498379673602"
+                },
+                {
+                    name:"尼日利亚",
+                    imgUrl:"https://3g.baobeigezi.com/imgs/country/39.png",
+                    countryId:"1141596500686540802"
+                },
+                {
+                    name:"荷兰",
+                    imgUrl:"https://3g.baobeigezi.com/imgs/country/9.png",
+                    countryId:"1141596496274132993"
+                },
+
+
+
+
+                
+                {
+                    name:"新加坡",
+                    imgUrl:"https://3g.baobeigezi.com/imgs/country/13.png",
+                    countryId:"1129193850200543234"
+                },
+                {
+                    name:"加拿大",
+                    imgUrl:"https://3g.baobeigezi.com/imgs/country/3.png",
+                    countryId:"1129194001430368257"
+                },
+                {
+                    name:"法国",
+                    imgUrl:"https://3g.baobeigezi.com/imgs/country/16.png",
+                    countryId:"1141596498144792577"
+                },
+                {
+                    name:"丹麦",
+                    imgUrl:"https://3g.baobeigezi.com/imgs/country/15.png",
+                    countryId:"1141596497901522945"
+                },
+                {
+                    name:"马来西亚",
+                    imgUrl:"https://3g.baobeigezi.com/imgs/country/43.png",
+                    countryId:"1141596501185662978"
+                },
+                {
+                    name:"中国台湾",
+                    imgUrl:"https://3g.baobeigezi.com/imgs/country/35.png",
+                    countryId:"1141596499969314818"
+                },
+            ]
         }
         this.goods={
             currPage :1,
@@ -64,7 +163,7 @@ class Home extends Component {
         this.page=2;
     }
     render() {
-        let { activeFlag } = this.state;
+        let { activeFlag,countryList } = this.state;
         let { advList, selectAll, qiangList,time,goodsList} = this.props;
         // console.log(goodsList);
         const tabs = [
@@ -184,8 +283,8 @@ class Home extends Component {
                         </div>
                         <div className="flashList">
                             {
-                                (qiangList ? qiangList : []).map((item) => (
-                                    <a href="#" className="swiper-slide" key={item.goodsId}>
+                                (qiangList ? qiangList : []).map((item,index) => (
+                                    <a href="#" className="swiper-slide" key={index}>
                                         <img src={item.goodsImage} alt="" />
                                         <span className="del">市场价￥{item.marketPrice}</span>
                                         <span className="col_BB361F">抢购价￥{item.activityPrice}</span>
@@ -275,7 +374,59 @@ class Home extends Component {
                         </div>
                     </div>
                     {/* 国家地区馆 */}
-                  
+                    <div className="jingXuan">
+                        <div className="groupBg clearfix">
+                            <span className="today fl">
+                                国家地区馆
+                         </span>
+                        </div>
+                        <div className="p12T10">
+                            {(advList[9] ? advList[9].positionList : []).map((item, index) => (
+                                <a href="#" className="countryImgTit" key={item.id}>
+                                    <img src={item.bigImage} alt="" />
+                                </a>
+                            ))}
+                        </div>
+                        {/* 地区馆中的轮播 */}
+                        <div className="countryall">                    
+                            <div className="container">
+                            {
+                                countryList.slice(0,6).map((item,index)=>(
+                                    <Link to={"/national?countryId="+item.countryId} key={item.countryId}>
+                                    <em  className="countryItem" >
+                                             <img src={item.imgUrl} alt="" />
+                                    </em>
+                                 </Link>
+                            ))
+                        }
+                            </div>
+                            <div className="container">
+                            {
+                                countryList.slice(6,12).map((item,index)=>(
+                                    <Link to={"/national?countryId="+item.countryId} key={item.countryId}>
+                                    <em className="countryItem" >
+                                    <img src={item.imgUrl} alt="" />
+                                     </em>
+                                     
+                                     </Link>
+                            ))
+                        }
+                            </div>
+                            <div className="container">
+                            {
+                                countryList.slice(12).map((item,index)=>(
+                                    <Link to={"/national?countryId="+item.countryId}  key={item.countryId}>
+                                    <em className="countryItem">
+                                    <img src={item.imgUrl} alt="" />
+                                 </em>
+                                </Link>
+                            ))
+                        }
+                            </div>
+
+                        </div>
+
+                    </div>
                     {/* 精选分类 */}
                     <div className="fenlei">
                         <div className="groupBg clearfix">
@@ -330,23 +481,6 @@ class Home extends Component {
 
                                 </li>
                             ))}
-
-
-                            {/* <li>
-                                <a href="#">
-                                    <div className="pImg">
-                                        <img src="https://imagespro.baobeigezi.com/bbgz2019/brand-image/23077fcb-5dc9-4584-8daf-946b68050278.jpg" alt="" />
-                                    </div>
-                                    <div className="hu">
-                                        <div className="classHeader text-overflow">
-                                            补水面膜
-                                    </div>
-                                        <div className="classPrice text-overflow">
-                                            SNP黄金胶原蛋面膜
-                                    </div>
-                                    </div>
-                                </a>
-                            </li> */}
 
                         </ul>
                     </div>
@@ -624,19 +758,6 @@ class Home extends Component {
       
                     </ul>
                 </div>
-
-
-
-                    {/* <ul className="waterFullNav">
-                        {
-                            selectAll.map((item, index) => {
-                                return <li className="waterFullNav_li" key={item.id} onClick={this.handleClick.bind(this,item,index)}>
-                                    <span>{item.name}</span></li>
-                            }
-                            )
-                        }
-                    </ul> */}
-
                 <div className="waterScroll">
                     <Bscrollcom ref="scroll">
                     <div className="waterList"> 

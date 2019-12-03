@@ -356,7 +356,7 @@ export const ActiveList = styled.div`
     }
 }
         .specialList{
-            height:1.78rem;
+            /* height:1.78rem; */
             width:100%;
             display:flex;
             flex-wrap:wrap;
@@ -471,6 +471,7 @@ export const ActiveList = styled.div`
             .countryImgTit{
                 padding:0.076rem 0.076rem 0rem 0.076rem
                 >img{
+                    margin:0 auto ;
                     width:2.97rem;
                     border-radius:0.08rem;
                 }
@@ -488,7 +489,7 @@ export const ActiveList = styled.div`
                 display:flex;
                 flex-wrap:wrap;
                 width:100%;
-                background:pink;
+                /* background:pink; */
                 /* margin-right:.1rem; */
             }
             .countryItem {
