@@ -68,10 +68,40 @@ class Zhongjian extends React.Component{
                        </div>
 
                     <div className="goods">
-                       <div>
+                       <div className="goods_title">
                        <img src="http://sale.baobeigezi.com/2019/zj2/imgs/tit.png" />
                        </div>
+                       <ul>
+                           <li>
+                               <img src="http://id.baoimg.net/share-img/photo/201904/5cb42ebb42813.jpg"/>
+                               <h6>【保税仓】贝哝红糖 红糖姜茶 老姜汤手工老红糖黑糖块 玫瑰红糖（320g罐装）</h6>
+                               <p>￥58.00</p>
+                           </li>
+                           <li>
+                               <img src="http://id.baoimg.net/share-img/photo/201904/5cb42ebb42813.jpg"/>
+                               <h6>【保税仓】贝哝红糖 红糖姜茶 老姜汤手工老红糖黑糖块 玫瑰红糖（320g罐装）</h6>
+                               <p>￥58.00</p>
+                           </li>
+                           <li>
+                               <img src="http://id.baoimg.net/share-img/photo/201904/5cb42ebb42813.jpg"/>
+                               <h6>【保税仓】贝哝红糖 红糖姜茶 老姜汤手工老红糖黑糖块 玫瑰红糖（320g罐装）</h6>
+                               <p>￥58.00</p>
+                           </li>
+                           <li>
+                               <img src="http://id.baoimg.net/share-img/photo/201904/5cb42ebb42813.jpg"/>
+                               <h6>【保税仓】贝哝红糖 红糖姜茶 老姜汤手工老红糖黑糖块 玫瑰红糖（320g罐装）</h6>
+                               <p>￥58.00</p>
+                           </li>
+                           <li>
+                               <img src="http://id.baoimg.net/share-img/photo/201904/5cb42ebb42813.jpg"/>
+                               <h6>【保税仓】贝哝红糖 红糖姜茶 老姜汤手工老红糖黑糖块 玫瑰红糖（320g罐装）</h6>
+                               <p>￥58.00</p>
+                           </li>
+                       </ul>
                     </div>
+                   </div>
+                   <div className="bottom">
+                       <img src="http://sale.baobeigezi.com/2019/zj2/imgs/Group9.png"/>
                    </div>
                </div>
             </Classify>

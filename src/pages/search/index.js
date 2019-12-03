@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import {PageContainer} from "common/styled"
 import {Classify} from "./styled"
-export default class Search extends Component {
+import {withRouter} from "react-router-dom"
+@withRouter
+class Search extends Component {
     render() {
         return (
             <PageContainer>
             <Classify>
                 <div className="header">
                     <input type="text"/>
-                    <span>取消</span>
+                    <span onClick={this.handleSearch.bind(this)}>取消</span>
                     <a className="iconfont">&#xe613;</a>
                 </div>
                 <div className="history">
@@ -52,5 +54,9 @@ export default class Search extends Component {
             </PageContainer>
         )
     }
+    handleSearch(){
+        this.props.history.goBack()
+    }
 }
 
+export default Search;

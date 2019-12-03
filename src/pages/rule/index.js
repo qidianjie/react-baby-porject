@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import {PageContainer} from "common/styled"
 import {Classify} from "./styled"
+import {withRouter} from "react-router-dom"
+@withRouter
 class Rule extends React.Component{
     constructor(){
         super();
@@ -11,7 +13,7 @@ class Rule extends React.Component{
             <Classify>
                 <div className="top">
                 <div className="header">
-                    <a className="iconfont">&#xe605;</a>
+                    <a className="iconfont" onClick={this.handleClickBack.bind(this)}>&#xe605;</a>
                     <span>活动规则</span>
                 </div>
                 </div>
@@ -37,6 +39,9 @@ class Rule extends React.Component{
             </Classify>
             </PageContainer>
         )
+}
+handleClickBack(){
+    this.props.history.goBack()
 }
 }
 export default Rule
