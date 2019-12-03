@@ -6,6 +6,17 @@ export const CommonHeader=styled.div`
     height:0.36rem;
     background:white;
     /* overflow:hidden; */
+
+    .am-button{
+        background: #dcb86c  !important;
+    }
+    .popup-list .am-list-body {
+        height: 210px;
+        overflow: auto;
+        }
+
+
+
     .common_header_bar{
         position:relative;
         width:100%;
@@ -44,13 +55,22 @@ export const Wrapper=styled.div`
     /* margin-top:0.36rem; */
     overflow:scroll;
     /* padding-bottom:1.1rem; */
-    
+
+   
     em{
         font-style:normal;
     }
+    .canshu{
+        margin-right:1rem !important;
+    }
     .banner1{
         width:3.2rem;
+        height: 3.2rem;
+        overflow:hidden;
         /* height:3.2rem; */
+    }
+    .choose{
+        color:#5d5d5d !important;
     }
     .groupBgc{
         padding:0.08rem 0.08rem;
@@ -315,6 +335,7 @@ export const Wrapper=styled.div`
                     height:2rem;
                     margin-top:0.08rem;
                     background:white;
+                    overflow:hidden;
                     .itemTitle{
                         padding:0.076rem;
                         position: relative;
@@ -398,6 +419,7 @@ export const Wrapper=styled.div`
                 .water{
                         padding-top:0.085px;
                         height:auto;
+                        padding-bottom:0.4rem;
                     .cartRecommend_tit {
                         width:100%;
                         height: .35rem;

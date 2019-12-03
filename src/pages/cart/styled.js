@@ -48,7 +48,7 @@ right:0;
     overflow:scroll;
     .tixing{
         padding:.37rem .1rem 0;
-        height:.34rem;
+        /* height:.34rem; */
         color:#a9a9a9;
         font-size:.12rem; 
         line-height:.34rem;
@@ -61,7 +61,7 @@ right:0;
     display:flex;
     align-items:center;
     background:#fff;
-    display:none;
+    /* display:none; */
     .cart_item_radio{
         width:.35rem;
         height:100%;
@@ -77,6 +77,7 @@ right:0;
         padding:.09rem .05rem .09rem 0;
         display:flex;
         align-items:center;
+        width:100%;
         img{
             width:.77rem;
             margin-right:.1rem;
@@ -121,7 +122,7 @@ right:0;
                         color:#999;
                         display:inline-block;
                         text-align:center;
-                        line-height:.16rem;
+                        line-height:.1rem;
                         border:1px solid #999;
                         &:nth-child(1){
                             border-radius:.05rem 0 0 .05rem;
@@ -131,6 +132,7 @@ right:0;
                         }
                     }
                     input{
+                        outline:none;
                         width:.26rem;
                         height:.16rem;
                         border:none;

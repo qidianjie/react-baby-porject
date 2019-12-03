@@ -70,3 +70,36 @@ export const selectGoodsApi = (currPage = 1,id = "1154573626486296577",path = "/
         }
 
     })
+
+
+
+    //评论 /shop/goods/goodsComment 
+    // currPage: 1
+    // id: "1151074605503352834"
+    //     pageSize: 3
+    // type: 0
+
+
+    //评论
+    export const goodsCommentApi=(id)=>axios({
+        method: "post",
+        url: "/shop/goods/goodsComment",
+        data: {
+            currPage: 1,
+            id:id,
+            pageSize: 3,
+            type: 0
+        }
+    })
+
+
+    
+    //下面的商品列表  /shop/goods/recommendList
+    export const recommendListApi=()=>axios({
+        method: "post",
+        url: "/shop/goods/recommendList",
+        data: {
+        }
+    })
+
+    

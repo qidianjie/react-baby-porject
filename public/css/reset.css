@@ -32,3 +32,22 @@ body{display:flex;flex-direction: column;font-size: 16px;}
 	height: 100%;
 }
 
+
+/* 详情页对话框颜色 */
+.activeModel{
+	color: #BB361F;
+	background: rgba(187,54,31,0.08);
+	border: 1px solid #BB361F;
+	border-radius:0.08rem;
+	margin: 0rem 0.1rem;
+}
+.choose{
+	color: #5d5d5d;
+		font-size:0.12rem;
+}
+.canshu{
+	font-size: 0.12rem;
+	font-weight: normal;
+}
+
+
