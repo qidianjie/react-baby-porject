@@ -21,7 +21,7 @@ import {mapStateToProps,mapDispatchToProps} from "components/classify/mapStore"
             this.state.biaoji=1;
         }
         console.log(list);
-        // console.log(list);
+        console.log(list);
         return (
             <div>
                 <Header >
@@ -68,7 +68,8 @@ import {mapStateToProps,mapDispatchToProps} from "components/classify/mapStore"
                             {
                                (brandlist.length==0?list:brandlist).map((item,index)=>(
                                     <li className="lis pr" key={index}>
-                                    <a href="#">
+                                    {/* <NavLink to={"/detail?id="+item.goodsId}> */}
+                                    <a>
                                         <div className="imgDiv">
                                             <img src={item.mainImg} />
                                         </div>
@@ -80,6 +81,7 @@ import {mapStateToProps,mapDispatchToProps} from "components/classify/mapStore"
                                                 {item.salePrice}
                                             </h5>
                                         </div>
+                                    {/* </NavLink> */}
                                     </a>
                                 </li>
                                 ))

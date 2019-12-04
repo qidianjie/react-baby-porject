@@ -30,6 +30,7 @@ class Detail extends React.Component {
         // this.myCart=""
         this.handleScroll = this.handleScroll.bind(this);
         this.state.id = this.props.location.search.replace("?id=", "");
+        console.log(this.state.id);
     }
     render() {
         

@@ -9,12 +9,14 @@ right:0;
 .header{
     height:.37rem;
     padding:0 .1rem;
+    width:100%;
     display:flex;
     justify-content:center;
     align-items:center;
-    position:sticky;
+    position:fixed;
     top:0;
     background:#fff;
+    z-index:100;
     span{
         font-size:.15rem;
     }
