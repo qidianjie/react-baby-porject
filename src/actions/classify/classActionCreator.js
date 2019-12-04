@@ -1,5 +1,6 @@
-import {classAsyncType,goodsAction,pinpaiAction} from "./classActionType"
-import {NavCaidan,goodsList,pinpaiList,redenvelopes} from "api/hob.js"
+import {classAsyncType,goodsAction,pinpaiAction,brandActionType,searchActionType,xinpinAction} from "./classActionType"
+import {NavCaidan,goodsList,pinpaiList,redenvelopes,handleNaibrand,searchTiaozhuanList,xinpinList} from "api/hob.js"
+
 
 export const classAsyncAction = ()=>{
     let classAction = (data)=>({
@@ -33,6 +34,47 @@ export const pinpaiListAction = ()=>{
         let data = await pinpaiList();
         localStorage.setItem('pinpai',JSON.stringify(data.data.data.filterBrand))
         dispatch(pinpaiListls(data.data.data.filterBrand))
+    }
+}
+// 分类
+export const handleNaiBrandList = (id,flag)=>{
+    let handleBrandList = (data)=>({
+        type:brandActionType,
+        data
+    })
+    return async (dispatch)=>{
+        let data = await handleNaibrand(id,flag);
+        console.log(data);
+        // localStorage.setItem('pinpai',JSON.stringify(data.data.data.filterBrand))
+        dispatch(handleBrandList(data.data.data.goodsList))
+    }
+}
+
+// 搜索框跳转数据
+export const searchls = (id)=>{
+    
+    let searchlsAction = (data)=>({
+        type:searchActionType,
+        data
+    })
+    return async (dispatch)=>{
+        
+        let data = await searchTiaozhuanList(id);
+        dispatch(searchlsAction(data.data.data));
+    }
+}
+
+export const handleXinpinList = ()=>{
+
+    let handleXinpinAction=(data)=>({
+        type:xinpinAction,
+        data
+    })
+
+    return async (dispatch)=>{
+        let data = await xinpinList();
+        dispatch(handleXinpinAction(data.data.data))
+        console.log(data);
     }
 }
 

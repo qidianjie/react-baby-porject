@@ -59,12 +59,15 @@ background:#fff;
 .search_item{
     padding:0 .08rem .1rem;
     background:#fff;
-    display:none;
+    /* display:none; */
     li{
         border-bottom:1px solid #999;
-        display:flex;
-        align-items:center;
+       
         padding:.13rem 0;
+        a{
+             display:flex;
+             align-items:center;
+        }
         p{
             font-size:.12rem;
             flex:1;

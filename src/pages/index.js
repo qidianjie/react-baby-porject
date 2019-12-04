@@ -105,3 +105,13 @@ export const CourseDetail=Loadable({
     loader:()=>import("./courseDetail"),
     loading:Loading
 })
+// 品牌列表
+export const BrandList=Loadable({
+    loader:()=>import("./list"),
+    loading:Loading
+})
+// 新品
+export const Xinpin=Loadable({
+    loader:()=>import("./xinpin"),
+    loading:Loading
+})

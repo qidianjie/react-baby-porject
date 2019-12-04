@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {PageContainer} from "common/styled"
 import {Classify} from "./styled"
 import {connect} from "react-redux"
-import {withRouter} from "react-router-dom"
+import {withRouter,NavLink} from "react-router-dom"
 import {mapStateToProps,mapDispatchToProps} from "components/classify/mapStore"
 @connect(mapStateToProps,mapDispatchToProps)
 @withRouter
@@ -36,7 +36,7 @@ class All extends React.Component{
                             <span>{item.firstName}</span>
                             {
                                 item.brandList.map((its,ids)=>(
-                                <li key={ids}><a>{its.name}</a></li>
+                                <li key={ids}><NavLink to={"/pinpailist/"+its.id}>{its.name}</NavLink></li>
                                 ))
                             }
                            

@@ -1,49 +1,84 @@
 import React from "react";
 import {ArticleContainer} from "./styled";
+import url from "url";
+import {withRouter} from "react-router-dom";
+import {connect} from "react-redux";
+import {mapStateToProps,mapDispatchToProps} from "./mapStore";
+@connect(mapStateToProps,mapDispatchToProps)
+@withRouter
 class Article extends React.Component{
-    constructor(){
-        super()
+    constructor(props){
+        super(props);
+        this.state={
+            id:""
+        }
+        let {id} =url.parse(this.props.location.search,true).query;
+        this.state.id=id;
+        // console.log(this.state.id)
     }
     render(){
+        let {article}=this.props;
+        // console.log(window.eval(article.content?article.content:[]));
         return (
             <ArticleContainer>
                 {/* top */}
                 <div className="top">
-                    <a href="">></a>
-                    <h3>新生儿护理</h3>
-                    <div>
-                        <a href="">@</a>
-                        <a href="">@</a>
+                    <span className="iconfont" onClick={this.handleClick.bind(this)}>&#xe605;</span>
+                    <h3>{article.title}</h3>
+                    <div className="right">
+                        <span className="iconfont" onClick={this.handleHome.bind(this)}>&#xe602;</span>
+                        <span className="iconfont">&#xe75d;</span>
                     </div>
                 </div>
                 {/* center */}
                 <div className="main">
                     <div className="article_img">
-                        <img src="https://imagespro.baobeigezi.com/bbgz2019/brand-image/9ce43ed5-adfd-43e3-b3ea-10820a4bf286.jpg" alt=""/>
+                        <img src={article.coverImage?article.coverImage:''} alt=""/>
                     </div>
-                    <p>对于足月出生的宝宝来说，在他们满6个月的时候就要添加辅食了。而宝宝的第一口辅食，《中国居民膳食指南（2016）》是这么推荐的：</p>
-                    <p>对于足月出生的宝宝来说，在他们满6个月的时候就要添加辅食了。而宝宝的第一口辅食，《中国居民膳食指南（2016）》是这么推荐的：</p>
-                    <p>对于足月出生的宝宝来说，在他们满6个月的时候就要添加辅食了。而宝宝的第一口辅食，《中国居民膳食指南（2016）》是这么推荐的：</p>
-                    <p>对于足月出生的宝宝来说，在他们满6个月的时候就要添加辅食了。而宝宝的第一口辅食，《中国居民膳食指南（2016）》是这么推荐的：</p>
-                    <p>对于足月出生的宝宝来说，在他们满6个月的时候就要添加辅食了。而宝宝的第一口辅食，《中国居民膳食指南（2016）》是这么推荐的：</p>
-                    <p>对于足月出生的宝宝来说，在他们满6个月的时候就要添加辅食了。而宝宝的第一口辅食，《中国居民膳食指南（2016）》是这么推荐的：</p>
-                    <p>对于足月出生的宝宝来说，在他们满6个月的时候就要添加辅食了。而宝宝的第一口辅食，《中国居民膳食指南（2016）》是这么推荐的：</p>
+                    {
+                        window.eval(article.content?article.content:[]).map((item,index)=>(
+                            item.key=="3"?<p key={index}><li className="p_img"><img src={"https://imagespro.baobeigezi.com/"+item.value}/></li></p>:<p key={index}>{item.value}</p>
+                        ))
+                       
+                    }
+                   
                 </div>
+                <div className="interflow">
+                        <h4>课程目录</h4>
+                        <div className="comment">
+                            <img src="http://3g.baobeigezi.com/imgs/default/noComment.png" alt=""/>
+                            <p>小主做第一个评论的人吧~</p>
+                        </div>
+                    </div>
                 {/* footer */}
                 <div className="footer">
-                    <a href="">
-                        <img src="../../../src/assets/images/bi.png" alt=""/>
+                    <a href="" className="iconfont">
+                        &#xe63b;
                     </a>
                     <input type="text" placeholder="添加评论"/>
                     <button>发送</button>
-                    <a href=""></a>
-                    <a href=""></a>
+                    <a href="" className="iconfont">&#xe634;</a>
+                    <a href="">
+                        <img src="http://3g.baobeigezi.com/imgs/mycenter/baby/zan.png"/>
+                    </a>
                     <span>0</span>
                     <span>1999</span>
                 </div>
             </ArticleContainer>
         )
     }
+    componentWillMount(){
+        this.props.handleArticle(this.state.id)
+    }
+    handleClick(){
+        // console.log(this.props)
+        this.props.history.goBack();
+    }
+    handleHome(){
+        console.log(111)
+        this.props.history.push("/home")
+    }
+   
 }
 
 export default Article;

@@ -1,55 +1,60 @@
 import React, { Component } from 'react'
 import {PageContainer} from "common/styled"
 import {Classify} from "./styled"
-import {withRouter} from "react-router-dom"
+import {connect} from "react-redux"
+import Throttle from 'lodash-decorators/throttle';
+import {withRouter,NavLink} from 'react-router-dom' ;
+import {throttle} from "common/throttle"
+import {mapStateToProps,mapDispatchToProps} from "./mapStore"
+@connect(mapStateToProps,mapDispatchToProps )
 @withRouter
 class Search extends Component {
+    constructor(){
+        super()
+        this.state = {
+            val:"",
+            biaoji :'0'
+        }
+        this.handle = this.handle.bind(this)
+    }
     render() {
+        let {searchList} = this.props;
+        let {val} = this.state;
+        if(val==""){
+            searchList=[]
+        }
         return (
             <PageContainer>
             <Classify>
                 <div className="header">
-                    <input type="text"/>
+                    <input type="text" value={val} onChange={this.handleSearchChange.bind(this)}/>
                     <span onClick={this.handleSearch.bind(this)}>取消</span>
                     <a className="iconfont">&#xe613;</a>
                 </div>
-                <div className="history">
+                {
+                    searchList.length=='0' ? <div className="history">
                     <div className="history_top">
                         <span>历史搜索</span>
                         <span className="iconfont">&#xe62c;</span>
                     </div>
                     <h3>暂无搜索历史</h3>
-                </div>
+                </div>:
                 <ul className="search_item">
-                    <li>
-                        <p>范德萨发发大撒法</p>
-                        <span className="iconfont">&#xe715;</span>
-                    </li>
-                    <li>
-                        <p>范德萨发发大撒法</p>
-                        <span className="iconfont">&#xe715;</span>
-                    </li>
-                    <li>
-                        <p>范德萨发发大撒法</p>
-                        <span className="iconfont">&#xe715;</span>
-                    </li>
-                    <li>
-                        <p>范德萨发发大撒法</p>
-                        <span className="iconfont">&#xe715;</span>
-                    </li>
-                    <li>
-                        <p>范德萨发发大撒法</p>
-                        <span className="iconfont">&#xe715;</span>
-                    </li>
-                    <li>
-                        <p>范德萨发发大撒法</p>
-                        <span className="iconfont">&#xe715;</span>
-                    </li>
-                    <li>
-                        <p>范德萨发发大撒法非官方的诗歌风格发给发嘀咕十分广泛大使馆犯得上噶地方广泛大概发的广泛广泛东莞市东莞市地方官大使馆士大夫广东省分公司的分公司</p>
-                        <span className="iconfont">&#xe715;</span>
-                    </li>
+                    {
+                        searchList.map((item,index)=>(
+                             <li key={index}>
+                                 <NavLink to={"/brand/"+item.id+"/"+"111"}>
+                                 <p>{item.name}</p>
+                                <span className="iconfont">&#xe715;</span>
+                                </NavLink>
+                            </li>
+                        ))
+                    }
+                   
                 </ul>
+                } 
+               
+                
             </Classify>
             </PageContainer>
         )
@@ -57,6 +62,21 @@ class Search extends Component {
     handleSearch(){
         this.props.history.goBack()
     }
+    handleSearchChange(e){
+        var val = e.target.value;
+        this.setState({
+            val:val
+        })
+        // this.props.handleSearchLs(this.state.val);
+        
+        throttle(this.handle,300)
+        
+    }
+    handle(){
+            this.props.handleSearchLs(this.state.val);
+        
+    }
+    
 }
 
 export default Search;

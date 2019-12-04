@@ -1,12 +1,17 @@
 import React from "react";
 import {MineContainer} from "./styled";
 
+import {withRouter} from "react-router-dom";
+
+
 import {connect} from "react-redux";
 import {mapStateToProps,mapDispatchToProps} from "./mapStore";
 @connect(mapStateToProps,mapDispatchToProps)
+@withRouter
 class Mine extends React.Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
+
         this.state={
             money:[
                 {
@@ -75,12 +80,16 @@ class Mine extends React.Component{
                     text:"微信官方服务号",
                     right:"\ue715"
                 },
-            ]
+            ],
+            neme:"",
+
         }
+        this.state.name=this.props.match.params.name
     }
     render(){
         let {mineList} =this.props;
         let {money,status,info} =this.state;
+        // console.log(this.state.name)
         return (
             <MineContainer>
                 <div className="header">
@@ -90,8 +99,11 @@ class Mine extends React.Component{
                 {/* login and register */}
                 <div className="login">
                     <div className="name_img"><img src="http://3g.baobeigezi.com/imgs/default/headImg.png" alt=""/></div>
-                    <span>登录</span>|
-                    <span>注册</span>
+                    {
+                        this.state.name.length==0?<span>登录</span>|
+                        <span>注册</span>:<span>{this.state.name}</span>
+                    }
+                    
                 </div>
                 {/* 余额 */}
                 <div className="money">

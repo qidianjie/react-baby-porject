@@ -20,7 +20,9 @@ import {
     Parenting,
     BaikeList,
     Article,
-    CourseDetail
+    CourseDetail,
+    BrandList,
+    Xinpin
 } from "pages"
 
 
@@ -55,7 +57,7 @@ export const TabBarRoute = [
         text:"购物车"
     },
     {
-        path:"/mine",
+        path:"/mine/:name",
         component:Mine,
         meta:{
             flag:true,
@@ -135,7 +137,7 @@ export const NoTabBarRoute = [
         meta:{}
     },
     {//品牌详情
-        path:"/brand",
+        path:"/brand/:id/:name",
         component:Brand,
         meta:{}
     },
@@ -162,6 +164,16 @@ export const NoTabBarRoute = [
     {//课程详情
         path:"/courseDetail",
         component:CourseDetail,
+        meta:{}
+    },
+    {//品牌列表
+        path:"/pinpailist/:id",
+        component:BrandList,
+        meta:{}
+    },
+    {//品牌列表
+        path:"/xinpin",
+        component:Xinpin,
         meta:{}
     }
 ];

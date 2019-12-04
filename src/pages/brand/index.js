@@ -1,31 +1,50 @@
 import React, { Component } from 'react'
 import { Header, Brandtop, Brsec2, Nav, WaterList } from './styled'
 import { WhiteSpace } from 'antd-mobile';
-export default class Brand extends Component {
+import {connect} from "react-redux"
+import {withRouter,NavLink} from "react-router-dom"
+import {mapStateToProps,mapDispatchToProps} from "components/classify/mapStore"
+@connect(mapStateToProps,mapDispatchToProps )
+@withRouter
+ class Brand extends Component {
+     constructor(){
+         super()
+         this.state={
+             flag:'0',
+             biaoji:"0"
+         }
+     }
     render() {
-     
+        let {brandlist,searchlsList} = this.props;
+        let list = searchlsList.goodsList?searchlsList.goodsList:[];
+        if(list == []){
+            this.state.biaoji=1;
+        }
+        console.log(list);
+        // console.log(list);
         return (
             <div>
                 <Header >
 
                     <span>
-                        <i className="iconfont">&#xe605;</i>
-                        品牌详情
-                        <i className="iconfont">&#xe613;</i>
+                        <i className="iconfont" onClick={this.handleClose.bind(this)}>&#xe605;</i>
+                        {(this.props.match.params.name=='111'?'品牌详情':this.props.match.params.name)}
+                        <i className="iconfont" onClick={this.handleSearch.bind(this)}>&#xe613;</i>
                     </span>
 
                 </Header>
-                <Brandtop>
+                
+                {/* <Brandtop>
                     <div>
-                        <img src="https://imagespro.baobeigezi.com/bbgz2019/brand-image/23a20e1e-b87a-4f42-8222-dfea9bf73977.jpg" alt="" />
+                        <img src={searchlsList.brand.brandImage} alt="" />
                     </div>
                     <div>
-                        <span>健萃乐</span>
+                        <span>{searchlsList.brand.name}</span>
                     </div>
                 </Brandtop>
                 <Brsec2>
-                    <span>健萃乐</span>
-                </Brsec2>
+                    <span>{searchlsList.brand.comments}</span>
+                </Brsec2> */}
                 <Nav>
                     <span>
                         综合
@@ -46,66 +65,25 @@ export default class Brand extends Component {
                 <WaterList>
                     <div className="waterList">
                         <ul className="water">
-                            <li className="lis pr">
-                                <a href="#">
-                                    <div className="imgDiv">
-                                        <img src="https://imagespro.baobeigezi.com/bbgz2019/goods-image/821e99b1-5aad-484b-9e2b-39cff76f254a.png" alt="" className="lazy" />
-                                    </div>
-                                    <div className="waterButtom pr">
-                                        <div className="waterName text-overflow2">
-                                            【包邮】Aptamil 爱他美 金装婴儿奶粉 四段 900g*3罐装
+                            {
+                               (brandlist.length==0?list:brandlist).map((item,index)=>(
+                                    <li className="lis pr" key={index}>
+                                    <a href="#">
+                                        <div className="imgDiv">
+                                            <img src={item.mainImg} />
                                         </div>
-                                        <h5 className="waterPrice">
-                                            ￥399.00
-                                        </h5>
-                                    </div>
-                                </a>
-                            </li>
-                            <li className="lis pr">
-                                <a href="#">
-                                    <div className="imgDiv">
-                                        <img src="https://imagespro.baobeigezi.com/bbgz2019/goods-image/821e99b1-5aad-484b-9e2b-39cff76f254a.png" alt="" className="lazy" />
-                                    </div>
-                                    <div className="waterButtom pr">
-                                        <div className="waterName text-overflow2">
-                                            【包邮】Aptamil 爱他美 金装婴儿奶粉 四段 900g*3罐装
+                                        <div className="waterButtom pr">
+                                            <div className="waterName text-overflow2">
+                                                {item.name}
+                                            </div>
+                                            <h5 className="waterPrice">
+                                                {item.salePrice}
+                                            </h5>
                                         </div>
-                                        <h5 className="waterPrice">
-                                            ￥399.00
-                                        </h5>
-                                    </div>
-                                </a>
-                            </li>
-                            <li className="lis pr">
-                                <a href="#">
-                                    <div className="imgDiv">
-                                        <img src="https://imagespro.baobeigezi.com/bbgz2019/goods-image/821e99b1-5aad-484b-9e2b-39cff76f254a.png" alt="" className="lazy" />
-                                    </div>
-                                    <div className="waterButtom pr">
-                                        <div className="waterName text-overflow2">
-                                            【包邮】Aptamil 爱他美 金装婴儿奶粉 四段 900g*3罐装
-                                        </div>
-                                        <h5 className="waterPrice">
-                                            ￥399.00
-                                        </h5>
-                                    </div>
-                                </a>
-                            </li>
-                            <li className="lis pr">
-                                <a href="#">
-                                    <div className="imgDiv">
-                                        <img src="https://imagespro.baobeigezi.com/bbgz2019/goods-image/821e99b1-5aad-484b-9e2b-39cff76f254a.png" alt="" className="lazy" />
-                                    </div>
-                                    <div className="waterButtom pr">
-                                        <div className="waterName text-overflow2">
-                                            【包邮】Aptamil 爱他美 金装婴儿奶粉 四段 900g*3罐装
-                                        </div>
-                                        <h5 className="waterPrice">
-                                            ￥399.00
-                                        </h5>
-                                    </div>
-                                </a>
-                            </li>
+                                    </a>
+                                </li>
+                                ))
+                            }
                         </ul>
                     </div>
                     <div>
@@ -119,4 +97,27 @@ export default class Brand extends Component {
 
         )
     }
+    componentDidMount(){
+        if(this.props.match.params.name=='111'){
+            this.props.searchList(this.props.match.params.id);
+        }else{
+             this.props.handleNaiBrand(this.props.match.params.id,this.state.flag);
+        }
+       
+    }
+    handleClose(){
+        this.props.history.goBack();
+    }
+    handleSearch(){
+        this.props.history.push("/search");
+    }
+    // handleXiaoliang(){
+    //     this.setState({
+    //         flag:"4"
+    //     },()=>{
+    //         this.props.handleNaiBrand(this.props.match.params.id,this.state.flag);
+    //     })
+    // }
 }
+
+export default Brand;

@@ -14,7 +14,7 @@ const reducers = combineReducers({
     national,
     parenting,
     home,
-    detail
+    detail,
 })
 const store = createStore(reducers,applyMiddleware(reduxThunk))
 

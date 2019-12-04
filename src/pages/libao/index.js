@@ -4,27 +4,42 @@ import {Classify} from "./styled"
 import {connect} from "react-redux"
 import {withRouter} from 'react-router-dom' ;
 import {throttle} from "common/throttle"
+
+import Throttle from 'lodash-decorators/throttle';
+import { Modal} from 'antd-mobile';
 import {mapStateToProps,mapDispatchToProps} from "./mapStore"
 @connect(mapStateToProps,mapDispatchToProps )
 @withRouter
+
 class Libao extends React.Component{
     constructor(){
         super();
         this.state={
-            list:["1197477374489268226","1197472267278225410","1197468156386349057","1197464727941287938","1192010076055932930","1192001102912950273","1191992819858804738","1191986176957878273","1191995432931168258","1191981526334574593","1191984469586743297","1191987732407128065", "1191991005323202562"]
+            list:["1197477374489268226","1197472267278225410","1197468156386349057","1197464727941287938","1192010076055932930","1192001102912950273","1191992819858804738","1191986176957878273","1191995432931168258","1191981526334574593","1191984469586743297","1191987732407128065", "1191991005323202562"],
+            flag:"-1"
+
         }
+        this.handleRes = this.handleRes.bind(this)
     }
     render(){
+        const alert = Modal.alert;
         let {libaoListls} = this.props;
+        console.log(libaoListls);
         return (
-            <PageContainer onScroll={this.handleScroll.bind(this)}>
+            <PageContainer>
             <Classify>
                 <div className="header">
                    <span>
                        宝贝一品 全球精选
                    </span>
-                   <a className="iconfont">&#xe605;</a>
-                   <i className="iconfont">&#xe75d;</i>
+                   <a className="iconfont" onClick={this.handleClose.bind(this)}>&#xe605;</a>
+                   <button className="iconfont" onClick={() =>
+                            alert('温馨提示', '此页面暂未提供分享！', [
+                                { text: '取消'},
+                                { text: '确定'},
+                                ])}
+                            >&#xe75d;
+                    </button>
                 </div>
                 <div className="content" >
                     <img src="https://imagespro.baobeigezi.com//bbgz2019/brand-image/1a722f46-9504-4dfc-a4c0-c1d2867a7ec7.jpg" className="pic" alt=""></img>
@@ -58,28 +73,27 @@ class Libao extends React.Component{
 }
         componentDidMount(){
             window.addEventListener('scroll', this.handleScroll.bind(this));
-            this.props.libaoList();
+            // this.props.libaoList();
         }
         handleScroll(){
-            var firstTime = 0;
-            return function(){
-                var lastTime = new Date().getTime();
-                if(lastTime - firstTime > 300){
-                    console.log("111");
-                    firstTime = lastTime;
-                }
+            this.handleRes()
+        }
+
+        @Throttle(300)
+            handleRes(){
+                // console.log("111");
+                this.setState({
+                    flag:++this.state.flag
+                },()=>{
+                    // console.log(this.state.flag);
+                    this.props.libaoList(this.state.list[this.state.flag]);
+                })
+                
             }
-
-
-            // throttle(this.handle.bind(this),600)
-            // setTimeout(()=>{
-            //     
-            // },600)
+            handleClose(){
+                this.props.history.goBack();
+            }
             
-        }
-        handle(){
-            console.log("111");
-        }
 }
 export default Libao
 
