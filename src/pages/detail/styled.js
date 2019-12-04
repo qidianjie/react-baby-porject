@@ -18,9 +18,12 @@ export const CommonHeader=styled.div`
 
 
     .common_header_bar{
-        position:relative;
+        position:fixed;
         width:100%;
         height:0.36rem;
+        top:0;
+        background:white;
+        z-index: 10;
         em{
             top:0.1rem;
             left:0.13rem;

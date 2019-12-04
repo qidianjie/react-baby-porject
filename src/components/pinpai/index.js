@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {PageContainer} from "common/styled"
 import {Classify} from "./styled"
 import {connect} from "react-redux"
-import {withRouter} from "react-router-dom"
+import {withRouter,NavLink} from "react-router-dom"
 import {mapStateToProps,mapDispatchToProps} from "components/classify/mapStore"
 @connect(mapStateToProps,mapDispatchToProps)
 @withRouter
@@ -24,8 +24,10 @@ class Pinpai extends React.Component{
                             {
                                 item.brandList.map((its,ids)=>(
                                      <li key={ids}>
+                                         <NavLink key={ids}  to={"/pinpailist/"+its.id}>
                                         <img src={its.logo}></img>
                                         <span>{its.name}</span>
+                                        </NavLink>
                                      </li>
                                 ))
                             }

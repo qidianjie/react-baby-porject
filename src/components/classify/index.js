@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import {ClassDiv} from "./styled"
 import {connect} from "react-redux"
+import {withRouter,NavLink} from "react-router-dom"
 import {mapStateToProps,mapDispatchToProps} from "./mapStore"
 @connect(mapStateToProps,mapDispatchToProps )
+@withRouter
  class ClassifyBot extends Component {
      constructor(){
          super()
@@ -23,8 +25,10 @@ import {mapStateToProps,mapDispatchToProps} from "./mapStore"
                                 {
                                     item.childs.map((imd,idx)=>(
                                         <li key={idx}>
-                                    <img src={imd.image} alt=""></img>
-                                    <span>{imd.name}</span>
+                                            <NavLink to={"/brand/"+imd.id+"/"+imd.name}>
+                                            <img src={imd.image} alt=""></img>
+                                            <span>{imd.name}</span>
+                                            </NavLink>
                                 </li>
                                     ))
                                 }

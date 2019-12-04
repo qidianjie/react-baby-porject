@@ -5,7 +5,10 @@ export const Header =styled.div`
         background:white;
         display:flex;
         align-items:center;
-        justify-content:space-around
+        justify-content:space-around;
+        position: fixed;
+        width:100%;
+        top:0;
         span{
             font-size:0.14rem;
             display:inline-block;
@@ -50,12 +53,13 @@ export const Nav=styled.div`
     height:0.37rem;
     width:100%;
     background:white;
-    margin-top:0.1rem;
     display:flex;
     justify-content:space-around;
     align-items:center;
     font-size:0.12rem;
     color:#313131;
+    position:fixed;
+    top:.37rem;
     span{
         /* display:inline-block;
         width:100%;
@@ -82,7 +86,7 @@ padding:0rem 0.08rem;
 export const WaterList=styled.div`
 
 .waterList{
-    padding:0.04rem 0.04rem 0rem 0.04rem;
+    padding:0.75rem 0.04rem 0rem 0.04rem;
 
 
 }
@@ -90,14 +94,19 @@ export const WaterList=styled.div`
     padding-top:0.085rem;
     display:flex;
     flex-wrap:wrap;
+    z-index:50;
 }
 .lis{
-    background:white;
+    background:#fff;
     border-radius:0.08rem;
     width:1.5rem;
     height:2.2rem;
     margin:0.03rem;
-    margin-bottom:0.08rem;
+    margin-bottom:0.1rem;
+    img{
+        width:1.5rem;
+        height:1.42rem;
+    }
 }
 .lazy{
     width:1.5rem;

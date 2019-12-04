@@ -1,6 +1,6 @@
-export const throttle = function(cb,time=300){
+export const throttle = (function(){
     var firstTime = 0;
-    return function(){
+    return function(cb,time=1000){
         var lastTime = new Date().getTime();
         if(lastTime - firstTime > time){
             cb();
@@ -8,4 +8,4 @@ export const throttle = function(cb,time=300){
         }
     }
 
-}
+})()

@@ -288,20 +288,22 @@ class Detail extends React.Component {
                         >
                             <List renderHeader={() => <div>请选择商品参数</div>} className="popup-list">
                                 <div >
-                                    <p className="choose">{(good.goodsDetail ? good.goodsDetail.goodsPriceDetail.attr[0] : "").name}</p>
+                                    <p className="choose">{ (good.goodsDetail ? (good.goodsDetail.goodsPriceDetail.attr.length !== 0 ? good.goodsDetail.goodsPriceDetail.attr[0].name : "") : "")}</p>
                                     <div>
                                         {
-                                            (good.goodsDetail ? good.goodsDetail.goodsPriceDetail.attr[0].list : []).map((child, index) => (
+                                            (good.goodsDetail ? (good.goodsDetail.goodsPriceDetail.attr.length !== 0 ? good.goodsDetail.goodsPriceDetail.attr[0].list :[]) :[]
+                                            ).map((child, index) => (
                                                 <b className="canshu" key={index} onClick={this.handleColor.bind(this,child.name,index)} className={index1 == index ? 'activeModel' : ""}>{child.name}</b>
                                             ))
                                         }
                                     </div>
                                 </div>
                                 <div >
-                                    <p className="choose">{(good.goodsDetail ? good.goodsDetail.goodsPriceDetail.attr[1] : "").name}</p>
+                                    <p className="choose">{ (good.goodsDetail ? (good.goodsDetail.goodsPriceDetail.attr.length !== 0 ? good.goodsDetail.goodsPriceDetail.attr[0].name : "") : "")}</p>
                                     <div>
                                         {
-                                            (good.goodsDetail ? good.goodsDetail.goodsPriceDetail.attr[1].list : []).map((child, index) => (
+                                           (good.goodsDetail ? (good.goodsDetail.goodsPriceDetail.attr.length !== 0 ? good.goodsDetail.goodsPriceDetail.attr[1].list :[]) :[]
+                                           ).map((child, index) => (
                                                 <b className="canshu" key={index} onClick={this.handleTime.bind(this,child.name,index)} className={index2 == index ? 'activeModel' : ""}>{child.name}</b>
                                             ))
                                         }
@@ -350,17 +352,26 @@ class Detail extends React.Component {
             </PageContainer>
         )
     }
-
     componentDidMount() {
         window.addEventListener("scroll", this.handleScroll, true);
         this.props.detailAsyncData(this.state.id);
         this.props.goodsCommentAsyncData(this.state.id);
         this.props.recommendListAsyncData();
-      
+ 
     }
     componentWillReceiveProps(){
-             this.state.up=(this.props.good.goodsDetail?this.props.good.goodsDetail.goodsPriceDetail.attr[0].list[0].name:"");
-             this.state.down=(this.props.good.goodsDetail?this.props.good.goodsDetail.goodsPriceDetail.attr[1].list[0].name:"");
+        // (good.goodsDetail ? (good.goodsDetail.goodsPriceDetail.attr.length !== 0 ? good.goodsDetail.goodsPriceDetail.attr[0].name : "") : "")
+
+            //  this.state.up=(this.props.good.goodsDetail?this.props.good.goodsDetail.goodsPriceDetail.attr[0].list[0].name:"");
+
+             this.state.up=(this.props.good.goodsDetail ? (this.props.good.goodsDetail.goodsPriceDetail.attr.length !== 0 ? this.props.good.goodsDetail.goodsPriceDetail.attr[0].list[0].name : "") : "");
+
+
+            //  this.state.down=(this.props.good.goodsDetail?this.props.good.goodsDetail.goodsPriceDetail.attr[1].list[0].name:"");
+
+
+             this.state.down=(this.props.good.goodsDetail ? (this.props.good.goodsDetail.goodsPriceDetail.attr.length !== 0 ? this.props.good.goodsDetail.goodsPriceDetail.attr[1].list[0].name : "") : "");
+
              this.state.brandName=this.props.good.brandName//品牌名 
              this.state.goodsName=this.props.good.name//商品名
              this.state.price=this.props.good.salePrice//商品价钱

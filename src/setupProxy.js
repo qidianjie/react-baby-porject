@@ -12,9 +12,13 @@ module.exports = (app)=>{
     app.use("/shop",proxy({
         target:"https://3g.baobeigezi.com",
         changeOrigin:true,
-        // pathRewrite:{
-        //     "^/ajax":""
-        // }
+    }))
+    app.use("/ajax",proxy({
+        target:"http://shop.baobeigezi.com",
+        changeOrigin:true,
+        pathRewrite:{
+            "^/ajax":""
+        }
     }))
     
     app.use("/users",proxy({

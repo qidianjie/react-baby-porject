@@ -61,9 +61,10 @@ class Find extends Component {
             flag:index,
             id:this.props.caidanList[this.state.flag].id,
             path:this.props.caidanList[this.state.flag].path
-        },()=>(
+        },()=>{
+            this.forceUpdate()
             this.props.GetAsyncGoodslist(this.state.id,this.state.path)
-        ))
+        })
         
     }  
     handleClickShow(index){

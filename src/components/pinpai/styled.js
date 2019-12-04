@@ -40,6 +40,16 @@ background:#f4f4f4;
             align-items:center;
             padding-bottom:.05rem;
             text-align:center;
+            a{
+                text-decoration:none;
+                border:none !important;
+                display:block;
+                width:100%;
+                height:100%;
+                display:flex;
+                flex-direction:column;
+                align-items:center;
+                }
             &:nth-child(3n){
                 border-right:none;
             }

@@ -5,6 +5,8 @@ import { Classify } from "./styled"
 import { Progress, WingBlank, WhiteSpace } from 'antd-mobile';
 import { mapStateToProps, mapDispatchToProps } from "./mapStore";
 import { connect } from "react-redux";
+import {Link,withRouter} from "react-router-dom"
+@withRouter
 @connect(mapStateToProps, mapDispatchToProps)
 class Qianggou extends React.Component {
     constructor() {
@@ -31,7 +33,7 @@ class Qianggou extends React.Component {
                         <span>
                             <img src="http://3g.baobeigezi.com/imgs/newIndex/flashIcon.png"></img>
                         </span>
-                        <a className="iconfont">&#xe605;</a>
+                        <a className="iconfont" onClick={this.handleClick.bind(this)}>&#xe605;</a>
                     </div>
                     <div className="comming">
                         <h4>上新了</h4>
@@ -76,6 +78,9 @@ class Qianggou extends React.Component {
     }
     componentWillMount() {
         this.props.handleAsyncCrazy();
+    }
+    handleClick(){
+        this.props.history.goBack();
     }
 }
 export default Qianggou

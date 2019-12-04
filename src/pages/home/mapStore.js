@@ -15,6 +15,7 @@ export const mapDispatchToProps=(dispatch)=>({
     },
     qiangAsyncData(){
         dispatch(qiangAsyncAction());
+        
     },
     goodsAsyncData(item){
         dispatch(goodsAsyncAction(item));

@@ -39,8 +39,9 @@ export const qiangAsyncAction = () => {//限时抢购
 
     return async (dispatch) => {
         let data = await cmsApi();
-        // console.log(data.data.data.goodsList);
+        console.log(data.data);
         dispatch(qiangAction(data.data.data))
+        // dispatch(qiangAction(data.data))
     }
 }
 export const goodsAsyncAction = (item) => {
