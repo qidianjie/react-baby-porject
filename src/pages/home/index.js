@@ -162,18 +162,6 @@ class Home extends Component {
         let { activeFlag } = this.state;
         let { advList, selectAll, qiangList,time,goodsList} = this.props;
         // console.log(goodsList);
-        const tabs = [
-            { title: '1st Tab' },
-            { title: '2nd Tab' },
-            { title: '3rd Tab' },
-            { title: '4th Tab' },
-            { title: '5th Tab' },
-            { title: '6th Tab' },
-            { title: '7th Tab' },
-            { title: '8th Tab' },
-            { title: '9th Tab' },
-        ];
-
         return (
             <PageContainer>
                 <Banner>
