@@ -21,7 +21,8 @@ import {
     BaikeList,
     Article,
     CourseDetail,
-    BrandList
+    BrandList,
+    Xinpin
 } from "pages"
 
 
@@ -168,6 +169,11 @@ export const NoTabBarRoute = [
     {//品牌列表
         path:"/pinpailist/:id",
         component:BrandList,
+        meta:{}
+    },
+    {//品牌列表
+        path:"/xinpin",
+        component:Xinpin,
         meta:{}
     }
 ];

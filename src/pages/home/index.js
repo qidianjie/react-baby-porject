@@ -53,105 +53,6 @@ class Home extends Component {
             ],
             data: ['1', '2', '3'],
             imgHeight: 120,
-            countryList:[
-                {
-                    name:"日本馆",
-                    imgUrl:"https://3g.baobeigezi.com/imgs/country/5.png",
-                    countryId:"1128905253744435201"
-                },
-                {
-                    name:"韩国馆",
-                    imgUrl:"https://3g.baobeigezi.com/imgs/country/10.png",
-                    countryId:"1128905392529760257"
-                },
-                {
-                    name:"澳大利亚馆",
-                    imgUrl:"https://3g.baobeigezi.com/imgs/country/6.png",
-                    countryId:"1141596494776766466"
-                },
-                {
-                    name:"中国香港馆",
-                    imgUrl:"https://3g.baobeigezi.com/imgs/country/36.png",
-                    countryId:"1141596500204195842"
-                },
-                {
-                    name:"泰国馆",
-                    imgUrl:"https://3g.baobeigezi.com/imgs/country/33.png",
-                    countryId:"1141596499742822401"
-                },
-                {
-                    name:"美国",
-                    imgUrl:"https://3g.baobeigezi.com/imgs/country/8.png",
-                    countryId:"1141596495678541825"
-                },
-
-
-                {
-                    name:"新西兰",
-                    imgUrl:"https://3g.baobeigezi.com/imgs/country/xx.png",
-                    countryId:"1141596493845630977"
-                },
-                {
-                    name:"英国",
-                    imgUrl:"https://3g.baobeigezi.com/imgs/country/14.png",
-                    countryId:"1141596497658253314"
-                },
-                {
-                    name:"德国",
-                    imgUrl:"https://3g.baobeigezi.com/imgs/country/12.png",
-                    countryId:"1141596497205268482"
-                },
-                {
-                    name:"意大利",
-                    imgUrl:"https://3g.baobeigezi.com/imgs/country/17.png",
-                    countryId:"1141596498379673602"
-                },
-                {
-                    name:"尼日利亚",
-                    imgUrl:"https://3g.baobeigezi.com/imgs/country/39.png",
-                    countryId:"1141596500686540802"
-                },
-                {
-                    name:"荷兰",
-                    imgUrl:"https://3g.baobeigezi.com/imgs/country/9.png",
-                    countryId:"1141596496274132993"
-                },
-
-
-
-
-                
-                {
-                    name:"新加坡",
-                    imgUrl:"https://3g.baobeigezi.com/imgs/country/13.png",
-                    countryId:"1129193850200543234"
-                },
-                {
-                    name:"加拿大",
-                    imgUrl:"https://3g.baobeigezi.com/imgs/country/3.png",
-                    countryId:"1129194001430368257"
-                },
-                {
-                    name:"法国",
-                    imgUrl:"https://3g.baobeigezi.com/imgs/country/16.png",
-                    countryId:"1141596498144792577"
-                },
-                {
-                    name:"丹麦",
-                    imgUrl:"https://3g.baobeigezi.com/imgs/country/15.png",
-                    countryId:"1141596497901522945"
-                },
-                {
-                    name:"马来西亚",
-                    imgUrl:"https://3g.baobeigezi.com/imgs/country/43.png",
-                    countryId:"1141596501185662978"
-                },
-                {
-                    name:"中国台湾",
-                    imgUrl:"https://3g.baobeigezi.com/imgs/country/35.png",
-                    countryId:"1141596499969314818"
-                },
-            ]
         }
         this.goods={
             currPage :1,
@@ -163,7 +64,7 @@ class Home extends Component {
         this.page=2;
     }
     render() {
-        let { activeFlag,countryList } = this.state;
+        let { activeFlag } = this.state;
         let { advList, selectAll, qiangList,time,goodsList} = this.props;
         // console.log(goodsList);
         const tabs = [
@@ -182,7 +83,7 @@ class Home extends Component {
             <PageContainer>
                 <Banner>
                     <div className="home">
-                        <input type="text" />
+                        <input type="text" onFocus={this.handleFocusSearch.bind(this)}/>
                         <i className="home_one"></i>
                     </div>
                     <div className="swiper-container">
@@ -227,7 +128,7 @@ class Home extends Component {
                 <BannerIcon>
                     {
                         (advList[1] ? advList[1].positionList : []).map((item, index) => (
-                            <a href="#" className="fl" key={index} >
+                            <a href="#" className="fl" key={index} onClick={this.handleIcon.bind(this,item.advTitle)}>
                                 <img src={item.bigImage} alt="" />
                                 <span>{item.advTitle}</span>
                             </a>
@@ -236,7 +137,7 @@ class Home extends Component {
                 </BannerIcon>
                 <ActiveList>
                     {/* 新人超值专享 */}
-                    <div className="newPer">
+                    <div className="newPer"  onClick={this.handleIcon.bind(this,"大礼包")}>
                         <a href="#" className="newPerBg">
                             <span className="">新人超值专享</span>
                             <img src="http://3g.baobeigezi.com/imgs/newIndex/newPer.png" alt="" />
@@ -274,7 +175,7 @@ class Home extends Component {
                         </div>
                     </div>
                     {/* 限时抢购 */}
-                    <div className="flashSale">
+                    <div className="flashSale" onClick={this.handleIcon.bind(this,"限时抢购")}>
                         <div className="flashTit ">
                             <span className="flashGo fl">限时抢购</span>
                             <span className="flashTime fl">上新啦</span>
@@ -283,8 +184,8 @@ class Home extends Component {
                         </div>
                         <div className="flashList">
                             {
-                                (qiangList ? qiangList : []).map((item,index) => (
-                                    <a href="#" className="swiper-slide" key={index}>
+                                (qiangList ? qiangList : []).map((item) => (
+                                    <a href="#" className="swiper-slide" key={item.goodsId}>
                                         <img src={item.goodsImage} alt="" />
                                         <span className="del">市场价￥{item.marketPrice}</span>
                                         <span className="col_BB361F">抢购价￥{item.activityPrice}</span>
@@ -374,62 +275,9 @@ class Home extends Component {
                         </div>
                     </div>
                     {/* 国家地区馆 */}
-                                        
-                    <div className="jingXuan">
-                        <div className="groupBg clearfix">
-                            <span className="today fl">
-                                国家地区馆
-                         </span>
-                        </div>
-                        <div className="p12T10">
-                            {(advList[9] ? advList[9].positionList : []).map((item, index) => (
-                                <a href="#" className="countryImgTit" key={item.id}>
-                                    <img src={item.bigImage} alt="" />
-                                </a>
-                            ))}
-                        </div>
-                        {/* 地区馆中的轮播 */}
-                        <div className="countryall">                    
-                            <div className="container">
-                            {
-                                countryList.slice(0,6).map((item,index)=>(
-                                    <Link to={"/national?countryId="+item.countryId} key={item.countryId}>
-                                    <em  className="countryItem" >
-                                             <img src={item.imgUrl} alt="" />
-                                    </em>
-                                 </Link>
-                            ))
-                        }
-                            </div>
-                            <div className="container">
-                            {
-                                countryList.slice(6,12).map((item,index)=>(
-                                    <Link to={"/national?countryId="+item.countryId} key={item.countryId}>
-                                    <em className="countryItem" >
-                                    <img src={item.imgUrl} alt="" />
-                                     </em>
-                                     
-                                     </Link>
-                            ))
-                        }
-                            </div>
-                            <div className="container">
-                            {
-                                countryList.slice(12).map((item,index)=>(
-                                    <Link to={"/national?countryId="+item.countryId}  key={item.countryId}>
-                                    <em className="countryItem">
-                                    <img src={item.imgUrl} alt="" />
-                                 </em>
-                                </Link>
-                            ))
-                        }
-                            </div>
-
-                        </div>
-
-                    </div>
+                  
                     {/* 精选分类 */}
-                    <div className="fenlei">
+                    <div className="fenlei" onClick={this.handleIcon.bind(this,"分类")}>
                         <div className="groupBg clearfix">
                             <span className="today fl">
                                 精选分类
@@ -483,14 +331,12 @@ class Home extends Component {
                                 </li>
                             ))}
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 6ae091c8b6cbcf95fddd3785c83d1977db76059b
+
                         </ul>
                     </div>
                     {/* 全球榜单 ---热门品牌 */}
-                    <div className="hotBrand">
+                    <div className="hotBrand" onClick={this.handleIcon.bind(this,"品牌")}>
                         <div className="groupBg clearfix">
                             <span className="today fl">
                                 热门品牌
@@ -508,7 +354,6 @@ class Home extends Component {
                                         >
                                             {(advList[12] ? advList[12].positionList : []).map((item, index) => (
                                                
-                                                
                                                 <div className="hotWeekPlist hotBrand" key={index}>
                                                     <div className="brandImg">
                                                         <img src={item.bigImage} alt="" />
@@ -547,7 +392,40 @@ class Home extends Component {
                                                                     </a>
                                                                 ))
                                                             }
-                                                           
+                                                            {/* <a href="#" className="lis fl">
+                                                    <div className="pImg">
+                                                        <img src="http://id.baoimg.net/share-img/photo/201810/5bbd90f00c52b.jpg" alt="" />
+                                                    </div>
+                                                    <div className="pName text-overflow">
+                                                        【海外直邮】Aptamil/爱他美 奶粉1段 0-6个月 800g  （英国直邮 包邮包税）  新老包装随机发货
+                                                        </div>
+                                                    <div className="pPrice text-overflow">
+                                                        ￥316.00
+                                                        </div>
+                                                </a>
+                                                <a href="#" className="lis fl">
+                                                    <div className="pImg">
+                                                        <img src="http://id.baoimg.net/share-img/photo/201810/5bbd90f00c52b.jpg" alt="" />
+                                                    </div>
+                                                    <div className="pName text-overflow">
+                                                        【海外直邮】Aptamil/爱他美 奶粉1段 0-6个月 800g  （英国直邮 包邮包税）  新老包装随机发货
+                                                        </div>
+                                                    <div className="pPrice text-overflow">
+                                                        ￥316.00
+                                                        </div>
+                                                </a>
+                                                <a href="#" className="lis fl">
+                                                    <div className="pImg">
+                                                        <img src="http://id.baoimg.net/share-img/photo/201810/5bbd90f00c52b.jpg" alt="" />
+                                                    </div>
+                                                    <div className="pName text-overflow">
+                                                        【海外直邮】Aptamil/爱他美 奶粉1段 0-6个月 800g  （英国直邮 包邮包税）  新老包装随机发货
+                                                        </div>
+                                                    <div className="pPrice text-overflow">
+                                                        ￥316.00
+                                                        </div>
+                                                </a> */}
+
                                                         </div>
                                                     </div>
 
@@ -587,7 +465,7 @@ class Home extends Component {
                         }
                     </div>
                     {/* 育儿百科--全球榜单的第四个 */}
-                    <div className="babyIndex">
+                    <div className="babyIndex" onClick={this.handleIcon.bind(this,"育儿百科")}>
                         <div className="groupBg clearfix">
                             <span className="today fl">
                                 育儿百科
@@ -654,6 +532,9 @@ class Home extends Component {
       
                     </ul>
                 </div>
+
+
+
                 <div className="waterScroll">
                     <Bscrollcom ref="scroll">
                     <div className="waterList"> 
@@ -730,6 +611,41 @@ class Home extends Component {
     }
     handleJump(path){
         this.props.history.push(path);
+    }
+    handleFocusSearch(){
+        this.props.history.push("/search");
+    }
+    handleIcon(title,e){
+        e.preventDefault();
+        switch(title){
+            case "中检溯选":
+                this.props.history.push("/zhongjian");
+                break;
+            case "国家馆":
+                this.props.history.push("/national");
+                break;
+            case "限时抢购":
+                this.props.history.push("/qianggou");
+                break;
+            case "育儿百科":
+                this.props.history.push("/parenting");
+                break;
+            case "免费红包":
+                this.props.history.push("/hongbao");
+                break;
+            case "大礼包":
+                this.props.history.push("/libao");
+                break;
+            case "分类":
+                this.props.history.push("/fenlei");
+                break;
+            case "品牌":
+                this.props.history.push("/fenlei");
+                break;
+            case "新品速递":
+                this.props.history.push("/xinpin");
+                break;
+        }
     }
 }
 export default Home;

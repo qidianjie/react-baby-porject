@@ -1,5 +1,5 @@
-import {classAsyncType,goodsAction,pinpaiAction,brandActionType,searchActionType} from "./classActionType"
-import {NavCaidan,goodsList,pinpaiList,redenvelopes,handleNaibrand,searchTiaozhuanList} from "api/hob.js"
+import {classAsyncType,goodsAction,pinpaiAction,brandActionType,searchActionType,xinpinAction} from "./classActionType"
+import {NavCaidan,goodsList,pinpaiList,redenvelopes,handleNaibrand,searchTiaozhuanList,xinpinList} from "api/hob.js"
 
 
 export const classAsyncAction = ()=>{
@@ -61,6 +61,20 @@ export const searchls = (id)=>{
         
         let data = await searchTiaozhuanList(id);
         dispatch(searchlsAction(data.data.data));
+    }
+}
+
+export const handleXinpinList = ()=>{
+
+    let handleXinpinAction=(data)=>({
+        type:xinpinAction,
+        data
+    })
+
+    return async (dispatch)=>{
+        let data = await xinpinList();
+        dispatch(handleXinpinAction(data.data.data))
+        console.log(data);
     }
 }
 

@@ -1,12 +1,13 @@
 import {handleActions} from "redux-actions"
-import {classAsyncType,goodsAction,pinpaiAction,brandActionType,searchActionType} from "actions/classify/classActionType"
+import {classAsyncType,goodsAction,pinpaiAction,brandActionType,searchActionType,xinpinAction} from "actions/classify/classActionType"
 
 const defaultState = {
     caidanList:[],
     goodsList:[],
     pinpaiList:[],
     brandlist:[],
-    searchlsList:[]
+    searchlsList:[],
+    xinpinList:[]
 }
 
 export default handleActions({
@@ -35,6 +36,11 @@ export default handleActions({
         let searchState = JSON.parse(JSON.stringify(state));
         searchState.searchlsList = action.data;
         return searchState;
+    },
+    [xinpinAction]:(state,action)=>{
+        let xinpinState = JSON.parse(JSON.stringify(state));
+        xinpinState.xinpinList = action.data;
+        return xinpinState;
     }
     
 },defaultState)

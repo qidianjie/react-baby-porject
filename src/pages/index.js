@@ -110,3 +110,8 @@ export const BrandList=Loadable({
     loader:()=>import("./list"),
     loading:Loading
 })
+// 新品
+export const Xinpin=Loadable({
+    loader:()=>import("./xinpin"),
+    loading:Loading
+})
