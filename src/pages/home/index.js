@@ -159,21 +159,9 @@ class Home extends Component {
         this.page=2;
     }
     render() {
-        let { activeFlag } = this.state;
+        let { activeFlag ,countryList} = this.state;
         let { advList, selectAll, qiangList,time,goodsList} = this.props;
         // console.log(goodsList);
-        const tabs = [
-            { title: '1st Tab' },
-            { title: '2nd Tab' },
-            { title: '3rd Tab' },
-            { title: '4th Tab' },
-            { title: '5th Tab' },
-            { title: '6th Tab' },
-            { title: '7th Tab' },
-            { title: '8th Tab' },
-            { title: '9th Tab' },
-        ];
-
         return (
             <PageContainer>
                 <Banner>
@@ -371,6 +359,59 @@ class Home extends Component {
                     </div>
                     {/* 国家地区馆 */}
                     
+                    <div className="jingXuan">
+                        <div className="groupBg clearfix">
+                            <span className="today fl">
+                                国家地区馆
+                         </span>
+                        </div>
+                        <div className="p12T10">
+                            {(advList[9] ? advList[9].positionList : []).map((item, index) => (
+                                <a href="#" className="countryImgTit" key={item.id}>
+                                    <img src={item.bigImage} alt="" />
+                                </a>
+                            ))}
+                        </div>
+                        {/* 地区馆中的轮播 */}
+                        <div className="countryall">                    
+                            <div className="container">
+                            {
+                                countryList.slice(0,6).map((item,index)=>(
+                                    <Link to={"/national?countryId="+item.countryId} key={item.countryId}>
+                                    <em  className="countryItem" >
+                                             <img src={item.imgUrl} alt="" />
+                                    </em>
+                                 </Link>
+                            ))
+                        }
+                            </div>
+                            <div className="container">
+                            {
+                                countryList.slice(6,12).map((item,index)=>(
+                                    <Link to={"/national?countryId="+item.countryId} key={item.countryId}>
+                                    <em className="countryItem" >
+                                    <img src={item.imgUrl} alt="" />
+                                     </em>
+                                     
+                                     </Link>
+                            ))
+                        }
+                            </div>
+                            <div className="container">
+                            {
+                                countryList.slice(12).map((item,index)=>(
+                                    <Link to={"/national?countryId="+item.countryId}  key={item.countryId}>
+                                    <em className="countryItem">
+                                    <img src={item.imgUrl} alt="" />
+                                 </em>
+                                </Link>
+                            ))
+                        }
+                            </div>
+
+                        </div>
+
+                    </div>
                     {/* 精选分类 */}
                     <div className="fenlei" onClick={this.handleIcon.bind(this,"分类")}>
                         <div className="groupBg clearfix">
