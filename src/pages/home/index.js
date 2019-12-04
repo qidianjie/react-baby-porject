@@ -151,7 +151,10 @@ class Home extends Component {
                     imgUrl:"https://3g.baobeigezi.com/imgs/country/35.png",
                     countryId:"1141596499969314818"
                 },
-            ]
+            ],
+            clock:new Date(),//时钟数
+            clocktamp:(new Date()).getTime(),//时间戳
+          
         }
         this.goods={
             currPage :1,
@@ -792,11 +795,16 @@ class Home extends Component {
     componentWillUpdate(){
         this.refs.scroll.handlefinishPullUp();
     }
+   
     componentDidMount() {
         this.props.handleAsyncData();
         this.props.qiangAsyncData();
         //导航栏
         this.props.selectAllAsyncData();
+
+        this.setState({
+            clocktamp:this.props.time*1000
+        })
 
       //下面的商品列表
         let item={}
