@@ -150,7 +150,7 @@ export const MineContainer=styled.div`
         display:flex;
         flex-wrap:wrap;
         padding-bottom:0.5rem;
-        li{
+        .mine_li{
             width:48%;
             background:#fff;
             border-radius:0.08rem;

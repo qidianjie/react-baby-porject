@@ -6,19 +6,24 @@ import { mapStateToProps, mapDispatchToProps } from "./mapStore";
 
 import { NationalContainer } from "./styled";
 import { withRouter } from "react-router-dom";
+import url from "url"
 @connect(mapStateToProps, mapDispatchToProps)
 @withRouter
 class National extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             id: [{
                 countryId: "1128905253744435201"
             }],
             nav: ["走进", "新品驾到", "必备榜单", "明星大牌"],
             flag: 0,
-            mark: false
+            mark: false,
+            countryId:""
         }
+        let {countryId}=url.parse(this.props.location.search,true).query;
+        this.state.countryId=countryId;
+        console.log(this.state.countryId)
     }
     render() {
         let { national, advList } = this.props;
@@ -113,8 +118,8 @@ class National extends React.Component {
         )
     }
     componentDidMount() { //请求数据
-        this.props.handleAsyncNation();
-        this.props.starAsyncNational();
+        this.props.handleAsyncNation(this.state.countryId);
+        this.props.starAsyncNational(this.state.countryId);
 
         this.handleFixed();
     }

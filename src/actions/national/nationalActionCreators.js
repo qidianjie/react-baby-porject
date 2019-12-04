@@ -3,21 +3,21 @@ import {nationalType,starType,mineType,crazyType} from "./nationalActionTypes"
 import {nationalApi,nationalStarApi,mineApi,crazyApi} from "api/shop"
 import {createAction} from "redux-actions";
 // 国家馆
-export const nationAsyncAction=()=>{
+export const nationAsyncAction=(countryId)=>{
     let nationalAction=createAction(nationalType,(data)=>data)
 
     return async (dispatch)=>{
-        let data=await nationalApi();
+        let data=await nationalApi(countryId);
         // console.log(data);
         dispatch(nationalAction(data.data))
     }
 }
 // 明星大牌
-export const starAsyncAction=()=>{
+export const starAsyncAction=(countryId)=>{
     let starAction=createAction(starType,(data)=>data)
 
     return async (dispatch)=>{
-        let data=await nationalStarApi();
+        let data=await nationalStarApi(countryId);
         console.log(data.data.advList);
         dispatch(starAction(data.data.advList))
     }

@@ -1,11 +1,14 @@
 import {handleActions} from "redux-actions";
 
-import {parentingType,getIdType,getDataType,articleType} from "actions/parenting/parentingTypes";
+import {parentingType,getIdType,getDataType,articleType,courseType,commentType} from "actions/parenting/parentingTypes";
 const defaultState={
     parentingList:[],
     idArr:[],
     dataList:[],
     article:"",
+    course:"",
+    commentList:[],
+
 }
 
 export default handleActions({
@@ -31,5 +34,17 @@ export default handleActions({
         let articleState=JSON.parse(JSON.stringify(state));
         articleState.article=action.payload;
         return articleState;
+    },
+    // 专家讲堂下的视频课程详情
+    [courseType]:(state,action)=>{
+        let courseState=JSON.parse(JSON.stringify(state));
+        courseState.course=action.payload;
+        return courseState;
+    },
+     // 专家讲堂下的视频课程详情中的评论
+    [commentType]:(state,action)=>{
+        let commentState=JSON.parse(JSON.stringify(state));
+        commentState.commentList=action.payload;
+        return commentState;
     }
 },defaultState)

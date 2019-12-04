@@ -139,7 +139,9 @@ class Parenting extends React.Component {
                         <ol>
                             {
                                 (list[9] ? list[9].result.advList : []).map((item,id)=>(
-                                    <li key={id}>
+                                    <Link key={id} className="li_link"
+                                    to={"/courseDetail?courseId="+item.articleId}
+                                    >
                                         <div className="expert_up">
                                             <div className="img_video">
                                                 <img src={item.coverImage} alt="" />
@@ -159,7 +161,7 @@ class Parenting extends React.Component {
                                                 {item.viewCount}
                                             </div>
                                         </div>
-                                    </li>
+                                    </Link>
                                 ))
                             }
                             

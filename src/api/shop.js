@@ -15,19 +15,19 @@
 import http from "utils/axiosrequest";
 
 // 国家地区馆
-export const nationalApi=()=>http({
+export const nationalApi=(countryId)=>http({
     method:"post",
     url:"/shop/es/selectEsbyNationsId",
     data:{
-        id: "1128905253744435201"
+        id: countryId
     }
 })
 // 国家地区馆中的明星大牌
-export const nationalStarApi=()=>http({
+export const nationalStarApi=(countryId)=>http({
     method:"post",
     url:"/shop/advList/selectByNation",
     data:{
-        countryId: "1128905253744435201",
+        countryId: countryId,
         platform: "0"
     }
 })
@@ -90,3 +90,33 @@ export const articleApi=(id)=>http({
         memberId: ""
     }
 })
+
+// 专家讲堂下的视频课程详情
+export const courseApi=(courseId)=>http({
+    method:"post",
+    url:"/shop/cmsArticle/selectById",
+    data:{
+        contentType: "2",
+        id: courseId,
+        memberId: ""
+    }
+})
+// 专家讲堂下的视频课程详情中的评论
+export const commentApi=(courseId)=>http({
+    method:"post",
+    url:"/shop/cmsComment/commentList",
+    data:{
+        currPage: 1,
+        originId: courseId,
+        pageSize: 10
+    }
+})
+
+// // 发送评论
+// export const sendApi=()=>http({
+//     method:"post",
+//     url:"/shop/cmsComment/commentList",
+//     data:{
+
+//     }
+// })

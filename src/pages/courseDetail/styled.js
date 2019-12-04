@@ -63,7 +63,7 @@ export const Course=styled.div`
             li{
                 height:0.75rem;
                 padding: .1rem 0;
-                border-bottom: 1px solid #666;
+                border-bottom: 1px solid #eee;
                 display:flex;
             }
         }
@@ -83,11 +83,14 @@ export const Course=styled.div`
             }
             i{
                 font-style:normal;
+                
+                
             }
             strong{
                 font-weight:none;
                 float:right;
                 color: #BB361F;
+                padding-left:1.4rem;
             }
         }
     }
@@ -111,6 +114,30 @@ export const Course=styled.div`
                 color: #bdbdbd;
                 padding-top:0.1rem;
             }
+        }
+        li{
+            display:flex;
+            padding:0.16rem 0.1rem;
+            border-bottom:1px solid #eee;
+            font-size:0.12rem;
+            .img_aa{
+                width:0.28rem;
+                height:0.28rem;
+                img{
+                    width:100%;
+                    height:100%;
+                }
+            }
+            .name{
+                padding-left:0.14rem;
+                p{
+                    width:2.46rem;
+                    padding-bottom:0.1rem;
+                    display:flex;
+                    justify-content:space-between;
+                }
+            }
+            
         }
     }
 
@@ -141,7 +168,7 @@ export const Course=styled.div`
         }
         button{
             color: rgba(187,54,31,1);
-            margin-right: .1rem;
+            margin-right: .04rem;
             outline:none;
             border: none;
             background: 0 0;
@@ -151,11 +178,16 @@ export const Course=styled.div`
             display:inline-block;
             width:0.22rem;
             height:0.22rem;
-            background:#0ff;
+            color:#c33;
             margin-right: 0.12rem;
+            text-align:center;
+            line-height:0.22rem;
         }
         a:nth-of-type(3){
             margin-right:0;
+        }
+        a:nth-of-type(2){
+            color:#999;
         }
         span{
             position:absolute;
@@ -171,7 +203,11 @@ export const Course=styled.div`
             border:1px solid #999;
             z-index:100;
             color:#000;
-            background:red;
+            background:#fff;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            color:#999;
         }
         span:nth-of-type(2){
             left:2.85rem;

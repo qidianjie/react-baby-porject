@@ -84,8 +84,6 @@ class Home extends Component {
                     imgUrl:"https://3g.baobeigezi.com/imgs/country/8.png",
                     countryId:"1141596495678541825"
                 },
-
-
                 {
                     name:"新西兰",
                     imgUrl:"https://3g.baobeigezi.com/imgs/country/xx.png",
@@ -116,11 +114,6 @@ class Home extends Component {
                     imgUrl:"https://3g.baobeigezi.com/imgs/country/9.png",
                     countryId:"1141596496274132993"
                 },
-
-
-
-
-                
                 {
                     name:"新加坡",
                     imgUrl:"https://3g.baobeigezi.com/imgs/country/13.png",
@@ -483,10 +476,7 @@ class Home extends Component {
                                 </li>
                             ))}
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 6ae091c8b6cbcf95fddd3785c83d1977db76059b
                         </ul>
                     </div>
                     {/* 全球榜单 ---热门品牌 */}

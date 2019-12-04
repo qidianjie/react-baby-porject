@@ -105,7 +105,7 @@ export const Container=styled.div`
                 font-size:0.12rem;
             }
             ol{
-                li{
+                .li_link{
                     background: rgba(255,249,248,1);
                     border-radius:0.08rem;
                     padding: .1rem;
@@ -376,7 +376,6 @@ export const Container=styled.div`
                     align-items:center;
                     img{
                         width:0.81rem;
-                        height:0.81rem;
                         border-radius:0.05rem;
                         margin-right:0.1rem;
                     }

@@ -6,10 +6,10 @@ export const mapStateToProps=(state)=>({
 })
 
 export const mapDispatchToProps=(dispatch)=>({
-    handleAsyncNation(){
-        dispatch(nationAsyncAction())
+    handleAsyncNation(countryId){
+        dispatch(nationAsyncAction(countryId))
     },
-    starAsyncNational(){
-        dispatch(starAsyncAction())
+    starAsyncNational(countryId){
+        dispatch(starAsyncAction(countryId))
     }
 })

@@ -1,7 +1,7 @@
 import React from "react";
 import {MineContainer} from "./styled";
 
-import {withRouter} from "react-router-dom";
+import {withRouter,Link} from "react-router-dom";
 
 
 import {connect} from "react-redux";
@@ -152,13 +152,13 @@ class Mine extends React.Component{
                 <ol>
                     {
                         (mineList?mineList:[]).map((item)=>(
-                            <li key={item.id}>
+                            <Link className="mine_li" to={"/detail?id="+item.id} key={item.id}>
                                 <div className="goods_img">
                                     <img src={item.mainImg} alt=""/>
                                 </div>
                                 <p>{item.name}</p>
                                 <span>￥{item.salePrice}</span>
-                            </li>
+                            </Link>
                         ))
                     }
                 </ol>

@@ -1,9 +1,9 @@
 
 // 引入createAction
 import {createAction} from "redux-actions";
-import {parentingApi,getIdApi,getDataApi,articleApi} from "api/shop"
+import {parentingApi,getIdApi,getDataApi,articleApi,courseApi,commentApi,sendApi} from "api/shop"
 
-import {parentingType,getIdType,getDataType,articleType} from "./parentingTypes";
+import {parentingType,getIdType,getDataType,articleType,courseType,commentType} from "./parentingTypes";
 export const parentingAction=()=>{
     let parentingData=createAction(parentingType,(data)=>data)
 
@@ -45,3 +45,34 @@ export const articleAction=(id)=>{
         dispatch(getdataAction(data.data))
     }
 }
+
+// 专家讲堂下的视频课程详情
+export const courseAsyncAction=(courseId)=>{
+
+    let courseAction=createAction(courseType,(data)=>data)
+    return async (dispatch)=>{
+        let data=await courseApi(courseId);
+        // console.log(data.data);
+        dispatch(courseAction(data.data))
+    }
+}
+// 专家讲堂下的视频课程详情中的评论
+export const commentAsyncAction=(courseId)=>{
+    let commentAction=createAction(commentType,(data)=>data)
+
+    return async (dispatch)=>{
+        let data=await commentApi(courseId);
+        // console.log(data);
+        dispatch(commentAction(data.data.records))
+    }
+}
+
+// 发送评论
+// export const sendAsyncAction=()=>{
+
+
+//     return async (dispatch)=>{
+//         let data=await sendApi();
+//         console.log(data)
+//     }
+// }
