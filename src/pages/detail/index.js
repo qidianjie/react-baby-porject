@@ -25,6 +25,7 @@ class Detail extends React.Component {
             price:"",
             imgUrl:"",
             cart: JSON.parse(localStorage.getItem("myCart")) || [],
+            scrollFlag:"0"
         }
         // this.myCart=""
         this.handleScroll = this.handleScroll.bind(this);
@@ -188,7 +189,7 @@ class Detail extends React.Component {
                         {/* 品牌推荐--相关推荐 */}
                         <div className="descTabPage page swiper-slide">
                             {/* 商品详情评论 */}
-                            <div className="tapNav tapNav3 clearfix">
+                            <div className="tapNav tapNav3 clearfix" ref="sxp">
                                 <em  >商品</em>
                                 <em  >详情</em>
                                 <em  >评论</em>
@@ -360,16 +361,7 @@ class Detail extends React.Component {
  
     }
     componentWillReceiveProps(){
-        // (good.goodsDetail ? (good.goodsDetail.goodsPriceDetail.attr.length !== 0 ? good.goodsDetail.goodsPriceDetail.attr[0].name : "") : "")
-
-            //  this.state.up=(this.props.good.goodsDetail?this.props.good.goodsDetail.goodsPriceDetail.attr[0].list[0].name:"");
-
              this.state.up=(this.props.good.goodsDetail ? (this.props.good.goodsDetail.goodsPriceDetail.attr.length !== 0 ? this.props.good.goodsDetail.goodsPriceDetail.attr[0].list[0].name : "") : "");
-
-
-            //  this.state.down=(this.props.good.goodsDetail?this.props.good.goodsDetail.goodsPriceDetail.attr[1].list[0].name:"");
-
-
              this.state.down=(this.props.good.goodsDetail ? (this.props.good.goodsDetail.goodsPriceDetail.attr.length !== 0 ? this.props.good.goodsDetail.goodsPriceDetail.attr[1].list[0].name : "") : "");
 
              this.state.brandName=this.props.good.brandName//品牌名 
@@ -378,28 +370,37 @@ class Detail extends React.Component {
              this.state.id=this.props.good.id;//商品ID
              this.state.imgUrl=(this.props.good.goodsDetail?this.props.good.goodsDetail.imgs[0] :"")
     }
-
     handleScroll() {
-        let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        if (scrollTop > 150) {
-            this.setState({
+       if(this.state.scrollFlag=='0'){
+        let tp=this.refs.sxp.offsetTop;
+        let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;//获取滚动条的距离
+        if (scrollTop > 200) {
+            this.setState({//控制滚动条的出现   
                 showFlag: true
             })
         } else {
-            this.setState({
+            this.setState({//控制滚动条的消失
                 showFlag: false
             })
         }
+        console.log(this.refs.sxp.offsetTop);
+       }
+        
     }
-    handleTop() {
+    handleTop() {//回到顶部
         window.scrollTo({
             left: 0,
             top: 0,
             behavior: 'smooth',
         });
     }
-    handleback() {
-        this.props.history.goBack();
+    handleback() {//后退事件
+        this.setState({
+            scrollFlag:"1"
+        },()=>{
+            this.props.history.push("/home");
+        })
+        
     }
     handleColor(item,index) {//上面
         this.setState({
@@ -427,6 +428,8 @@ class Detail extends React.Component {
         this.setState({
             [key]: false,
         });
+
+        // 添加购物车
         var item={
                 up:this.state.up,
                 down:this.state.down,
