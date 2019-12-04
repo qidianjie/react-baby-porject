@@ -3,7 +3,7 @@
 import {createAction} from "redux-actions";
 import {parentingApi,getIdApi,getDataApi,articleApi,courseApi,commentApi,sendApi} from "api/shop"
 
-import {parentingType,getIdType,getDataType,articleType,courseType,commentType} from "./parentingTypes";
+import {parentingType,getIdType,getDataType,articleType,courseType,commentType,sendType} from "./parentingTypes";
 export const parentingAction=()=>{
     let parentingData=createAction(parentingType,(data)=>data)
 
@@ -68,11 +68,12 @@ export const commentAsyncAction=(courseId)=>{
 }
 
 // 发送评论
-// export const sendAsyncAction=()=>{
+export const sendAsyncAction=(id,value)=>{
+    let sendAction=createAction(sendType,(data)=>data)
 
-
-//     return async (dispatch)=>{
-//         let data=await sendApi();
-//         console.log(data)
-//     }
-// }
+    return async (dispatch)=>{
+        let data=await sendApi(id,value);
+        console.log(data)
+        dispatch(sendAction(data.data.data))
+    }
+}

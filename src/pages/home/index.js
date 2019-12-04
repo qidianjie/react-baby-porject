@@ -370,7 +370,7 @@ class Home extends Component {
                         </div>
                     </div>
                     {/* 国家地区馆 */}
-                  
+                    
                     {/* 精选分类 */}
                     <div className="fenlei" onClick={this.handleIcon.bind(this,"分类")}>
                         <div className="groupBg clearfix">

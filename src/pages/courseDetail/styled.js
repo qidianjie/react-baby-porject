@@ -193,9 +193,9 @@ export const Course=styled.div`
             position:absolute;
             left:2.68rem;
             top:0.06rem;
-            font-size:0.1rem;
-            width:0.12rem;
-            height:0.12rem;
+            font-size:0.06rem;
+            width:0.14rem;
+            height:0.14rem;
             text-align:center;
             line-height:0.12rem;
             display:inline-block;
@@ -207,7 +207,7 @@ export const Course=styled.div`
             display:flex;
             justify-content:center;
             align-items:center;
-            color:#999;
+            color:#c33;
         }
         span:nth-of-type(2){
             left:2.85rem;

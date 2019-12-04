@@ -2,7 +2,7 @@ import {courseAsyncAction,commentAsyncAction,sendAsyncAction} from "actions/pare
 export const mapStateToProps=(state)=>({
     course:state.parenting.course,
     commentList:state.parenting.commentList,
-
+    send:state.parenting.send,
 })
 
 export const mapDispatchToProps=(dispatch)=>({
@@ -13,7 +13,7 @@ export const mapDispatchToProps=(dispatch)=>({
         dispatch(commentAsyncAction(courseId))
     },
     // // 发送评论
-    // send(){
-    //     dispatch(sendAsyncAction())
-    // }
+    sendComment(id,value){
+        dispatch(sendAsyncAction(id,value))
+    }
 })

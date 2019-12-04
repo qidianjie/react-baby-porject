@@ -5,7 +5,7 @@ import {connect} from "react-redux"
 import {withRouter} from 'react-router-dom' ;
 import {throttle} from "common/throttle"
 
-import Throttle from 'lodash-decorators/throttle';
+import Throttle from 'lodash-decorators';
 import { Modal} from 'antd-mobile';
 import {mapStateToProps,mapDispatchToProps} from "./mapStore"
 @connect(mapStateToProps,mapDispatchToProps )

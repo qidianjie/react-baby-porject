@@ -18,7 +18,6 @@ export const starAsyncAction=(countryId)=>{
 
     return async (dispatch)=>{
         let data=await nationalStarApi(countryId);
-        console.log(data.data.advList);
         dispatch(starAction(data.data.advList))
     }
 }

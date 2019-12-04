@@ -35,7 +35,7 @@ class National extends React.Component {
                     {/* header */}
                     <div className="header">
                         <span className="iconfont" onClick={this.handleBack.bind(this)}>&#xe605;</span>
-                        <span>{national.nationsName}</span>
+                        <span>{national?national.nationsName:''}</span>
                         <span></span>
                     </div>
                     {/* main图 */}
@@ -47,13 +47,13 @@ class National extends React.Component {
                         <ul>
                             {
                                 nav.map((item, index) => (
-                                    index == 0 ? <li key={index}><span onClick={this.handleNav.bind(this, index)} className={flag == index ? 'comeActive' : ''}>{item}{national.nationsName}</span></li> : <li key={index} ><span className={flag == index ? 'comeActive' : ''} onClick={this.handleNav.bind(this, index)}>{item}</span></li>
+                                    index == 0 ? <li key={index}><span onClick={this.handleNav.bind(this, index)} className={flag == index ? 'comeActive' : ''}>{item}{national?national.nationsName:''}</span></li> : <li key={index} ><span className={flag == index ? 'comeActive' : ''} onClick={this.handleNav.bind(this, index)}>{item}</span></li>
                                 ))
                             }
                         </ul>
                     </div>
                     {/* 走进韩国  */}
-                    <div className="public_title">走进{national.nationsName}</div>
+                    <div className="public_title">走进{national?national.nationsName:''}</div>
                     <div className="come_img">
                         <img src={advList[2] ? advList[2].positionList[0].bigImage : ''} alt="" />
                     </div>

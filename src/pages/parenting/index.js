@@ -123,17 +123,18 @@ class Parenting extends React.Component {
                         <ul>
                             {
                                 (list[2] ? list[2].result.advList : []).map((item, index) => (
-                                    <li key={item.articleId}>
+                                    <Link to={"/article?id="+item.articleId} className="tuijian_li" key={item.articleId}>
                                         <img src={num[index]} alt="" />
                                         {item.articleTitle}
                                         {
                                             index == 0 ? <img src="http://3g.baobeigezi.com/imgs/mycenter/baby/hot.png" alt="" /> : ""
                                         }
-                                    </li>
+                                    </Link>
                                 ))
                             }
                         </ul>
                     </div>
+                    {/* 专家讲堂 */}
                     <div className="public expert">
                         <p className="p_public">专家讲堂 <span className="iconfont">更多 &#xe715;</span></p>
                         <ol>
@@ -174,13 +175,13 @@ class Parenting extends React.Component {
                         <ol>
                             {
                                 (list[3] ? list[3].result.advList : []).map((item) => (
-                                    <li key={item.goodsId}>
+                                    <Link to={"/detail?id="+item.goodsId} className="welfare_li" key={item.goodsId}>
                                         <img src={item.goodsImage} alt="" />
                                         <p>{item.goodsName}</p>
                                         <h5>￥{item.markerPrice}</h5>
                                         <h4>￥{item.salePrice}</h4>
                                         <div className="rush_buy">立即抢购</div>
-                                    </li>
+                                    </Link>
                                 ))
                             }
                         </ol>
@@ -205,14 +206,14 @@ class Parenting extends React.Component {
                         {/* 抢购 */}
                         {
                             (list[5] ? list[5].result.advList : []).map((item) => (
-                                <div className="crazy_course" key={item.goodsId}>
+                                <Link to={"/detail?id="+item.goodsId} className="crazy_course" key={item.goodsId}>
                                     <img src={item.goodsImage} alt="" />
                                     <div className="course_goods">
                                         <p>{item.goodsName}</p>
                                         <span>￥{item.salePrice}</span>
                                         <span>立即抢购</span>
                                     </div>
-                                </div>
+                                </Link>
                             ))
                         }
                     </div>

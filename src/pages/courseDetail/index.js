@@ -13,11 +13,13 @@ class CourseDetail extends React.Component{
         // console.log(this.props)
         this.state={
             courseId:"",
-            value:""
+            value:"",
+            numId:""
         }
         // 接受传过来的id
         let {courseId}=url.parse(this.props.location.search,true).query;
         this.state.courseId=courseId;
+        // console.log(this,props)
     }
     componentWillMount(){
         // 课程目录
@@ -26,8 +28,9 @@ class CourseDetail extends React.Component{
         this.props.handleComment(this.state.courseId);
     }
     render(){
-        let {course,commentList} = this.props;
-        // console.log(commentList)
+        let {course,commentList,send} = this.props;
+        // let numId=window.eval('('+course.body+')')?window.eval('('+course.body+')').id:'';
+        console.log(this.state.numId)
         let {value} =this.state;
         return (
             <Course>
@@ -110,7 +113,7 @@ class CourseDetail extends React.Component{
                     <a href="">
                         <img src="http://3g.baobeigezi.com/imgs/mycenter/baby/zan.png"/>
                     </a>
-                    <span>0</span>
+                        <span>{commentList.length}</span>
                     <span>1999</span>
                 </div>
             </Course>
@@ -128,7 +131,11 @@ class CourseDetail extends React.Component{
     }
     // 发送评论
     handleSend(){
-        // this.props.handleComment(this.state.courseId);
+        this.props.sendComment(this.state.courseId,this.state.value);
+        this.state.value="";
+        this.props.handleComment(this.state.courseId);
+        // console.log(numId)
+        this.forceUpdate();
     }
 }
 
