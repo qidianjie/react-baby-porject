@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {PageContainer} from "common/styled"
 import {Classify} from "./styled"
 import {connect} from "react-redux"
-import {withRouter} from 'react-router-dom' ;
+import {withRouter,NavLink} from 'react-router-dom' ;
 import {throttle} from "common/throttle"
 
 import Throttle from 'lodash-decorators/throttle';
@@ -48,6 +48,7 @@ class Libao extends React.Component{
                 {
                     libaoListls.map((item,index)=>(
                         <div className="content_item" key={index} >
+                            <NavLink to={"/detail?id="+item.id}>
                         <img  src={item.goodsImage} alt=""/>
                         <div className="content_item_type">
                             <h5>分享赚￥150元精心挑选 {item.brandName}</h5>
@@ -58,6 +59,7 @@ class Libao extends React.Component{
                             </div>
                             <span>立即购买</span>
                         </div>
+                        </NavLink>
                     </div>
                     ))
                 }

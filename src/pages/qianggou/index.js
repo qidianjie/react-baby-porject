@@ -5,7 +5,7 @@ import { Classify } from "./styled"
 import { Progress, WingBlank, WhiteSpace } from 'antd-mobile';
 import { mapStateToProps, mapDispatchToProps } from "./mapStore";
 import { connect } from "react-redux";
-import {Link,withRouter} from "react-router-dom"
+import {NavLink,withRouter} from "react-router-dom"
 @withRouter
 @connect(mapStateToProps, mapDispatchToProps)
 class Qianggou extends React.Component {
@@ -45,6 +45,7 @@ class Qianggou extends React.Component {
                             {
                                 (crazyList ? crazyList : []).map((item) => (
                                     <li key={item.goodsId}>
+                                         <NavLink to={"/detail?id="+item.goodsId}>
                                         <img src={item.goodsImage}></img>
                                         <div className="flash_content_right">
                                             <p>{item.goodsName}</p>
@@ -65,6 +66,7 @@ class Qianggou extends React.Component {
                                                 <a>马上抢</a>
                                             </div>
                                         </div>
+                                        </NavLink>
                                     </li>
                                 ))
                             }

@@ -52,7 +52,7 @@ background:#f4f4f4;
     display:flex;
     flex-direction:column;
     align-items:center;
-    span{
+    a{
         font-size:.12rem;
         color:#fff;
     }

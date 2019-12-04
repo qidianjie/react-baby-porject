@@ -72,10 +72,12 @@ background-size:100%;
         width:100%;
         li{
             padding:.09rem;
-            display:flex;
             background:#fff;
             border-radius:.07rem;
             margin-bottom:.09rem;
+            a{
+                 display:flex;
+            }
             img{
                 width:.77rem;
                 height:.77rem;

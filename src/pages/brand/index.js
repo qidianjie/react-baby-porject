@@ -68,8 +68,7 @@ import {mapStateToProps,mapDispatchToProps} from "components/classify/mapStore"
                             {
                                (brandlist.length==0?list:brandlist).map((item,index)=>(
                                     <li className="lis pr" key={index}>
-                                    {/* <NavLink to={"/detail?id="+item.goodsId}> */}
-                                    <a>
+                                    <NavLink to={"/detail?id="+item.goodsId}>
                                         <div className="imgDiv">
                                             <img src={item.mainImg} />
                                         </div>
@@ -81,8 +80,7 @@ import {mapStateToProps,mapDispatchToProps} from "components/classify/mapStore"
                                                 {item.salePrice}
                                             </h5>
                                         </div>
-                                    {/* </NavLink> */}
-                                    </a>
+                                    </NavLink>
                                 </li>
                                 ))
                             }

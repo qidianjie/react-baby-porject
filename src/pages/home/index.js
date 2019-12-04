@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { mapStateToProps, mapDispatchToProps } from './mapStore'
 import { Carousel, WingBlank, Tabs, WhiteSpace } from 'antd-mobile';//轮播图
 import Bscrollcom from '../../common/bscroll'
-import {Link,withRouter} from "react-router-dom"
+import {Link,withRouter,NavLink} from "react-router-dom"
 @withRouter
 @connect(mapStateToProps, mapDispatchToProps)
 class Home extends Component {
@@ -298,6 +298,7 @@ class Home extends Component {
                         <div className="groupList">
                             {
                                 (advList[5] ? advList[5].positionList : []).map((item, index) => (
+                                    <NavLink to={"/detail?id="+item.id}>
                                     <a href="#" className="groupLi clearfix" key={index}>
                                         <div className="groupImg fl">
                                             <img src={item.goodsImage} />
@@ -314,6 +315,7 @@ class Home extends Component {
 
                                         </div>
                                     </a>
+                                    </NavLink>
                                 ))
                             }
                         </div>

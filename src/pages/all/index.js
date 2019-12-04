@@ -25,14 +25,14 @@ class All extends React.Component{
                     <div className="right">
                             {
                                 pinpaiListls.map((it,id)=>(
-                                    <span key={id}>{it.firstName}</span>           
+                                    <a key={id} href={id} onClick={this.handleClick.bind(this)}>{it.firstName}</a>    
                                 ))
                             }
                       </div>
                     {
                         pinpaiListls.map((item,index)=>(
                             
-                            <ol className="content" key={index}>
+                            <ol className="content" key={index} id={index}>
                             <span>{item.firstName}</span>
                             {
                                 item.brandList.map((its,ids)=>(
@@ -52,6 +52,10 @@ class All extends React.Component{
 }
 handleClose(){
     this.props.history.goBack();
+}
+handleClick(e){
+    e.preventDefault();
+    
 }
 }
 export default All

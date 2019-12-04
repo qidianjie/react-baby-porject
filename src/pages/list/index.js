@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {PageContainer} from "common/styled"
 import {Classify} from "./styled"
 import {connect} from "react-redux"
-import {withRouter} from 'react-router-dom' ;
+import {withRouter,NavLink} from 'react-router-dom' ;
 import {mapStateToProps,mapDispatchToProps} from "./mapStore"
 @connect(mapStateToProps,mapDispatchToProps )
 @withRouter
@@ -13,6 +13,7 @@ class BrandList extends React.Component{
     }
     render(){
         let {brandList} = this.props;
+        console.log(brandList);
         // console.log(this.props.match.params.id);
         return (
             <PageContainer>
@@ -42,9 +43,11 @@ class BrandList extends React.Component{
                         {
                             brandList.map((item,index)=>(
                                 <li key={index}>
+                                    <NavLink to={"/detail?id="+item.goodsId}>
                                 <img src={item.mainImg}/>
                                   <h6>{item.name}</h6>
                                   <p>{item.salePrice}</p>
+                                  </NavLink>
                                  </li>
                             ))
                         }

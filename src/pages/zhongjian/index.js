@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {PageContainer} from "common/styled"
 import {Classify} from "./styled"
 import {connect} from "react-redux"
-import {withRouter} from "react-router-dom"
+import {withRouter,NavLink} from "react-router-dom"
 import { Modal} from 'antd-mobile';
 import {mapStateToProps,mapDispatchToProps} from "./mapStore"
 @connect(mapStateToProps,mapDispatchToProps )
@@ -70,9 +70,11 @@ class Zhongjian extends React.Component{
                                  {
                                      zhongjianList.map((item,index)=>(
                                         <li key={index}>
+                                            <NavLink to={"/detail?id="+item.goodsId}>
                                         <img src={item.mainImg}/>
                                      <h6>{item.name}</h6>
                                      <p>{item.salePrice}</p>
+                                             </NavLink>
                                     </li>
                                      ))
                                  }

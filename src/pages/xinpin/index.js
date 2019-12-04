@@ -2,7 +2,7 @@ import React from "react";
 import {Classify} from "./styled"
 import { connect } from 'react-redux'
 import { mapStateToProps, mapDispatchToProps } from 'components/classify/mapStore'
-import {Link,withRouter} from "react-router-dom"
+import {NavLink,withRouter} from "react-router-dom"
 @withRouter
 @connect(mapStateToProps, mapDispatchToProps)
 class Leibie extends React.Component{
@@ -52,6 +52,7 @@ class Leibie extends React.Component{
                         {
                             xinpinList.map((item,index)=>(
                                  <li key={index}>
+                                     <NavLink to={"/detail?id="+item.id}>
                                 <img src={item.goodsImage} className="goods_pic"/>
                                     <h5>{item.name}</h5>
                             <p>{item.salePrice}</p>
@@ -60,6 +61,7 @@ class Leibie extends React.Component{
                             <span>{item.nationName}</span>
                                     <span>{item.brandName}</span>
                                 </div>
+                                </NavLink>
                         </li>
                             ))
                         }
