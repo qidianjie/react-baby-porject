@@ -374,7 +374,7 @@ export const ActiveList = styled.div`
 /* 精选活动 */
 .jingActive{
     width:100%;
-    height:5.6rem;
+    /* height:5.6rem; */
     .groupBg{
         height:0.3rem;
         line-height:0.3rem;
@@ -387,7 +387,7 @@ export const ActiveList = styled.div`
     }
     .jingList{
         width:100%;
-        height:5.75rem;
+        /* height:5.75rem; */
     }
     .jingLi{
         width:100%;

@@ -29,7 +29,7 @@ export default handleActions({
     },
     [selectGoodsAsyncType]:(state,action)=>{
         let goodsState=JSON.parse(JSON.stringify(state));
-        console.log(action.flag);
+        // console.log(action.flag);
         if(action.flag==1){
             goodsState.goodsList=action.data;
         }else{
