@@ -1,47 +1,72 @@
 import React from "react"
 import { PageContainer } from "common/styled"
 import { CommonHeader, Wrapper, Footer, ToTop } from "./styled"
-import { withRouter } from "react-router-dom"
+import { withRouter, Link, NavLink } from "react-router-dom"
 import { mapStateToProps, mapDispatchToProps } from "./mapStore"
 import { connect } from 'react-redux'
-import { Modal, List, Button, WhiteSpace, WingBlank, Icon } from 'antd-mobile';
+import { Modal, List, Button, WhiteSpace, WingBlank, Icon, Stepper,Badge } from 'antd-mobile';
 @withRouter
 @connect(mapStateToProps, mapDispatchToProps)
 class Detail extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            val:1,//购物车初始值
+
+            
+
             showFlag: false,
             id: "",
             index1: 0,
             index2: 0,
 
-            id:"",
-            up:"",
-            down:"",
+            id: "",
+            up: "",
+            down: "",
             count:1,
-           brandName:'',
-            goodsName:"",
-            price:"",
-            imgUrl:"",
-            cart: JSON.parse(localStorage.getItem("myCart")) || [],
+            brandName: '',
+            goodsName: "",
+            price: "",
+            imgUrl: "",
+            cart: JSON.parse(localStorage.getItem("myCart")) || [],//购物车的数据
+
+            scrollFlag: "0",
+
+            headerFlag: true
         }
-        // this.myCart=""
         this.handleScroll = this.handleScroll.bind(this);
         this.state.id = this.props.location.search.replace("?id=", "");
-        console.log(this.state.id);
+        this.tp = '';
+        this.pl = "";
+        this.total=0;//本地购物车商品的数量
     }
+
     render() {
-        
-        let { showFlag, id, index1, index2, up ,down} = this.state;
+
+        let { showFlag, id, index1, index2, up, down, headerFlag } = this.state;
         let { good, comment, recommendList } = this.props;
         return (
             <PageContainer ref="win">
                 <CommonHeader>
-                    <header className="common_header_bar" id="header">
+                    <header style={{ display: headerFlag ? "block" : "none" }} className="common_header_bar" id="header">
                         <em onClick={this.handleback.bind(this)}>
                             <img src="http://3g.baobeigezi.com/imgs/SafariForward2x.png" alt="" />
                         </em>
+                        <i>
+                            <img src="http://3g.baobeigezi.com/imgs/shouye-dangqianicon2x.png" alt="" />
+                        </i>
+                        <b>
+                            <img src="http://3g.baobeigezi.com/imgs/shareIcon.png" alt="" />
+                        </b>
+                    </header>
+                    <header style={{ display: !headerFlag ? "block" : "none" }} className="common_header_bar" id="header">
+                        <em onClick={this.handleback.bind(this)}>
+                            <img src="http://3g.baobeigezi.com/imgs/SafariForward2x.png" alt="" />
+                        </em>
+                        <div>
+                            <span onClick={this.handleSp.bind(this)}>商品</span>
+                            <span onClick={this.handleXq.bind(this)}>详情</span>
+                            <span onClick={this.handlePl.bind(this)}>评论</span></div>
                         <i>
                             <img src="http://3g.baobeigezi.com/imgs/shouye-dangqianicon2x.png" alt="" />
                         </i>
@@ -189,10 +214,10 @@ class Detail extends React.Component {
                         {/* 品牌推荐--相关推荐 */}
                         <div className="descTabPage page swiper-slide">
                             {/* 商品详情评论 */}
-                            <div className="tapNav tapNav3 clearfix">
+                            <div className="tapNav tapNav3 clearfix" ref="sxp" onClick={this.handleSXP.bind(this)}>
                                 <em  >商品</em>
                                 <em  >详情</em>
-                                <em  >评论</em>
+                                <em onClick={this.handlePl.bind(this)} >评论</em>
                             </div>
                             {/* 图文详情 */}
                             <div className="tapContent swiper-container">
@@ -201,18 +226,13 @@ class Detail extends React.Component {
                                         <p dangerouslySetInnerHTML={{ __html: good.goodsDetail ? good.goodsDetail.goodsPriceDetail.depict : "" }} />
 
                                     }
-                                    {/* <p>
-                                        <img src="http://id.baoimg.net/share-img/ueditor/upload/images/20181009/1539070228768240.jpg" alt="" />
-                                    </p>
-                                    <h3>
-                                        <br />
-                                    </h3> */}
+
                                 </div>
                             </div>
 
                         </div>
                         {/* 他们都在评 */}
-                        <div className="comment item floor">
+                        <div className="comment item floor" ref="ping">
                             <em className="itemTitle titTxt">
                                 <span className="borderTit detailT">
                                     商品评价
@@ -262,19 +282,21 @@ class Detail extends React.Component {
                             <ul className="clearfix">
                                 {
                                     (recommendList ? recommendList : []).map((item) => (
-                                        <li className="lis" key={item.id} >
-                                            <div className="imgDiv">
-                                                <img className="lazy" src={item.mainImg} alt="" />
-                                            </div>
-                                            <div className="waterButtom pr">
-                                                <div className="waterName text-overflow">
-                                                    {item.name}
+                                        <NavLink to={"/detail?id=" + item.id} key={item.id} >
+                                            <li className="lis" onClick={this.handleAgain.bind(this)} >
+                                                <div className="imgDiv">
+                                                    <img className="lazy" src={item.mainImg} alt="" />
                                                 </div>
-                                                <div className="waterPrice">
-                                                    {item.salePrice}
+                                                <div className="waterButtom pr">
+                                                    <div className="waterName text-overflow">
+                                                        {item.name}
+                                                    </div>
+                                                    <div className="waterPrice">
+                                                        {item.salePrice}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </li>
+                                            </li>
+                                        </NavLink>
                                     ))
                                 }
                             </ul>
@@ -288,28 +310,44 @@ class Detail extends React.Component {
                         // afterClose={() => { alert('已加入购物车'); }}
                         >
                             <List renderHeader={() => <div>请选择商品参数</div>} className="popup-list">
+                           
+
                                 <div >
-                                    <p className="choose">{ (good.goodsDetail ? (good.goodsDetail.goodsPriceDetail.attr.length !== 0 ? good.goodsDetail.goodsPriceDetail.attr[0].name : "") : "")}</p>
+                                    <p className="choose">{(good.goodsDetail ? (good.goodsDetail.goodsPriceDetail.attr.length !== 0 ? good.goodsDetail.goodsPriceDetail.attr[0].name : "") : "")}</p>
                                     <div>
                                         {
-                                            (good.goodsDetail ? (good.goodsDetail.goodsPriceDetail.attr.length !== 0 ? good.goodsDetail.goodsPriceDetail.attr[0].list :[]) :[]
+                                            (good.goodsDetail ? (good.goodsDetail.goodsPriceDetail.attr.length !== 0 ? (good.goodsDetail.goodsPriceDetail.attr[0].list.length !== 0 ? good.goodsDetail.goodsPriceDetail.attr[0].list : []) : []) : []
                                             ).map((child, index) => (
-                                                <b className="canshu" key={index} onClick={this.handleColor.bind(this,child.name,index)} className={index1 == index ? 'activeModel' : ""}>{child.name}</b>
+                                                <b className="canshu" key={index} onClick={this.handleColor.bind(this, child.name, index)} className={index1 == index ? 'activeModel' : ""}>{child.name}</b>
                                             ))
                                         }
                                     </div>
                                 </div>
                                 <div >
-                                    <p className="choose">{ (good.goodsDetail ? (good.goodsDetail.goodsPriceDetail.attr.length !== 0 ? good.goodsDetail.goodsPriceDetail.attr[0].name : "") : "")}</p>
+                                    <p className="choose">{(good.goodsDetail ? (good.goodsDetail.goodsPriceDetail.attr.length !== 0 ? good.goodsDetail.goodsPriceDetail.attr[0].name : "") : "")}</p>
                                     <div>
                                         {
-                                           (good.goodsDetail ? (good.goodsDetail.goodsPriceDetail.attr.length !== 0 ? good.goodsDetail.goodsPriceDetail.attr[1].list :[]) :[]
-                                           ).map((child, index) => (
-                                                <b className="canshu" key={index} onClick={this.handleTime.bind(this,child.name,index)} className={index2 == index ? 'activeModel' : ""}>{child.name}</b>
+                                            (good.goodsDetail ? (good.goodsDetail.goodsPriceDetail.attr.length !== 0 ? (good.goodsDetail.goodsPriceDetail.attr[1] ? good.goodsDetail.goodsPriceDetail.attr[1].list : []) : []) : []
+                                            ).map((child, index) => (
+                                                <b className="canshu" key={index} onClick={this.handleTime.bind(this, child.name, index)} className={index2 == index ? 'activeModel' : ""}>{child.name}</b>
                                             ))
                                         }
                                     </div>
                                 </div>
+                                <List.Item
+                                    wrap
+                                    extra={
+                                        <Stepper
+                                            style={{ width: '100%', minWidth: '100px' }}
+                                            showNumber
+                                            max={10}
+                                            min={1}
+                                            value={this.state.val}
+                                            onChange={this.onChange}
+                                        />}
+                                >
+                                    数量
+                             </List.Item>
                                 <List.Item>
                                     <Button type="primary" size="small" style={{ background: '#dcb86c', border: "none" }} onClick={this.onClose('modal2')}>加入购物车</Button>
                                 </List.Item>
@@ -328,6 +366,7 @@ class Detail extends React.Component {
                     <em className="shopCart" onClick={this.handleCart.bind(this)}>
                         <img src=" http://3g.baobeigezi.com/imgs/detail/gouwuche2x.png" alt=" " />
                     </em>
+                                    <i className="shu">{this.total}</i>
 
                     {/* 正常购物 */}
                     <em className="addCartBtn " onClick={this.showModal('modal2')}>
@@ -358,65 +397,105 @@ class Detail extends React.Component {
         this.props.detailAsyncData(this.state.id);
         this.props.goodsCommentAsyncData(this.state.id);
         this.props.recommendListAsyncData();
- 
+         this.handleTotal();
     }
-    componentWillReceiveProps(){
-        // (good.goodsDetail ? (good.goodsDetail.goodsPriceDetail.attr.length !== 0 ? good.goodsDetail.goodsPriceDetail.attr[0].name : "") : "")
-
-            //  this.state.up=(this.props.good.goodsDetail?this.props.good.goodsDetail.goodsPriceDetail.attr[0].list[0].name:"");
-
-             this.state.up=(this.props.good.goodsDetail ? (this.props.good.goodsDetail.goodsPriceDetail.attr.length !== 0 ? this.props.good.goodsDetail.goodsPriceDetail.attr[0].list[0].name : "") : "");
-
-
-            //  this.state.down=(this.props.good.goodsDetail?this.props.good.goodsDetail.goodsPriceDetail.attr[1].list[0].name:"");
-
-
-             this.state.down=(this.props.good.goodsDetail ? (this.props.good.goodsDetail.goodsPriceDetail.attr.length !== 0 ? this.props.good.goodsDetail.goodsPriceDetail.attr[1].list[0].name : "") : "");
-
-             this.state.brandName=this.props.good.brandName//品牌名 
-             this.state.goodsName=this.props.good.name//商品名
-             this.state.price=this.props.good.salePrice//商品价钱
-             this.state.id=this.props.good.id;//商品ID
-             this.state.imgUrl=(this.props.good.goodsDetail?this.props.good.goodsDetail.imgs[0] :"")
+    componentWillReceiveProps() {
+        this.state.up = (this.props.good.goodsDetail ? (this.props.good.goodsDetail.goodsPriceDetail.attr.length !== 0 ? this.props.good.goodsDetail.goodsPriceDetail.attr[0].list[0].name : "") : "");
+        this.state.down = (this.props.good.goodsDetail ? (this.props.good.goodsDetail.goodsPriceDetail.attr[1] ? this.props.good.goodsDetail.goodsPriceDetail.attr[1].list[0].name : "") : "");
+        this.state.brandName = this.props.good.brandName//品牌名 
+        this.state.goodsName = this.props.good.name//商品名
+        this.state.price = this.props.good.salePrice//商品价钱
+        this.state.id = this.props.good.id;//商品ID
+        this.state.imgUrl = (this.props.good.goodsDetail ? this.props.good.goodsDetail.imgs[0] : "")
     }
-
     handleScroll() {
-        let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        if (scrollTop > 150) {
-            this.setState({
-                showFlag: true
-            })
-        } else {
-            this.setState({
-                showFlag: false
-            })
+        if (this.state.scrollFlag == '0') {
+            this.tp = this.refs.sxp.offsetTop;
+            this.pl = this.refs.ping.offsetTop; //评论区距离上面的距离
+            let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;//获取滚动条的距离
+            if (scrollTop > 200) {
+                this.setState({//控制滚动条的出现   
+                    showFlag: true
+                })
+            } else {
+                this.setState({//控制滚动条的消失
+                    showFlag: false
+                })
+            }
+            //头部的变化
+            if (this.tp <= scrollTop) {
+                this.setState({
+                    headerFlag: false
+                })
+            } else {
+                this.setState({
+                    headerFlag: true
+                })
+            }
         }
+
     }
-    handleTop() {
+    handleTop() {//回到顶部
         window.scrollTo({
             left: 0,
             top: 0,
             behavior: 'smooth',
         });
     }
-    handleback() {
-        this.props.history.goBack();
+    handleback() {//后退事件
+        this.setState({
+            scrollFlag: "1"
+        }, () => {
+            this.props.history.push("/home");
+        })
+
     }
-    handleColor(item,index) {//上面
+    handleSXP() {//点击商品详情评论
+        window.scrollTo({
+            left: 0,
+            top: 0,
+            behavior: 'smooth',
+        });
+    }
+    handlePl(e) {//点击评论
+        e.stopPropagation();
+        window.scrollTo({
+            left: 0,
+            top: this.pl - 36,
+            behavior: 'smooth',
+        });
+    }
+    handleXq() {//点击替换头部的详情
+        window.scrollTo({
+            left: 0,
+            top: this.tp - 36,
+            behavior: 'smooth',
+        });
+    }
+    handleSp(e) {//点击替换头部的商品
+        e.stopPropagation();
+        window.scrollTo({
+            left: 0,
+            top: 0,
+            behavior: 'smooth',
+        });
+    }
+
+    handleColor(item, index) {//上面
         this.setState({
             index1: index,
-            up:item
-        },()=>{
-            console.log(this.state.up)
+            up: item
+        }, () => {
+            // console.log(this.state.up)
         })
     }
-    handleTime(item,index) {//下面
+    handleTime(item, index) {//下面
         this.setState({
             index2: index,
-            down:item
-        },()=>{
-            console.log(this.state.down)
-        })     
+            down: item
+        }, () => {
+            // console.log(this.state.down)
+        })
     }
     showModal = key => (e) => {
         e.preventDefault(); // 修复 Android 上点击穿透
@@ -428,35 +507,39 @@ class Detail extends React.Component {
         this.setState({
             [key]: false,
         });
-        var item={
-                up:this.state.up,
-                down:this.state.down,
-                count:1,
-                brandName:this.state.brandName,
-                goodsName:this.state.goodsName,
-                price:this.state.price,
-                id:this.state.id,
-                imgUrl:this.state.imgUrl
+
+        // 添加购物车
+        var item = {
+            up: this.state.up,
+            down: this.state.down,
+            count: this.state.val,
+            brandName: this.state.brandName,
+            goodsName: this.state.goodsName,
+            price: this.state.price,
+            id: this.state.id,
+            imgUrl: this.state.imgUrl
 
         }
-        let mark=0;
-        if(JSON.parse(localStorage.getItem("myCart"))){
+        let mark = 0;
+        if (JSON.parse(localStorage.getItem("myCart"))) {
             let cartArr = JSON.parse(localStorage.getItem("myCart"));
-            this.state.cart=cartArr;
-            for(let i=0;i<this.state.cart.length;i++){
-                if(this.state.cart[i].id == item.id && this.state.cart[i].up==item.up &&  this.state.cart[i].down==item.down ){
-                    this.state.cart[i].count++;
-                    mark=1;
+            this.state.cart = cartArr;
+            for (let i = 0; i < this.state.cart.length; i++) {
+                if (this.state.cart[i].id == item.id && this.state.cart[i].up == item.up && this.state.cart[i].down == item.down) {
+                    this.state.cart[i].count+=this.state.count;
+                    mark = 1;
                     break;
-                }     
+                }
             }
-            if(mark==0){
-                  this.state.cart.push(item);
+            if (mark == 0) {
+                this.state.cart.push(item);
             }
-        }else{
+        } else {
             this.state.cart.push(item);
-        }  
-        localStorage.setItem("myCart",JSON.stringify(this.state.cart)); //进行存储 
+        }
+        localStorage.setItem("myCart", JSON.stringify(this.state.cart)); //进行存储 
+        this.forceUpdate();
+        this.handleTotal()
     }
 
     onWrapTouchStart = (e) => {
@@ -480,8 +563,36 @@ class Detail extends React.Component {
         }
         return null;
     }
-    handleCart(){
-        this.props.history.push("/cart")
+    onChange = (val) => {
+        this.setState(
+            { 
+                val,
+                count:val
+             }
+            );
+    }
+    onChange1 = (val1) => {
+        // console.log(val);
+        this.setState({ val1 });
+    }
+    handleCart() {//回到购物车
+        this.setState({
+            scrollFlag: "1"
+        }, () => {
+            this.props.history.push("/cart")
+        })
+    }
+    handleAgain() {  
+        setTimeout(() => { window.location.reload() }, 0) 
+    }
+    handleTotal(){
+        this.total=0;
+        if (JSON.parse(localStorage.getItem("myCart"))) { 
+            let cartArr = JSON.parse(localStorage.getItem("myCart"));
+            for (let i = 0; i < cartArr.length; i++) {  
+                this.total+=cartArr[i].count;             
+            }
+         } 
     }
 }
 export default Detail;

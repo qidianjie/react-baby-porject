@@ -76,7 +76,7 @@ export const Container=styled.div`
             height:1.7rem;
             ul{
                 padding-top:0.08rem;
-                li{
+                .tuijian_li{
                     height:0.38rem;
                     border-bottom: 1px solid #eee;
                     width:100%;
@@ -111,6 +111,7 @@ export const Container=styled.div`
                     padding: .1rem;
                     margin-top: .15rem;
                     height: 1.18rem;
+                    display:block;
                     .expert_up{
                         display:flex;
                         h3{
@@ -170,11 +171,12 @@ export const Container=styled.div`
             ol{
                 display:flex;
                 flex-wrap:wrap;
-                li{
+                .welfare_li{
                     height:1.74rem;
                     margin-top: .16rem;
                     width:32%;
                     margin-right:.05rem;
+                    display:block;
                     img{
                         width:0.9rem;
                         height:0.9rem;
@@ -216,7 +218,7 @@ export const Container=styled.div`
                         margin-left:0.04rem;
                     }
                 }
-                li:nth-child(3n){
+                .welfare_li:nth-child(3n){
                     margin-right:0;
                 }
             }

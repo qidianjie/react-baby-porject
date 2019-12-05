@@ -112,11 +112,33 @@ export const commentApi=(courseId)=>http({
     }
 })
 
-// // 发送评论
-// export const sendApi=()=>http({
-//     method:"post",
-//     url:"/shop/cmsComment/commentList",
-//     data:{
+// 发送评论
 
-//     }
-// })
+export const sendApi=(id,value)=>http({
+    method:"post",
+    url:"/shop/cmsComment/comment",
+    data:{
+        content:value,
+        memberId: "1199957846754594818",
+        originId: id,
+    }
+})
+// 点赞
+export const zanApi=(zanId)=>http({
+    method:"post",
+    url:"/shop/cmsLike/giveLike",
+    data:{
+        id: zanId,
+        memberId: "1199957846754594818"
+    }
+})
+
+
+//发送评论
+// http://3g.baobeigezi.com/shop/cmsComment/comment
+// content: "哈哈哈"
+// memberId: 
+// "1199957846754594818"
+// "1199957846754594818"
+// "1199957846754594818"
+// originId: "1174636460930764802"

@@ -1,6 +1,6 @@
 import {handleActions} from "redux-actions";
 
-import {parentingType,getIdType,getDataType,articleType,courseType,commentType} from "actions/parenting/parentingTypes";
+import {parentingType,getIdType,getDataType,articleType,courseType,commentType,sendType,zanType} from "actions/parenting/parentingTypes";
 const defaultState={
     parentingList:[],
     idArr:[],
@@ -8,6 +8,9 @@ const defaultState={
     article:"",
     course:"",
     commentList:[],
+    send:"",
+    zan:0,
+
 
 }
 
@@ -46,5 +49,17 @@ export default handleActions({
         let commentState=JSON.parse(JSON.stringify(state));
         commentState.commentList=action.payload;
         return commentState;
+    },
+    // 发送评论
+    [sendType]:(state,action)=>{
+        let sendState=JSON.parse(JSON.stringify(state));
+        sendState.send=action.payload;
+        return sendState;
+    },
+    // 点赞
+    [zanType]:(state,action)=>{
+        let zanState=JSON.parse(JSON.stringify(state));
+        zanState.zan=action.payload;
+        return zanState;
     }
 },defaultState)

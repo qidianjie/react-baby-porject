@@ -16,9 +16,11 @@ export const NationalContainer=styled.div`
         align-items:center;
         font-size:0.15rem;
         letter-spacing:0.04rem;
-        position:absolute;
+        position:fixed;
+        background:#fff;
         left:0;
         top:0;
+        z-index:10;
         span:nth-of-type(1){
             font-size:0.18rem;
         }
@@ -37,19 +39,21 @@ export const NationalContainer=styled.div`
         height:0.48rem;
         border-bottom: 1px solid #999;
         background:#fff;
+        width:100%;
         ul{
+            width:100%;
             height:100%;
             display:flex;
             justify-content:center;
             align-items:center;
             li{
-                width:25%;
+
                 font-size:0.14rem;
                 text-align:center;
                 color: #bdbdbd;
                 span{
                     padding-bottom:0.04rem;
-                    margin:0 0.12rem;
+                    margin:0 0.08rem;
                 }
             }
         }
@@ -60,7 +64,7 @@ export const NationalContainer=styled.div`
     .topActive{
         position:fixed;
         left:0;
-        top:0;
+        top:0.38rem;
         z-index:10;
     }
     .public_title{
@@ -72,6 +76,8 @@ export const NationalContainer=styled.div`
         font-size:0.14rem;
         color:#000;
         font-weight:600;
+        /* float:left; */
+        position:relative;
 
     }
     .come_img{
@@ -126,7 +132,7 @@ export const NationalContainer=styled.div`
         background:#fff;
         opacity:0.5;
         p{
-            width: 1.3rem;
+            width: 1.41rem;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;

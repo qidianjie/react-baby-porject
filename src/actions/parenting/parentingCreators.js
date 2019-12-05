@@ -1,9 +1,9 @@
 
 // 引入createAction
 import {createAction} from "redux-actions";
-import {parentingApi,getIdApi,getDataApi,articleApi,courseApi,commentApi,sendApi} from "api/shop"
+import {parentingApi,getIdApi,getDataApi,articleApi,courseApi,commentApi,sendApi,zanApi} from "api/shop"
 
-import {parentingType,getIdType,getDataType,articleType,courseType,commentType} from "./parentingTypes";
+import {parentingType,getIdType,getDataType,articleType,courseType,commentType,sendType,zanType} from "./parentingTypes";
 export const parentingAction=()=>{
     let parentingData=createAction(parentingType,(data)=>data)
 
@@ -11,6 +11,7 @@ export const parentingAction=()=>{
         let data=await parentingApi();
         // console.log(data)
         dispatch(parentingData(data.data))
+        localStorage.setItem("parenting",JSON.stringify(data.data))
     }
 }
 // 育儿百科（获取八个id）
@@ -68,11 +69,23 @@ export const commentAsyncAction=(courseId)=>{
 }
 
 // 发送评论
-// export const sendAsyncAction=()=>{
+export const sendAsyncAction=(id,value)=>{
+    let sendAction=createAction(sendType,(data)=>data)
 
+    return async (dispatch)=>{
+        let data=await sendApi(id,value);
+        // console.log(data)
+        dispatch(sendAction(data.data.data))
+    }
+}
 
-//     return async (dispatch)=>{
-//         let data=await sendApi();
-//         console.log(data)
-//     }
-// }
+// 点赞
+export const zanAsyncAction=(zanId)=>{
+    let zanAction=createAction(zanType,(data)=>data)
+
+    return async (dispatch)=>{
+        let data=await zanApi(zanId);
+        // console.log(data);
+        dispatch(zanAction(data.data))
+    }
+}
