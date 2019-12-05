@@ -37,16 +37,15 @@ export const pinpaiListAction = ()=>{
     }
 }
 // 分类
-export const handleNaiBrandList = (id,flag)=>{
-    let handleBrandList = (data)=>({
+export const handleNaiBrandList = (id,flag,page)=>{
+    let handleBrandList = (data,page)=>({
         type:brandActionType,
-        data
+        data, 
+        page
     })
     return async (dispatch)=>{
-        let data = await handleNaibrand(id,flag);
-        console.log(data);
-        // localStorage.setItem('pinpai',JSON.stringify(data.data.data.filterBrand))
-        dispatch(handleBrandList(data.data.data.goodsList))
+        let data = await handleNaibrand(id,flag,(page=="112"?'1':page));
+        dispatch(handleBrandList(data.data.data.goodsList,page))
     }
 }
 

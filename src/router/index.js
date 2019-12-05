@@ -10,7 +10,7 @@ import {
     Cart,
     Hongbao,
     Libao,
-    Pinpai,
+    // Pinpai,
     Qianggou,
     Rule,
     Zhongjian,
@@ -103,13 +103,13 @@ export const NoTabBarRoute = [
         // icon:"\ue617",
         // text:"我的"
     },
-    {
-        path:"/pinpai",
-        component:Pinpai,
-        meta:{},
-        // icon:"\ue617",
-        // text:"我的"
-    },
+    // {
+    //     path:"/pinpai",
+    //     component:Pinpai,
+    //     meta:{},
+    //     // icon:"\ue617",
+    //     // text:"我的"
+    // },
     {
         path:"/qianggou",
         component:Qianggou,

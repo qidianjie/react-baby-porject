@@ -43,7 +43,7 @@ background:#f4f4f4;
 }
 .right{
     width:.13rem;
-    height:4.26rem;
+    height:4.5rem;
     background:#d4d4d4;
     position:fixed;
     top:.37rem;

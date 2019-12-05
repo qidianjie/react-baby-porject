@@ -9,12 +9,13 @@ import {mapStateToProps,mapDispatchToProps} from "./mapStore"
 class BrandList extends React.Component{
     constructor(props){
         super(props);
-        console.log(props);
+        this.state={
+            flag:"0"
+        }
     }
     render(){
         let {brandList} = this.props;
-        console.log(brandList);
-        // console.log(this.props.match.params.id);
+        let {flag} = this.state;
         return (
             <PageContainer>
             <Classify>
@@ -26,9 +27,9 @@ class BrandList extends React.Component{
                 </div>
                 <div className="sort">
                     <ul>
-                        <li>综合<span className="iconfont">&#xe666;</span></li>
-                        <li>价格<span className="iconfont">&#xe75b;</span></li>
-                        <li>销量</li>
+                        <li onClick={this.handleSort.bind(this,"0")} className={flag==0?'active':''}>综合<span className="iconfont">&#xe666;</span></li>
+                        <li onClick={this.handleSort.bind(this,"3")} className={flag==3?'active':''}>价格<span className="iconfont">&#xe75b;</span></li>
+                        <li onClick={this.handleSort.bind(this,"4")} className={flag==4?'active':''}>销量</li>
                         <li>筛选<span className="iconfont">&#xe624;</span></li>
                     </ul>
                 </div>
@@ -74,6 +75,17 @@ class BrandList extends React.Component{
         }
         handleSearch(){
             this.props.history.push("/search");
+        }
+        handleSort(index){
+            this.setState({
+                flag:index
+            },()=>{
+                // console.log(this.props.match.params.id,this.state.flag,1);
+                this.props.handlePinpaiList(this.props.match.params.id,this.state.flag);
+                this.forceUpdate();
+            })
+        
+            
         }
 }
 export default BrandList

@@ -16,7 +16,7 @@ class Find extends Component {
             flag:"0",
             id:"1154573626486296577",
             path:"/1154573626486296577",
-            isShow:"0"
+            isShow:JSON.parse(localStorage.getItem("caidan")) || "0"
         }
     }
 
@@ -59,17 +59,19 @@ class Find extends Component {
     handleClick(index){
         this.setState({
             flag:index,
-            id:this.props.caidanList[this.state.flag].id,
-            path:this.props.caidanList[this.state.flag].path
-        },()=>{
-            this.forceUpdate()
+            id:this.props.caidanList[index].id,
+            path:this.props.caidanList[index].path
+        },()=>{         
             this.props.GetAsyncGoodslist(this.state.id,this.state.path)
+           
         })
         
     }  
     handleClickShow(index){
         this.setState({
             isShow:index
+        },()=>{
+            localStorage.setItem("caidan",JSON.stringify(this.state.isShow))
         })
     }
     handleSearch(){

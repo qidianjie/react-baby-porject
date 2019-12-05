@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import {PageContainer} from "common/styled"
 import {Classify} from "./styled"
 import {connect} from "react-redux"
-import Throttle from 'lodash-decorators/throttle';
 import {withRouter,NavLink} from 'react-router-dom' ;
 import {throttle} from "common/throttle"
 import {mapStateToProps,mapDispatchToProps} from "./mapStore"
@@ -13,15 +12,21 @@ class Search extends Component {
         super()
         this.state = {
             val:"",
-            biaoji :'0'
+            biaoji:'0',
+            flag:0
         }
-        this.handle = this.handle.bind(this)
+        this.handle = this.handle.bind(this);
     }
     render() {
         let {searchList} = this.props;
         let {val} = this.state;
         if(val==""){
-            searchList=[]
+            searchList=[];
+        }
+        if(searchList.length==0){
+            this.state.flag = 0;
+        }else{
+            this.state.flag = 1;
         }
         return (
             <PageContainer>
@@ -32,7 +37,7 @@ class Search extends Component {
                     <a className="iconfont">&#xe613;</a>
                 </div>
                 {
-                    searchList.length=='0' ? <div className="history">
+                    this.state.flag == 0? <div className="history">
                     <div className="history_top">
                         <span>历史搜索</span>
                         <span className="iconfont">&#xe62c;</span>
@@ -52,7 +57,7 @@ class Search extends Component {
                     }
                    
                 </ul>
-                } 
+                }
                
                 
             </Classify>
@@ -66,15 +71,15 @@ class Search extends Component {
         var val = e.target.value;
         this.setState({
             val:val
+        },()=>{
+            throttle(this.handle,300);
         })
-        // this.props.handleSearchLs(this.state.val);
         
-        throttle(this.handle,300)
         
     }
     handle(){
             this.props.handleSearchLs(this.state.val);
-        
+            this.forceUpdate();
     }
     
 }

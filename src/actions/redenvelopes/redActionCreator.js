@@ -69,14 +69,14 @@ export const zhongjianList = ()=>{
 }
 
 // 品牌详情
-export const handlePinpaiLs =(id)=>{
+export const handlePinpaiLs =(id,page)=>{
     let handlepinpaiActions = (data)=>({
         type:handlepinpaiAction,
         data
     })
 
     return async (dispatch)=>{
-        let data = await brandList(id);
+        let data = await brandList(id,page);
         dispatch(handlepinpaiActions(data.data.data.goodsList));
     }
 }

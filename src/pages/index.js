@@ -51,11 +51,11 @@ export const Libao = Loadable({
     loader: () => import("./libao"),
     loading: Loading
 })
-//品牌
-export const Pinpai = Loadable({
-    loader: () => import("./pinpai"),
-    loading: Loading
-})
+// //品牌
+// export const Pinpai = Loadable({
+//     loader: () => import("./pinpai"),
+//     loading: Loading
+// })
 //抢购
 export const Qianggou = Loadable({
     loader: () => import("./qianggou"),

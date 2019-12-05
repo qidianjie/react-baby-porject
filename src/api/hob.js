@@ -57,36 +57,36 @@ export const zhongjianls = ()=>axios({
     
 })
 // 品牌详情
-export const brandList = (id= "1138348044551458818")=>axios({
+export const brandList = (id= "1138348044551458818",sort="0")=>axios({
     method:"post",
     url:"/shop/es/seletEsBybrandId",
     data:{
         brandId: "",
-        currPage: 1,
+        currPage:"1",
         goodsType: 0,
         id,
         maxPrice: "",
         minPrice: "",
         nationsId: "",
         pageSize: "40",
-        sort: "0"
+        sort
     }
     
 })
 // 分类数据
-export const handleNaibrand = (id= "1151041137260105729",flag="0")=>axios({
+export const handleNaibrand = (id= "1151041137260105729",sort="0",currPage="1")=>axios({
     method:"post",
     url:"/shop/es/selectEsbyThirdCategoryId",
     data:{
         brandId: "",
-        currPage: 1,
+        currPage,
         goodsType: 0,
         id,
         maxPrice: "",
         minPrice: "",
         nationsId: "",
         pageSize: "40",
-        sort: flag
+        sort
     }
     
 })

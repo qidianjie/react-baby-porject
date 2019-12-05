@@ -26,8 +26,8 @@ export const mapDispatchToProps = (dispatch)=>({
     },
 
     // 分类数据
-    handleNaiBrand(id,flag){
-        dispatch(handleNaiBrandList(id,flag));
+    handleNaiBrand(id,flag,page){
+        dispatch(handleNaiBrandList(id,flag,page));
     },
     // 搜索页面跳转数据
     searchList(id){

@@ -29,7 +29,13 @@ export default handleActions({
     },
     [brandActionType]:(state,action)=>{
         let brandState = JSON.parse(JSON.stringify(state));
-        brandState.brandlist = action.data;
+        if(action.page== "112"){
+            brandState.brandlist = action.data
+        }else{
+             brandState.brandlist = [...brandState.brandlist,...action.data];
+        }
+       
+        
         return brandState;
     },
     [searchActionType]:(state,action)=>{

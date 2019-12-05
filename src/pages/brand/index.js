@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Header, Brandtop, Brsec2, Nav, WaterList } from './styled'
 import { WhiteSpace } from 'antd-mobile';
 import {connect} from "react-redux"
+import {throttle} from "common/throttle"
 import {withRouter,NavLink} from "react-router-dom"
 import {mapStateToProps,mapDispatchToProps} from "components/classify/mapStore"
 @connect(mapStateToProps,mapDispatchToProps )
@@ -11,17 +12,19 @@ import {mapStateToProps,mapDispatchToProps} from "components/classify/mapStore"
          super()
          this.state={
              flag:'0',
-             biaoji:"0"
+             biaoji:"0",
+             currPage:"0",
+             n:"1",
          }
      }
+  
     render() {
         let {brandlist,searchlsList} = this.props;
         let list = searchlsList.goodsList?searchlsList.goodsList:[];
         if(list == []){
             this.state.biaoji=1;
         }
-        console.log(list);
-        console.log(list);
+        let {flag} = this.state;
         return (
             <div>
                 <Header >
@@ -33,38 +36,26 @@ import {mapStateToProps,mapDispatchToProps} from "components/classify/mapStore"
                     </span>
 
                 </Header>
-                
-                {/* <Brandtop>
-                    <div>
-                        <img src={searchlsList.brand.brandImage} alt="" />
-                    </div>
-                    <div>
-                        <span>{searchlsList.brand.name}</span>
-                    </div>
-                </Brandtop>
-                <Brsec2>
-                    <span>{searchlsList.brand.comments}</span>
-                </Brsec2> */}
                 <Nav>
-                    <span>
+                    <span onClick={this.handleSort.bind(this,"0")} className={flag==0?'active':''}>
                         综合
                             <i className="iconfont">&#xe666;</i>
                     </span>
-                    <span>
+                    <span onClick={this.handleSort.bind(this,"3")} className={flag==3?'active':''}>
                         价格
                            <i className="iconfont">  &#xe75b;</i>
                     </span>
-                    <span>
+                    <span onClick={this.handleSort.bind(this,"4")} className={flag==4?'active':''}>
                         销量
                         </span>
-                    <span className="shai">
+                         <span className="shai" >
                         筛选
                           <i className="iconfont">&#xe655;</i>
                     </span>
                 </Nav>
                 <WaterList>
                     <div className="waterList">
-                        <ul className="water">
+                        <ul className="water" ref="water">
                             {
                                (brandlist.length==0?list:brandlist).map((item,index)=>(
                                     <li className="lis pr" key={index}>
@@ -87,7 +78,7 @@ import {mapStateToProps,mapDispatchToProps} from "components/classify/mapStore"
                         </ul>
                     </div>
                     <div>
-                        <WhiteSpace />
+                    <WhiteSpace />
 
                     </div>
                 </WaterList>
@@ -98,26 +89,46 @@ import {mapStateToProps,mapDispatchToProps} from "components/classify/mapStore"
         )
     }
     componentDidMount(){
+             window.addEventListener('scroll', () =>{
+            if(((document.body.scrollTop || document.documentElement.scrollTop)+2000)>=(this.refs.water?this.refs.water.offsetHeight:0) && (document.body.scrollTop || document.documentElement.scrollTop)<=(this.refs.water?this.refs.water.offsetHeight:0)){
+                this.setState({
+                    n:++this.state.n
+                },()=>{
+                    if(this.props.match.params.name=='111'){
+                        this.props.searchList(this.props.match.params.id);
+                    }else{
+                         this.props.handleNaiBrand(this.props.match.params.id,this.state.flag,this.state.n);
+                    }
+                })
+            }
+      
+        })
         if(this.props.match.params.name=='111'){
+            
             this.props.searchList(this.props.match.params.id);
         }else{
-             this.props.handleNaiBrand(this.props.match.params.id,this.state.flag);
+             this.props.handleNaiBrand(this.props.match.params.id,this.state.flag,"112");
+
         }
        
     }
     handleClose(){
-        this.props.history.goBack();
+                this.props.history.goBack()  
     }
     handleSearch(){
-        this.props.history.push("/search");
+            this.props.history.push("/search");   
     }
-    // handleXiaoliang(){
-    //     this.setState({
-    //         flag:"4"
-    //     },()=>{
-    //         this.props.handleNaiBrand(this.props.match.params.id,this.state.flag);
-    //     })
-    // }
+    handleSort(index){
+        this.setState({
+            flag:index
+        },()=>{
+            this.props.handleNaiBrand(this.props.match.params.id,this.state.flag,"112");
+            this.forceUpdate();
+        })
+    
+        
+    }
+
 }
 
 export default Brand;

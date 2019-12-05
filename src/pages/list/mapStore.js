@@ -4,7 +4,7 @@ export const mapStateToProps = (state)=>({
 })
 
 export const mapDispatchToProps = (dispatch)=>({
-    handlePinpaiList(id){
-        dispatch(handlePinpaiLs(id));
+    handlePinpaiList(id,page){
+        dispatch(handlePinpaiLs(id,page));
     }
 })

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { PageContainer } from "common/styled"
 import { Banner, Baozheng, BannerIcon, ActiveList, WaterFull } from './styled'
 import { connect } from 'react-redux'
+import moment from 'moment';
 import { mapStateToProps, mapDispatchToProps } from './mapStore'
 import { Carousel, WingBlank, Tabs, WhiteSpace } from 'antd-mobile';//轮播图
 import Bscrollcom from '../../common/bscroll'
@@ -162,6 +163,23 @@ class Home extends Component {
         let { activeFlag } = this.state;
         let { advList, selectAll, qiangList,time,goodsList} = this.props;
         // console.log(goodsList);
+    //     const timezhuan = time=>{
+    //         // window.setInterval(()=>{
+    //             var days = parseInt(time / (1000 * 60 * 60 * 24));
+    //             var hours = parseInt((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    //             var minutes = parseInt((time % (1000 * 60 * 60)) / (1000 * 60));
+    //             var seconds = (time % (1000 * 60)) / 1000;
+    // //     return  hours + " : " + minutes + " : " + seconds;
+    //             // this.forceUpdate();
+    //             console.log(hours,minutes,seconds);
+    //             setInterval(function(){
+    //                 return days+":"+ hours + ":" + minutes + ":" + seconds;
+    //             },1000)
+                
+                
+    //         // },1000)
+           
+    //     }
         const tabs = [
             { title: '1st Tab' },
             { title: '2nd Tab' },
@@ -274,7 +292,7 @@ class Home extends Component {
                         <div className="flashTit ">
                             <span className="flashGo fl">限时抢购</span>
                             <span className="flashTime fl">上新啦</span>
-                        <div className="timer fl">{time}</div>
+                        <div className="timer fl">{moment(time).format('HH:mm:ss')}</div>
                             <a href="#" className="fr more">更多></a>
                         </div>
                         <div className="flashList">
@@ -287,7 +305,6 @@ class Home extends Component {
                                     </a>
                                 ))
                             }
-
                         </div>
                     </div>
                     {/* 每日拼团 */}
@@ -298,8 +315,8 @@ class Home extends Component {
                         <div className="groupList">
                             {
                                 (advList[5] ? advList[5].positionList : []).map((item, index) => (
-                                    <NavLink to={"/detail?id="+item.id}>
-                                    <a href="#" className="groupLi clearfix" key={index}>
+                                    <NavLink to={"/detail?id="+item.id} key={index}>
+                                    <a href="#" className="groupLi clearfix">
                                         <div className="groupImg fl">
                                             <img src={item.goodsImage} />
                                         </div>
@@ -749,5 +766,14 @@ class Home extends Component {
                 break;
         }
     }
+
+    // formatDuring(mss) {
+    //     // var days = parseInt(mss / (1000 * 60 * 60 * 24));
+    //     var hours = parseInt((mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    //     var minutes = parseInt((mss % (1000 * 60 * 60)) / (1000 * 60));
+    //     var seconds = (mss % (1000 * 60)) / 1000;
+    //     return  hours + " : " + minutes + " : " + seconds;
+    // }
+    
 }
 export default Home;
