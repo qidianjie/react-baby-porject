@@ -5,8 +5,18 @@ export const CommonHeader=styled.div`
     width:100%;
     height:0.36rem;
     background:white;
+    display:flex;
+    align-items:center;
+    div{
+        height:100%;
+        line-height:.36rem;
+        text-align:center;
+    }
     /* overflow:hidden; */
-
+    span{
+        display:inline-block;
+        width:0.62rem;
+    }
     .am-button{
         background: #dcb86c  !important;
     }
@@ -14,8 +24,6 @@ export const CommonHeader=styled.div`
         height: 210px;
         overflow: auto;
         }
-
-
 
     .common_header_bar{
         position:fixed;
@@ -504,6 +512,20 @@ export const Footer=styled.div`
     }
     .myCustomService{
         margin-left:0.2rem;
+    }
+    .shu{
+        position: absolute;
+        top:0.05rem;
+        background: #BB361F;
+        color: #fff;
+        font-style: normal;
+        border-radius: .1rem;
+        font-size: .12rem;
+        line-height: .1rem;
+        height: 0.11rem;
+        min-width: .11rem;
+       left:1.1rem;
+       text-align:center
     }
     .loveBtn{
         margin-left:0.2rem;

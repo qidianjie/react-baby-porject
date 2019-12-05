@@ -15,7 +15,6 @@ export default class Bscrollcom extends Component {
             click:true,
             tap:true
         });
-        console.log(this.scroll);
     }
     handlePullingUp(callback){
         this.scroll.on("pullingUp",()=>{

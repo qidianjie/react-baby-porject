@@ -51,7 +51,7 @@ class Home extends Component {
                     name: "时尚家具"
                 }
             ],
-            data: ['1', '2', '3'],
+            data: [0,1,2,3,4,5,6,7,8],
             imgHeight: 120,
             countryList:[
                 {
@@ -147,7 +147,6 @@ class Home extends Component {
             ],
             clock:new Date(),//时钟数
             clocktamp:(new Date()).getTime(),//时间戳
-          
         }
         this.goods={
             currPage :1,
@@ -161,7 +160,6 @@ class Home extends Component {
     render() {
         let { activeFlag ,countryList} = this.state;
         let { advList, selectAll, qiangList,time,goodsList} = this.props;
-        // console.log(goodsList);
         return (
             <PageContainer>
                 <Banner>
@@ -173,7 +171,7 @@ class Home extends Component {
                         <WingBlank>
                             <Carousel
                                 autoplay={true}
-                                infinite
+                                infinite={true}
                             >
                                 {
                                     (advList[0] ? advList[0].positionList : []).map((item) => (
@@ -286,7 +284,8 @@ class Home extends Component {
                         <div className="groupList">
                             {
                                 (advList[5] ? advList[5].positionList : []).map((item, index) => (
-                                    <a href="#" className="groupLi clearfix" key={index}>
+                                    <Link to={"/detail?id="+item.id}  key={index}>
+                                    <div className="groupLi clearfix" >
                                         <div className="groupImg fl">
                                             <img src={item.goodsImage} />
                                         </div>
@@ -301,7 +300,9 @@ class Home extends Component {
                                             </div>
 
                                         </div>
-                                    </a>
+                                    </div>
+                                    </Link>
+                                   
                                 ))
                             }
                         </div>
@@ -329,8 +330,6 @@ class Home extends Component {
                                 精选活动
                             </span>
                         </div>
-
-
                         <div className="jingList">
                             {(advList[8] ? advList[8].positionList : []).map((item, index) => (
                                 <div className="jingLi" key={index}>
@@ -340,15 +339,17 @@ class Home extends Component {
 
                                     <div className="flashList">
                                         {
+                                            
                                             item.productList.map((child, index) => (
-                                                <a href="#" className="swiper-slide" key={index}>
+                                                <Link to={"/detail?id="+child.id} key={index}>
+                                                <div className="swiper-slide"  >
                                                     <img src={child.goodsImage} alt="" />
                                                     <span className="title text-overflow">
                                                         {child.name}
                                                     </span>
                                                     <span className="del">{child.markerPrice}</span>
                                                     <span className="col_BB361F">{child.salePrice}</span>
-                                                </a>
+                                                </div></Link>
                                             ))
                                         }
                                     </div>
@@ -485,8 +486,7 @@ class Home extends Component {
                                         <Carousel
                                             autoplay={false}
                                             infinite
-                                            beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
-                                            afterChange={index => console.log('slide to', index)}
+                                            
                                         >
                                             {(advList[12] ? advList[12].positionList : []).map((item, index) => (
                                                
@@ -707,6 +707,11 @@ class Home extends Component {
     }
    
     componentDidMount() {
+        setTimeout(() => {
+            this.setState({
+                data: ['AiyWuByWklrrUDlFignR', 'TekJlZRVCjLFexlOCuWn', 'IJOtIlfsYdTyaDTRVrLI',"","","","","",""],
+            });
+        }, 100);
         this.props.handleAsyncData();
         this.props.qiangAsyncData();
         //导航栏
@@ -727,15 +732,10 @@ class Home extends Component {
             this.props.goodsAsyncData(this.goods);
             this.page++;
         })     
-        setTimeout(() => {
-            this.setState({
-                data: ['AiyWuByWklrrUDlFignR', 'TekJlZRVCjLFexlOCuWn', 'IJOtIlfsYdTyaDTRVrLI'],
-            });
-        }, 100);
+       
     }
     handleClick(item,index){
         item.flag=1;//为了让其在后面赋值
-        console.log(item)
         this.props.goodsAsyncData(item);
         this.goods={
             currPage:item.currPage,
@@ -748,7 +748,6 @@ class Home extends Component {
                 activeFlag:index
             }
         )
-        // console.log(this.goods)
     }
     handleJump(path){
         this.props.history.push(path);

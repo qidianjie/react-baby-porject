@@ -37,6 +37,10 @@ right:0;
 
 
 /* 购物车部分 */
+.am-icon{
+    float:right;
+    color:#999;
+}
 .cart{
     position:absolute;
     padding-top:.37rem;
@@ -47,7 +51,7 @@ right:0;
     padding-bottom:.40rem;
     overflow:scroll;
     .tixing{
-        padding:.37rem .1rem 0;
+        /* padding:.37rem .1rem 0; */
         /* height:.34rem; */
         color:#a9a9a9;
         font-size:.12rem; 
