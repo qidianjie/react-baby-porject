@@ -123,6 +123,16 @@ export const sendApi=(id,value)=>http({
         originId: id,
     }
 })
+// 点赞
+export const zanApi=(zanId)=>http({
+    method:"post",
+    url:"/shop/cmsLike/giveLike",
+    data:{
+        id: zanId,
+        memberId: "1199957846754594818"
+    }
+})
+
 
 //发送评论
 // http://3g.baobeigezi.com/shop/cmsComment/comment

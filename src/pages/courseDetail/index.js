@@ -14,7 +14,9 @@ class CourseDetail extends React.Component{
         this.state={
             courseId:"",
             value:"",
-            numId:""
+            numId:"",
+            // zan:0, //点赞初始值
+            flag:false,  //控制点赞颜色
         }
         // 接受传过来的id
         let {courseId}=url.parse(this.props.location.search,true).query;
@@ -28,10 +30,10 @@ class CourseDetail extends React.Component{
         this.props.handleComment(this.state.courseId);
     }
     render(){
-        let {course,commentList,send} = this.props;
+        let {course,commentList} = this.props;
         // let numId=window.eval('('+course.body+')')?window.eval('('+course.body+')').id:'';
-        console.log(this.state.numId)
-        let {value} =this.state;
+        let {value,zan,flag} =this.state;
+        // console.log(dianzan)
         return (
             <Course>
                 {/* top */}
@@ -91,8 +93,8 @@ class CourseDetail extends React.Component{
                                         <img src={item.head_img} alt=""/>
                                     </div>
                                     <div className="name">
-    <p><span>{item.nick_name}</span><span>{item.createTime}</span></p>
-                            <p>{item.content}</p>
+                                <p><span>{item.nick_name}</span><span>{item.createTime}</span></p>
+                                <p>{item.content}</p>
                                     </div>
                                 </li>
                             ))
@@ -109,18 +111,20 @@ class CourseDetail extends React.Component{
                     </a>
                     <input type="text" placeholder="添加评论" value={value} onChange={this.handleChange.bind(this)}/>
                     <button onClick={this.handleSend.bind(this)}>发送</button>
-                    <a href="" className="iconfont">&#xe634;</a>
-                    <a href="">
-                        <img src="http://3g.baobeigezi.com/imgs/mycenter/baby/zan.png"/>
-                    </a>
-                        <span>{commentList.length}</span>
-                    <span>1999</span>
+                    <i className={commentList.length==0?'iconfont':'iconfont yanse'}>&#xe634;</i>
+                    <i onClick={this.handleAdd.bind(this)} className={flag?'yanse iconfont':'iconfont'}>
+                        {/* <img src="http://3g.baobeigezi.com/imgs/mycenter/baby/zan.png"/> */}
+                        &#xe612;
+                    </i>
+                        <span className={commentList.length==0?'':'bian'}>{commentList.length}</span>
+                    <span className={flag?'bian':''}>{JSON.parse(localStorage.getItem('zan'))?JSON.parse(localStorage.getItem('zan')):'0'}</span>
                 </div>
             </Course>
         )
     }
     handleGoback(){
         this.props.history.goBack();
+        this.forceUpdate()
     }
     // 评论
     handleChange(e){
@@ -136,6 +140,36 @@ class CourseDetail extends React.Component{
         this.props.handleComment(this.state.courseId);
         // console.log(numId)
         this.forceUpdate();
+    }
+    // 点赞
+    handleAdd(){
+        this.setState({
+            flag:!this.state.flag
+        },()=>{
+            localStorage.setItem("zan",JSON.stringify(this.state.flag?'1':'0'));
+            this.forceUpdate();
+        })
+        // this.props.handlezan(this.state.courseId);
+        // console.log(dianzan)
+        // if(==1){
+        //     // console.log(1111111)
+        //     this.setState({
+        //         zan:++this.state.zan,
+        //         flag:true,
+        //     },()=>{
+        //         // localStorage.setItem("zan",this.state.zan)
+        //         // console.log(dianzan)
+        //     })
+        // }
+        // if(dianzan==0){
+        //     this.setState({
+        //         zan:--this.state.zan,
+        //         flag:false
+        //     },()=>{
+        //         // console.log(222222)
+        //     })
+        // }
+        
     }
 }
 

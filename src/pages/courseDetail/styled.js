@@ -168,7 +168,7 @@ export const Course=styled.div`
         }
         button{
             color: rgba(187,54,31,1);
-            margin-right: .04rem;
+            margin-right: .08rem;
             outline:none;
             border: none;
             background: 0 0;
@@ -183,23 +183,25 @@ export const Course=styled.div`
             text-align:center;
             line-height:0.22rem;
         }
-        a:nth-of-type(3){
+        i:nth-of-type(2){
             margin-right:0;
         }
-        a:nth-of-type(2){
+        i:nth-of-type(1){
             color:#999;
+            margin-right:0.1rem;
         }
         span{
             position:absolute;
-            left:2.68rem;
+            left:2.66rem;
             top:0.06rem;
             font-size:0.06rem;
-            width:0.14rem;
-            height:0.14rem;
+            /* width:0.12rem; */
+            padding:0 0.02rem;
+            height:0.12rem;
             text-align:center;
             line-height:0.12rem;
             display:inline-block;
-            border-radius:50%;
+            border-radius:0.07rem;
             border:1px solid #999;
             z-index:100;
             color:#000;
@@ -207,13 +209,19 @@ export const Course=styled.div`
             display:flex;
             justify-content:center;
             align-items:center;
-            color:#c33;
+            /* color:#c33; */
         }
         span:nth-of-type(2){
-            left:2.85rem;
-            width:0.29rem;
+            left:2.96rem;
             height:0.12rem;
             border-radius:.05rem;
+        }
+        .yanse{
+            color:#c33!important;
+        }
+        .bian{
+            border-color:#c33;
+            color:#c33;
         }
     }
 
